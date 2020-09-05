@@ -20,12 +20,12 @@ RSpec.describe Post, type: :model do
       expect(@post).to_not be_valid
     end
 
-    it 'titleが51文字以上だと登録できない' do
+    it 'titleが51文字以上だと投稿できない' do
       @post.title = 'a' * 51
       expect(@post).to_not be_valid
     end
 
-    it 'contentが151文字以上だと登録できない' do
+    it 'contentが151文字以上だと投稿できない' do
       @post.content = 'a' * 151
       expect(@post).to_not be_valid
     end
