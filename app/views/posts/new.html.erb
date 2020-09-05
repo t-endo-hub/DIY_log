@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+  <h3>新規投稿</h3>
+    <%= form_for (@post) do |f| %>
+      <%= f.fields_for :photos do |i| %>
+        <%= i.file_field :image %><br>
+      <% end %>  
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+      <%= f.submit "投稿", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
