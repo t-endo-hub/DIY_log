@@ -21,4 +21,16 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'Post #create' do
+    before do
+      @post = FactoryBot.build(:post)
+    end
+
+    context '@postが保存できた時' do
+      it 'データベースの値が保存される' do
+        expect(@post.save).to be_truthy
+      end
+    end
+  end
 end
