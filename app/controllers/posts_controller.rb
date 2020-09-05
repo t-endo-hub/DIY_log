@@ -22,7 +22,9 @@ class PostsController < ApplicationController
     @posts = Post.limit(10).includes(:photos, :user).order('created_at DESC')
   end
 
-  def show; end
+  def show
+    @post = Post.find(params[:id])
+  end
 
   def edit; end
 
