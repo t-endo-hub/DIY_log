@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :photo do
+  factory :post_tag do
   end
 end
