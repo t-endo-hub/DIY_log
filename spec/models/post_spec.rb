@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   before do
-    FactoryBot.create(:user_tanaka)
+    @user = FactoryBot.create(:user_tanaka)
     @post = FactoryBot.create(:post)
   end
 

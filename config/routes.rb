@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/top'
   get 'posts/new'
   get 'posts/show'
   get 'posts/edit'
@@ -13,4 +14,5 @@ Rails.application.routes.draw do
     resources :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
   end
+  resources :relationships, only: %i(create destroy)
 end
