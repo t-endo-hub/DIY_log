@@ -1,4 +1,4 @@
 FactoryBot.define do
-  factory :comment do
+  factory :relationship do
   end
 end
