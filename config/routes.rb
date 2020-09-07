@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i(create destroy)
     resources :recipes, only: %i(new create destroy)
     resources :materials, only: %i(create destroy)
+    resources :items, only: %i(create destroy)
   end
   resources :relationships, only: %i(create destroy)
 end
