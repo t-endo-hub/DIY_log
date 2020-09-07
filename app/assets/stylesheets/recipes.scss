@@ -2,3 +2,22 @@
   height: 300px;
   width: 300px;
 }
+.recipe-index {
+  text-align: center;;
+}
+.recipe {
+  min-height: 150px;
+  height: auto;
+  margin-right: 20px;
+  display: inline-block;
+  border: 1px solid black;
+}
+.recipe-image {
+  height: auto;
+  min-height: 170px;
+  text-align: center
+}
+.image {
+  width: 60%;
+  margin: auto;
+}

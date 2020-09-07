@@ -33,6 +33,26 @@ class RecipesController < ApplicationController
     end
   end
 
+  def index
+    @post = Post.find(params[:post_id])
+    @recipe = @post.recipes.build
+    @recipes = @post.recipes.all
+    @material = @post.materials.build
+    @materials = @post.materials.all
+    @item = @post.items.build
+    @items = @post.items.all
+  end
+
+  def show
+    @post = Post.find(params[:post_id])
+    @recipe = @post.recipes.find(params[:id])
+    @recipes = @post.recipes.all
+    @material = @post.materials.build
+    @materials = @post.materials.all
+    @item = @post.items.build
+    @items = @post.items.all
+  end
+
 
 
   private

@@ -55,6 +55,7 @@
             <%= f.text_field :comment, class: "form-control comment-input border-0", placeholder: "コメント ...", autocomplete: :off %>
           <% end %>
         </div>
+        <%= link_to '作り方', post_recipes_path(@post), class: 'btn btn-success' %>
       </div>
     </div>
   </div>
