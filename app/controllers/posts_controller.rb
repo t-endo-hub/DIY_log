@@ -4,14 +4,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.photos.build
+    @post.recipes.build
   end
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.photos.present?
-      @post.save
-      redirect_to root_path
+    if @post.save
+      redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'
     else
       redirect_to root_path
@@ -20,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.limit(10).includes(:photos, :user).order('created_at DESC')
+    @posts = Post.limit(10).includes(:user).order('created_at DESC')
   end
 
   def show; end
@@ -39,7 +38,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, photos_attributes: [:image])
+    params.require(:post).permit(:title, :content, :image)
   end
 
   def set_post

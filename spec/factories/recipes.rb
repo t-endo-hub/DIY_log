@@ -1,4 +1,5 @@
 FactoryBot.define do
-  factory :photo do
+  factory :recipe do
+    
   end
 end
