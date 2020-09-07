@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_113445) do
+ActiveRecord::Schema.define(version: 2020_09_06_083737) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -31,14 +31,6 @@ ActiveRecord::Schema.define(version: 2020_09_05_113445) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.string "image", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_photos_on_post_id"
-  end
-
   create_table "post_tags", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
@@ -52,9 +44,19 @@ ActiveRecord::Schema.define(version: 2020_09_05_113445) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "content"
+    t.string "image", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.string "image"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_recipes_on_post_id"
   end
 
   create_table "relationships", force: :cascade do |t|
