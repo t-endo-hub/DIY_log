@@ -1,17 +1,9 @@
-class RecipesController < ApplicationController
+class MaterialsController < ApplicationController
 
-  def new
-    @post = Post.find(params[:post_id])
-    @recipe = @post.recipes.build
-    @recipes = @post.recipes.all
-    @material = @post.materials.build
-    @materials = @post.materials.all
-  end
-  
   def create
     @post = Post.find(params[:post_id])
-    @recipe = @post.recipes.build(recipe_params)
-      if @recipe.save
+    @material = @post.materials.build(material_params)
+      if @material.save
       redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'
     else
@@ -22,8 +14,8 @@ class RecipesController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    @recipe = Recipe.find_by(id: params[:id])
-    if @recipe.destroy
+    @material = Material.find_by(id: params[:id])
+    if @material.destroy
       redirect_to new_post_recipe_path(@post)
     else
       redirect_to root_path
@@ -31,10 +23,10 @@ class RecipesController < ApplicationController
     end
   end
 
-
-
   private
-  def recipe_params
-    params.require(:recipe).permit(:content, :image)
+  def material_params
+    params.require(:material).permit(:name, :quantity)
   end
+
+  
 end

@@ -3,15 +3,32 @@
      <%= image_tag @post.image.to_s, class: "recipe_new" %>
   </div>
   <div class="col-md-6">
-    <h3>作品名</h3><br>
+    <h4 class="border-bottom mt-5">作品名</h3><br>
     <%= @post.title %><br>
-    <h3>説明</h3>
+    <h4 class="border-bottom mt-5">説明</h3>
     <%= @post.content %>
+
+    <h4 class="border-bottom mt-5">材料</h4>
+    <% @materials.each do |material| %>
+      <%= material.name %>
+      <%= material.quantity %>
+      <%= link_to "削除", post_material_path(@post.id, material), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+
+    <%= form_for ([@post,@material]) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_area :name %>
+      <%= f.label :quantity %>
+      <%= f.text_area :quantity %>
+      <%= f.submit "追加", class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>
 
+<h4 class="border-bottom mt-5">作り方</h4>
 <% @recipes.each do |recipe| %>
   <%= recipe.content %><br>
+  <%= link_to "削除", post_recipe_path(@post.id, recipe), method: :delete, class: "btn btn-danger" %>
   <% if recipe.image %>
     <%= image_tag recipe.image.to_s %>
   <% end %>
