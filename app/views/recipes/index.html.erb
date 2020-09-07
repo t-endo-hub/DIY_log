@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-6">
+     <%= image_tag @post.image.to_s, class: "recipe_new" %>
+  </div>
+  <div class="col-md-6">
+    <h4 class="border-bottom mt-5"> <%= @post.title %></h3><br>
+    <%= @post.content %>
+
+    <h4 class="border-bottom mt-5">材料</h4>
+    <% @materials.each do |material| %>
+      <%= material.name %>
+      <%= material.quantity %>
+    <% end %>
+
+    <h4 class="border-bottom mt-5">使用工具</h4>
+    <% @items.each do |item| %>
+      <%= item.name %>
+    <% end %>
+  </div>
+</div>
+
+<h4 class="border-bottom mt-5">作り方</h4>
+<div class="recipe-index">
+  <% @recipes.each do |recipe| %>
+    <%= link_to  post_recipe_path(@post,recipe) do %>
+      <div class="recipe col-md-3">
+        <div class="recipe-image">
+        <% if recipe.image %>
+            <%= image_tag recipe.image.to_s, class:'image' %>
+          <% end %>
+        </div>
+        <div>
+          <%= recipe.content %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

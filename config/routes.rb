@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i(new create index show destroy) do
     resources :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
-    resources :recipes, only: %i(new create destroy)
+    resources :recipes, only: %i(new index show create destroy)
     resources :materials, only: %i(create destroy)
     resources :items, only: %i(create destroy)
   end

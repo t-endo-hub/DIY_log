@@ -1,0 +1,20 @@
+<div class="text-center">
+  <h4><%= @post.title %></h4>
+  <%= image_tag @recipe.image.to_s, class: 'recipe_new' %><br>
+  <div class="recipe">
+    <%= @recipe.content %>
+  </div>
+</div>
+
+<% @recipes.each do |recipe| %>
+  <%= link_to post_recipe_path(@post,recipe) do %>
+    <%= image_tag recipe.image.to_s %>
+  <% end %>
+<% end %>
+
+<% if @recipe.previous.present? %>
+<%= link_to "PREV", post_recipe_path(@post,@recipe.previous), class: "btn_arrow_back"%>
+<% end %>
+<% if @recipe.next.present? %>
+<%= link_to "NEXT",post_recipe_path(@post,@recipe.next), class: "btn_arrow" %>
+<% end %>
