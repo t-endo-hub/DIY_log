@@ -6,6 +6,8 @@ class RecipesController < ApplicationController
     @recipes = @post.recipes.all
     @material = @post.materials.build
     @materials = @post.materials.all
+    @item = @post.items.build
+    @items = @post.items.all
   end
   
   def create
