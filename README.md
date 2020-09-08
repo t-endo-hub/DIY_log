@@ -1,6 +1,6 @@
 # README
 
-Y log
+DIY log
 
 ## サイト概要
 ・DIY のレシピを共有できるSNSサービス
