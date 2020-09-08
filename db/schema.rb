@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_070528) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "content"
-    t.string "image", null: false
+    t.string "image_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_070528) do
 
   create_table "recipes", force: :cascade do |t|
     t.integer "post_id", null: false
-    t.string "image"
+    t.string "image_id"
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_070528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
-    t.string "image"
+    t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

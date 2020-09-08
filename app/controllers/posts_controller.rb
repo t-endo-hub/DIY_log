@@ -20,6 +20,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.limit(10).includes(:user).order('created_at DESC')
+    @popular_user = User.limit(5).order('created_at DESC')
   end
 
   def show; end

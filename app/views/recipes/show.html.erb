@@ -1,14 +1,14 @@
 <div class="text-center">
   <h4><%= @post.title %></h4>
-  <%= image_tag @recipe.image.to_s, class: 'recipe_new' %><br>
   <div class="recipe">
+  <%= attachment_image_tag @recipe,:image, class: 'recipe_new' %><br>
     <%= @recipe.content %>
   </div>
 </div>
 
 <% @recipes.each do |recipe| %>
   <%= link_to post_recipe_path(@post,recipe) do %>
-    <%= image_tag recipe.image.to_s %>
+    <%= attachment_image_tag recipe,:image, size: "150x150" %>
   <% end %>
 <% end %>
 

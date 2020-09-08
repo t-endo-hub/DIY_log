@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-6">
-     <%= image_tag @post.image.to_s, class: "recipe_new" %>
+     <%= attachment_image_tag @post,:image, class: "recipe_new" %>
   </div>
   <div class="col-md-6">
     <h4 class="border-bottom mt-5"> <%= @post.title %></h3><br>
@@ -26,7 +26,7 @@
       <div class="recipe col-md-3">
         <div class="recipe-image">
         <% if recipe.image %>
-            <%= image_tag recipe.image.to_s, class:'image' %>
+            <%= attachment_image_tag recipe,:image, size: "150x150" %>
           <% end %>
         </div>
         <div>
