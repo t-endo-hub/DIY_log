@@ -1,5 +1,4 @@
 class RecipesController < ApplicationController
-
   def new
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build
@@ -9,11 +8,11 @@ class RecipesController < ApplicationController
     @item = @post.items.build
     @items = @post.items.all
   end
-  
+
   def create
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build(recipe_params)
-      if @recipe.save
+    if @recipe.save
       redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'
     else
@@ -47,15 +46,12 @@ class RecipesController < ApplicationController
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.find(params[:id])
     @recipes = @post.recipes.all
-    @material = @post.materials.build
     @materials = @post.materials.all
-    @item = @post.items.build
     @items = @post.items.all
   end
 
-
-
   private
+
   def recipe_params
     params.require(:recipe).permit(:content, :image)
   end

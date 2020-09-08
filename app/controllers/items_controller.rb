@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @item = @post.items.build(item_params)
-      if @item.save
+    if @item.save
       redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'
     else
@@ -23,8 +23,8 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
     params.require(:item).permit(:name)
   end
-
 end

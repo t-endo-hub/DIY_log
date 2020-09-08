@@ -1,7 +1,7 @@
 <div class="profile-wrap">
   <div class="row">
     <div class="col-md-4 text-center">
-      <%= image_tag avatar_url(@user), class: "round-img" %>
+      <%= attachment_image_tag @user,:image, class: "round-img" %>
     </div>
     <div class="col-md-8">
       <div class="row">
