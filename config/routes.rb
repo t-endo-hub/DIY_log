@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   root 'posts#index'
   get '/users/:id', to: 'users#show', as: 'user'
 
-  resources :posts, only: %i(new create index show destroy) do
+  resources :posts, only: %i(new create index show edit destroy) do
     resources :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
-    resources :recipes, only: %i(new index show create destroy)
+    resources :recipes, only: %i(new index show edit create destroy)
     resources :materials, only: %i(create destroy)
     resources :items, only: %i(create destroy)
   end
