@@ -3,13 +3,21 @@ class LikesController < ApplicationController
   def create
     @like = current_user.likes.build(like_params)
     @post = @like.post
-    respond_to :js if @like.save
+    @like.save
+    post = Post.find(params[:post_id])
+    # ここから
+    post.create_notification_like!(current_user)
+    # ここまで
+    respond_to :js
+
+    
   end
 
   def destroy
     @like = Like.find_by(id: params[:id])
     @post = @like.post
-    respond_to :js if @like.destroy
+    @like.destroy
+    respond_to :js
   end
 
   private

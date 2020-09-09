@@ -19,4 +19,6 @@ Rails.application.routes.draw do
     resources :items, only: %i(create destroy)
   end
   resources :relationships, only: %i(create destroy)
+  resources :notifications, only: %i(index)
+  delete "/destroy_all" => "notifications#destroy_all", as: "destroy_all_users_notifications"
 end
