@@ -2,7 +2,9 @@ class RelationshipsController < ApplicationController
   before_action :set_user
 
   def create
+    @user = User.find(params[:follow_id])
     following = current_user.follow(@user)
+    @user.create_notification_follow!(current_user)
     if following.save
       flash[:success] = 'ユーザーをフォローしました'
       redirect_to request.referer
