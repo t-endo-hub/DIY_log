@@ -10,7 +10,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, length: { maximum: 150 }
-  validates :image_id, presence: true
+  validates :image, presence: true
 
   def liked_by(user)
     Like.find_by(user_id: user.id, post_id: id)
