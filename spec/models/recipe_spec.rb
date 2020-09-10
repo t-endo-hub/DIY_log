@@ -13,22 +13,22 @@ RSpec.describe Recipe, type: :model do
       end
     end
 
-  context 'データが正しく保存されない' do
-    it 'post_idがnilだと登録できない' do
-      @recipe.post_id = ''
-      expect(@recipe).to_not be_valid
-    end
+    context 'データが正しく保存されない' do
+      it 'post_idがnilだと登録できない' do
+        @recipe.post_id = ''
+        expect(@recipe).to_not be_valid
+      end
 
-    it 'contentがnilだと登録できない' do
-      @recipe.content = ''
-      expect(@recipe).to_not be_valid
-      expect(@recipe.errors[:content]).to include("can't be blank")
-    end
+      it 'contentがnilだと登録できない' do
+        @recipe.content = ''
+        expect(@recipe).to_not be_valid
+        expect(@recipe.errors[:content]).to include("can't be blank")
+      end
 
-    it 'contentが151文字以上だと投稿できない' do
-      @recipe.content = 'a' * 151
-      expect(@recipe).to_not be_valid
+      it 'contentが151文字以上だと投稿できない' do
+        @recipe.content = 'a' * 151
+        expect(@recipe).to_not be_valid
+      end
     end
-   end
   end
 end

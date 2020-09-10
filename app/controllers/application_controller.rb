@@ -10,8 +10,6 @@ class ApplicationController < ActionController::Base
 
   def only_current_user
     @post = Post.find(params[:id])
-    if current_user != @post.user
-       redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user) if current_user != @post.user
   end
 end

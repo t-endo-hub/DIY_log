@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit create destroy]
-  before_action :only_current_user, only: %i[edit update destroy]
-
+  before_action :only_current_user, only: %i[edit destroy]
 
   def new
     @post = Post.find(params[:post_id])
@@ -54,9 +53,7 @@ class RecipesController < ApplicationController
     @items = @post.items.all
   end
 
-  def edit
-    
-  end
+  def edit; end
 
   private
 

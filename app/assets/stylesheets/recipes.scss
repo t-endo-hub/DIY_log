@@ -4,21 +4,23 @@
   clear: both;
 }
 .recipe_new {
-  height: 300px;
-  width: 300px;
-}
-.recipe-index {
-  text-align: center;;
+  height: 100%;
+  width: 100%;
+  margin-top: 20px;
 }
 .recipe {
   min-height: 150px;
   height: auto;
-  margin: 0 auto;
-  display: inline-block;
+  margin: auto;
+  margin-bottom: 20px;
   border: 1px solid black;
+}
+.recipe-border {
+  border-bottom: 3px solid tomato;
+  margin-top: 40px;
 }
 .recipe-image {
   height: auto;
   min-height: 170px;
-  text-align: center
+  
 }

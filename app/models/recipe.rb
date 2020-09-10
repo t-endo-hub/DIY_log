@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   belongs_to :post
 
   validates :content, presence: true, length: { maximum: 150 }
-  
+
   def previous
     Recipe.where('id < ?', id).order('id DESC').first
   end

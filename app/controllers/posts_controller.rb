@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
-  before_action :only_current_user, only: %i[edit update destroy]
+  before_action :only_current_user, only: %i[edit destroy]
   before_action :set_post, only: %i[show destroy]
 
   def new
@@ -24,12 +24,9 @@ class PostsController < ApplicationController
     @popular_user = User.limit(5).order('created_at DESC')
   end
 
-  def show
+  def show; end
 
-  end
-
-  def edit
-  end
+  def edit; end
 
   def destroy
     if @post.user == current_user

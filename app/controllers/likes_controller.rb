@@ -9,8 +9,6 @@ class LikesController < ApplicationController
     post.create_notification_like!(current_user)
     # ここまで
     respond_to :js
-
-    
   end
 
   def destroy
