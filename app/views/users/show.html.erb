@@ -4,6 +4,7 @@
       <%= attachment_image_tag @user,:image, class: "profile_img" %><br>
       <h4><strong><%= @user.name %></strong></h4>
       <%= render '/relationships/follow_btn', user:@user %>
+      <%= render 'users/stats', users:@users%>
     </div>
     <div class="col-md-8 mt-4">
       <% if @user == current_user %>
