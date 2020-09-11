@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
+  post '/home/guest_sign_in', to: 'home#new_guest'
   resources :relationships, only: %i(create destroy index)
   resources :notifications, only: %i(index)
   delete "/destroy_all" => "notifications#destroy_all", as: "destroy_all_users_notifications"
