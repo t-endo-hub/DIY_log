@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title, null: false
       t.text :content
       t.string :image_id, null: false
-
+      t.string :price
       t.timestamps
     end
   end
