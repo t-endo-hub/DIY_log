@@ -40,16 +40,16 @@ RSpec.describe RecipesController, type: :controller do
     end
 
     context 'ログインしていないユーザーはレシピ投稿ページが正しく表示されない' do
-        before do
-          get :new, params: { post_id: @post.id }
-        end
-        it 'リクエストが200 OKにならないこと' do
-          expect(response.status).to_not eq 200
-        end
+      before do
+        get :new, params: { post_id: @post.id }
+      end
+      it 'リクエストが200 OKにならないこと' do
+        expect(response.status).to_not eq 200
+      end
 
-        it '302レスポンスが返ってきているか？' do
-          expect(response).to have_http_status '302'
-        end
+      it '302レスポンスが返ってきているか？' do
+        expect(response).to have_http_status '302'
+      end
 
       it 'ログイン画面にリダイレクトされているか？' do
         expect(response).to redirect_to '/users/sign_in'
@@ -64,9 +64,9 @@ RSpec.describe RecipesController, type: :controller do
         get :edit, params: { post_id: @post.id, id: @recipe.id }
       end
       it 'リクエストは200 OKになること' do
-      expect(response.status).to eq 200
+        expect(response.status).to eq 200
+      end
     end
-  end
 
     context 'ログインしていないユーザーはレシピ編集ページが正しく表示されない' do
       before do
@@ -88,7 +88,7 @@ RSpec.describe RecipesController, type: :controller do
     context '自分のレシピ以外の編集ページが表示されない' do
       before do
         sign_in FactoryBot.create(:user_yamada)
-        @user = User.create(name: '田中',email:'tanaka@gmail.com',password: '123123')
+        @user = User.create(name: '田中', email: 'tanaka@gmail.com', password: '123123')
         get :edit, params: { post_id: @post.id, id: @recipe.id }
       end
       it 'リクエストが200 OKにならないこと' do

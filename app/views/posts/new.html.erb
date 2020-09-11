@@ -1,21 +1,33 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-6">
   <h3>新規投稿</h3>
     <%= form_for (@post) do |f| %>
+       <%= attachment_image_tag @post, :image, fallback:"no_image.jpg",class:"recipe-image-show", id:"preview-image" %>
       <%= f.attachment_field :image %>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-      <%
-=begin%>
- <%= f.fields_for :recipes do |i| %>
-        <%= i.label :content %>
-        <%= i.text_area :content %><br>
-      <% end %> 
-<%
-=end%>
-      <%= f.submit "投稿", class: "btn btn-primary" %>
-    <% end %>
+     
   </div>
-</div>
+
+  <div class="col-lg-6">
+			<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
+			<% if flash[:notice] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:notice]%></i>
+			 	</div>
+			<% end %>
+				<div class="row">
+					<div class="col-lg-3">レシピ名</div>
+					<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",
+							style:"width:80%",placeholder:"レシピ名" %></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-3">紹介文</div>
+					<div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"ポイント、特徴など" %></p></div>
+				</div>
+				<div style="text-align: center;margin: 20px 0">
+					<%= f.submit "保存して材料を追加する", class:"btn btn-warning" %>
+				</div>
+				
+				</div>
+			<% end %>
+		</div>

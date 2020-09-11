@@ -3,33 +3,37 @@
      <%= attachment_image_tag @post,:image, class: "recipe_new" %>
   </div>
   <div class="col-md-6">
-    <h4 class="border-bottom mt-5"> <%= @post.title %></h3><br>
+    <h4 class="recipe-border"> <%= @post.title %></h3><br>
     <%= @post.content %>
-
-    <h4 class="border-bottom mt-5">材料</h4>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-6 border mt-5 p-3">
+    <h4 class="recipe-border">材料</h4>
     <% @materials.each do |material| %>
       <%= material.name %>
       <%= material.quantity %>
     <% end %>
-
-    <h4 class="border-bottom mt-5">使用工具</h4>
+  </div>
+  <div class="col-md-6 border mt-5 p-3">
+    <h4 class="recipe-border">使用工具</h4>
     <% @items.each do |item| %>
       <%= item.name %>
     <% end %>
   </div>
 </div>
 
-<h4 class="border-bottom mt-5">作り方</h4>
+<h4 class="recipe-border">作り方</h4>
 <div class="recipe-index">
   <% @recipes.each do |recipe| %>
     <%= link_to  post_recipe_path(@post,recipe) do %>
-      <div class="recipe col-md-3">
-        <div class="recipe-image">
-        <% if recipe.image %>
+      <div class="row recipe">
+        <div class="recipe-image col-md-3">
+          <% if recipe.image %>
             <%= attachment_image_tag recipe,:image, size: "150x150" %>
           <% end %>
         </div>
-        <div>
+        <div class="d-inline-block col-md-9">
           <%= recipe.content %>
         </div>
       </div>

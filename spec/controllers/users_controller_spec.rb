@@ -19,16 +19,16 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'ログインしていないユーザーはユーザー詳細ページが正しく表示されない' do
-        before do
-          get :show, params: { id: @user.id }
-        end
-        it 'リクエストが200 OKにならないこと' do
-          expect(response.status).to_not eq 200
-        end
+      before do
+        get :show, params: { id: @user.id }
+      end
+      it 'リクエストが200 OKにならないこと' do
+        expect(response.status).to_not eq 200
+      end
 
-        it '302レスポンスが返ってきているか？' do
-          expect(response).to have_http_status '302'
-        end
+      it '302レスポンスが返ってきているか？' do
+        expect(response).to have_http_status '302'
+      end
 
       it 'ログイン画面にリダイレクトされているか？' do
         expect(response).to redirect_to '/users/sign_in'

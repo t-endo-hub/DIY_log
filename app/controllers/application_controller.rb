@@ -4,14 +4,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name image])
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[name image])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name image discription])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name image discription])
   end
 
   def only_current_user
     @post = Post.find(params[:id])
-    if current_user != @post.user
-       redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user) if current_user != @post.user
   end
 end
