@@ -1,8 +1,16 @@
+  <table class="table">
+    <thead>
+      <th scope="col">画像</th>
+      <th scope="col">名前</th>
+      <th scope="col"></th>
+    </thead>
 <% @users.each do |user| %>
-<table>
-<tr>
-  <td>  <%= user.name %> </td>
-  <td><%= link_to '詳細', user_path(user) %></td>
-</tr>
-</table>
+    <tbody>
+    <tr>
+      <td><%= attachment_image_tag user,:image, size: "40x40",class: "post-index-icon" %>
+      <td><%= user.name %> </td>
+      <td><%= link_to '詳細', user_path(user) %></td>
+    </tr>
+    </tbody>
+  </table>
 <% end %>
