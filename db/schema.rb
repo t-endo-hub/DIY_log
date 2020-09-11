@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_11_005225) do
+ActiveRecord::Schema.define(version: 2020_09_11_011947) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2020_09_11_005225) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "address"
+    t.string "postal_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "entries", force: :cascade do |t|
@@ -80,13 +89,14 @@ ActiveRecord::Schema.define(version: 2020_09_11_005225) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.string "name", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.integer "payment", default: 0
-    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_orders_on_post_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -95,6 +105,7 @@ ActiveRecord::Schema.define(version: 2020_09_11_005225) do
     t.string "title", null: false
     t.text "content"
     t.string "image_id", null: false
+    t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -135,6 +146,8 @@ ActiveRecord::Schema.define(version: 2020_09_11_005225) do
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
     t.text "discription"
+    t.string "address"
+    t.string "posta_code"
     t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

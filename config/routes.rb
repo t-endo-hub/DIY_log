@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'orders/new'
   get 'home/top'
   get 'posts/new'
   get 'posts/show'
@@ -17,6 +18,11 @@ Rails.application.routes.draw do
     resources :recipes, only: %i(new index show edit create destroy)
     resources :materials, only: %i(create destroy)
     resources :items, only: %i(create destroy)
+  end
+  resources :orders, only: %i(new create) do
+    member do
+      get :confirm
+    end
   end
   resources :relationships, only: %i(create destroy index)
   resources :notifications, only: %i(index)
