@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 2020_09_11_011947) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "name"
-    t.string "address"
-    t.string "postal_code"
+    t.integer "user_id", null: false
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "postcode", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -91,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_09_11_011947) do
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.string "name", null: false
-    t.string "postal_code", null: false
+    t.string "postcode", null: false
     t.string "address", null: false
     t.integer "payment", default: 0
     t.datetime "created_at", null: false
@@ -147,7 +148,7 @@ ActiveRecord::Schema.define(version: 2020_09_11_011947) do
     t.string "name", default: "", null: false
     t.text "discription"
     t.string "address"
-    t.string "posta_code"
+    t.string "postcode"
     t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

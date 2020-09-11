@@ -18,3 +18,22 @@
 //= require bootstrap-sprockets
 //= require_tree .
 
+$('#postcode').jpostal({
+  postcode : [
+    '#postcode'
+  ],
+  address : {
+    '#address' : '%3%4%5'
+  }
+});
+
+$(function () {
+	$('#postcode').jpostal({
+		postcode : [
+			'#postcode'
+		],
+		address : {
+			'#address' : '%3%4%5'
+		}
+	});
+});

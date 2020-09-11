@@ -19,8 +19,8 @@
         <div class="ml-5">
           <%= radio_button_tag :address, "my_address" %>
           <%= f.label "address_myaddress", "ご自身の住所"%>
-          <% if current_user.posta_code %>
-            <p class="ml-5"><%=current_user.postal_code + current_user.address + current_user.name %></p>
+          <% if current_user.postcode %>
+            <p class="ml-5"><%=current_user.postcode + current_user.address + current_user.name %></p>
           <% else %>
             <p>住所は登録されていません</p>
           <% end %>
@@ -38,11 +38,22 @@
         </div>
         <div class="ml-5">
           <div class="form-group row ml-3">
-            郵便番号<%= f.text_field :postal_code, class: "form-control offset-1 col-9" %>
+            郵便番号<%= f.text_field :postcode, id:"postcode",class: "form-control offset-1 col-9" %>
           </div>
           <div class="form-group row ml-3">
-            住所　　<%= f.text_field :address, class: "form-control offset-1 col-9" %>
+            住所　　<%= f.text_field :address, id:"address",class: "form-control offset-1 col-9" %>
           </div>
+            <script type="text/javascript">
+            $('#postcode').jpostal({
+              postcode : [
+                '#postcode'
+              ],
+              address : {
+                '#address' : '%3%4%5'
+              }
+            });
+            </script>
+
           <div class="form-group row ml-3">
             宛先　　<%= f.text_field :name, class: "form-control offset-1 col-9" %>
           </div>

@@ -1,10 +1,10 @@
 class CreateDeliveries < ActiveRecord::Migration[5.2]
   def change
     create_table :deliveries do |t|
-      t.integer "user_id"
-      t.string "name"
-      t.string "address"
-      t.string "postal_code"
+      t.references :user, foreign_key: true, null: false
+      t.string :name, null: false
+      t.string :address, null: false
+      t.string :postcode, null: false
       t.timestamps
     end
   end
