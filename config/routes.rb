@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   controllers: { registrations: 'registrations' }
 
   root 'posts#index'
-  resources :users, :only => [:index, :show]
+  resources :users, :only => [:index, :show] do
+    member do
+      get :followings, :followers
+     end
+  end
   resources :messages, :only => [:create]
   resources :rooms, :only => [:create, :show, :index]
 
