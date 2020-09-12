@@ -8,11 +8,9 @@ class Post < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :notifications, dependent: :destroy
   belongs_to :user
-  belongs_to :order
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, length: { maximum: 150 }
-  validates :image, presence: true
 
   def liked_by(user)
     Like.find_by(user_id: user.id, post_id: id)

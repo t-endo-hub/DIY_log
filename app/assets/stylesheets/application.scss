@@ -6,3 +6,35 @@
 @import "users/edit";
 @import "posts";
 @import "recipes";
+@import "orders";
+
+.tours-first-wrapper {
+  background-color: black;
+  height: 650px;
+  color: white;
+}
+
+.tourist-top-image {
+  background-image: image_url("213809_m.jpg");
+  background-attachment: fixed;
+	background-size: cover;
+	background-position: center;
+	height: 500px;
+}
+
+.tourist-top-image-box {
+  width: 40%;
+  height: 500px;
+  background-color: rgba( 0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  position: relative;
+}
+
+.tourist-top-image-box-text {
+  font-size: 30px;
+  padding: 90px;
+  position: absolute;
+  top: 150px;
+  left: 20px;
+  width: 100%;
+}

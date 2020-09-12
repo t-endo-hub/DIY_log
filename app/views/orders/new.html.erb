@@ -4,7 +4,7 @@
     </div>
     <%# 支払い方法 %>
     <h4><strong>支払い方法</strong> <span class="badge badge-danger">必須</span></h4>
-    <%= form_for(@order) do |f| %>
+    <%= form_for([@post,@order]) do |f| %>
 
     <div class="ml-5 form-check">
         <%= f.radio_button :payment, :クレジットカード%>

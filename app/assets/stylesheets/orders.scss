@@ -1,3 +1,18 @@
-// Place all the styles related to the orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.confirm {
+  background-color: wheat;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 20px;
+}
+.post-confirm {
+  border-top: 1px solid lightslategray;
+  border-bottom: 1px solid lightslategray;
+  padding: 20px 50px;
+}
+.post-confirm:nth-child(2) {
+  border:none;
+}
+.post-confirm:nth-child(4) {
+  border:none;
+}

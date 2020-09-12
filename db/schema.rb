@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2020_09_11_011947) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "content"
-    t.string "image_id", null: false
+    t.string "image_id"
     t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

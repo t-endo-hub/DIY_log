@@ -56,6 +56,9 @@
           <% end %>
         </div>
         <%= link_to '作り方', post_recipes_path(@post), class: 'btn btn-success' %>
+        <% if @post.user_id != current_user.id %>
+          <%= link_to '購入', new_post_order_path(@post), class: 'btn btn-danger' %>
+        <% end %>
       </div>
     </div>
   </div>

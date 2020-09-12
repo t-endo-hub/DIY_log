@@ -7,13 +7,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all
-    @current_user_entry = Entry.where(user_id: current_user.id)
-    @user_entry = Entry.where(user_id: @user.id)
-    if @user.id == current_user.id
-    else
+    @current_user_entry=Entry.where(user_id: current_user.id)
+    @user_entry=Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
       @current_user_entry.each do |cu|
         @user_entry.each do |u|
-          if cu.room_id == u.room_id
+          if cu.room_id == u.room_id then
             @is_room = true
             @room_id = cu.room_id
           end

@@ -12,8 +12,12 @@
         <li>
           <% if user_signed_in? %>
           <%= link_to "マイページ", user_path(current_user) %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :DELETE %>
+          <%= link_to '通知', notifications_path %>
           <% else %>
           <%= link_to 'ゲストログイン（閲覧用）', home_guest_sign_in_path, method: :post %>
+          <%= link_to 'sign_in', user_session_path, method: :post %>
+          <%= link_to '新気筒ロく', user_registration_path, method: :post %>
           <% end %>
         </li>
       </ul>

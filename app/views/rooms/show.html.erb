@@ -1,3 +1,4 @@
+<div class="container">
 <h1>DM</h1>
 
 <h4>参加者</h4>
@@ -8,8 +9,9 @@
 <hr>
 <% if @messages.present? %>
   <% @messages.each do |m| %>
+    <%= attachment_image_tag m.user,:image,class: "post-profile-icon" %>
     <strong><%= m.content %></strong>
-    <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
+    <strong><a href="/users/<%= m.user_id %>"> </a></strong>
     <hr>
   <% end %>
 <% else %>
@@ -24,3 +26,4 @@
 <% end %>
 
 <%= link_to "投稿一覧にもどる", root_path %>
+</div>

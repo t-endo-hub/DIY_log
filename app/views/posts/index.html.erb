@@ -1,4 +1,14 @@
+<div class="tours-first-wrapper">
+<div class = "tourist-top-image">
+		<div class = "tourist-top-image-box">
+			<span class = "tourist-login-message"><%= flash[:notice] %></span>
+			<span class = "tourist-top-image-box-text">文字</span>
+
+		</div>
+	</div>
+</div>
 <div class="row">
+
 <%= render '/partial/current_user', popular_user: @popular_user %> 
   <% @posts.each do |post| %>
     <div class="col-md-4">

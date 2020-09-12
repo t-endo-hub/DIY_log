@@ -1,1 +1,23 @@
-うい
+<div class="confirm">
+<h4 class="text-center">購入内容の確認</h4>
+  <div class="post-confirm">
+    <%= attachment_image_tag(@post, :image, size: "100x100" ) %>
+    <%= @post.title %>
+  </div>
+  <div class="py-3 post-confirm">
+    <h5>支払い金額</h5><br>
+    金額いれる
+  </div>
+  <div class="py-3 post-confirm">
+    <h5>支払い方法</h5><br>
+    <%= @order.payment %>
+  </div>
+  <div class="py-3 post-confirm">
+    <h5>配送先</h5><br>
+    〒<%= @order.postcode %><br>
+      <%= @order.address %>
+  </div>
+
+  <%= link_to '確定する', thanks_post_order_path(@post,@order), class: 'btn btn-danger' %>
+</div>
+
