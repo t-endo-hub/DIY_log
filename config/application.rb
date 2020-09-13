@@ -16,3 +16,7 @@ module DIYLog
     # the framework and any gems in your application.
   end
 end
+
+def liked_by(user)
+  Like.find_by(user_id: user.id, post_id: id)
+end

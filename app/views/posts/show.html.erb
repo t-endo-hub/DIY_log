@@ -1,11 +1,14 @@
+
+<div class="container">
 <div class="col-md-10 col-md-offset-1 mx-auto postShow-wrap">
   <div class="row post-wrap">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <div class="card-left">
-        <%= attachment_image_tag @post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
+        <%= attachment_image_tag @post,:image, class: "card-image-show", fallback: "no_image.jpg" %>
+        <%= render 'posts/tag_list', tag_list:@post.tags %>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <div class="card-right">
         <div class="card-right-comment">
           <div class="card-right-name">
@@ -63,11 +66,4 @@
     </div>
   </div>
 </div>
-
-			<% @post.tags.each do |tag| %>
-			 	<span class="post-tag">
-			 		<%= link_to posts_path(tag_name: tag.name) do %>
-			 			<%= tag.name %>
-			 		<% end %>
-			 	</span>
-			<% end %>
+</div>
