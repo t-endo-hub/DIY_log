@@ -20,8 +20,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.limit(10).includes(:user).order('created_at DESC')
-    @popular_user = User.limit(5).order('created_at DESC')
+    if params[:tag_name]
+      @posts = Post.tagged_with(params[:tag_name].to_s)
+    else
+      @posts = Post.limit(10).includes(:user).order('created_at DESC')
+    end
+      @popular_user = User.limit(5).order('created_at DESC')
   end
 
   def show
@@ -42,7 +46,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image)
+    params.require(:post).permit(:title, :content, :image, :tag_list)
   end
 
   def set_post

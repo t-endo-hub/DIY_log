@@ -2,7 +2,7 @@
   <div class="row post-wrap">
     <div class="col-md-8">
       <div class="card-left">
-        <%= attachment_image_tag @post,:image, class: "card-img-top" %>
+        <%= attachment_image_tag @post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
       </div>
     </div>
     <div class="col-md-4">
@@ -63,3 +63,11 @@
     </div>
   </div>
 </div>
+
+			<% @post.tags.each do |tag| %>
+			 	<span class="post-tag">
+			 		<%= link_to posts_path(tag_name: tag.name) do %>
+			 			<%= tag.name %>
+			 		<% end %>
+			 	</span>
+			<% end %>
