@@ -5,10 +5,30 @@
 			<%= form_for(@post) do |f| %>
 			<%= attachment_image_tag @post, :image, format:"jpg",
 				fallback:"no_image.jpg", class:"post-image-show", id:"preview-image" %>
-			<%= f.attachment_field :image, id:"select-image", style:"margin: 10px 0" %><br>
+			<%= f.attachment_field :image, id:"select-image", style:"margin: 10px 0", multiple: true %><br>
+
+<script type="text/javascript">
+$(function() {
+ function readURL(input) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function (e) {
+       $('#preview-image').attr('src', e.target.result);
+     }
+     reader.readAsDataURL(input.files[0]);
+   }
+ }
+ $("#select-image").change(function(){
+   readURL(this);
+ });
+});
+</script>
+
+
 			<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)'%>
 			<%= f.text_field :tag_list, value: @post.tag_list.join(','), class:"form-control",
 				placeholder: "豚肉,玉ねぎ,パスタ、、、" %>
+
 		</div>
 		<div class="col-lg-6">
 			<ul>
@@ -39,4 +59,5 @@
 			<% end %>
 		</div>
 	</div>
+</div>
 </div>

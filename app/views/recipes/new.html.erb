@@ -1,8 +1,9 @@
+<div class="container">
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5">
      <%= attachment_image_tag @post,:image, class: "recipe_new", fallback: "no_image.jpg" %>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-7">
     <h4 class="border-bottom mt-5">作品名</h3><br>
     <%= @post.title %><br>
     <h4 class="border-bottom mt-5">説明</h3>
@@ -58,3 +59,4 @@
 <% end %>
 
 <%= link_to '投稿する', root_path, class: 'btn btn-success' %>
+</div>
