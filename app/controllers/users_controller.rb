@@ -24,6 +24,7 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
+    @like_posts = @user.like_posts
   end
 
   def followings

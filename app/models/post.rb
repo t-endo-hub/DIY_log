@@ -13,6 +13,9 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, length: { maximum: 150 }
 
+  def liked_by(user)
+    likes.where(user_id: user.id).exists?
+  end
   
 
   def create_notification_like!(current_user)

@@ -12,23 +12,6 @@
 								<span style="color: black"><%= @post.comments.count %>件</span>
 						<% end %>
 					</span>
-					<% if user_signed_in? %>
-						<span class="favorite_<%= @post.id %>" >
-							<%= render "posts/like_text", post: @post %>
-						</span>
-					<% else %>
-						<i class="fas fa-heart" style="color: #F96167"></i>
-						<span style="color:black"><%= @post.likes.count %></span>
-						<span><i class="fas fa-calendar-alt"
-							style="color: #F96167"></i>
-							<%= @post.created_at.strftime('%Y/%m/%d')%>
-						</span>
-						<p style="margin-top: 10px" class="font-sm">
-							<%= link_to "新規登録", new_user_registration_path %>、または
-							<%= link_to "ログイン", new_user_session_path %>いただくと<br>
-							自分のレシピの作成やコメント、いいねができます。
-						</p>
-					<% end %>
 				</span>
 			</div>
 		</div>
