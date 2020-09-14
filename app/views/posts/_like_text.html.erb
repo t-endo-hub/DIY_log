@@ -1,17 +1,11 @@
-<strong>
-  <% likes.each.with_index do |like, index| %>
-    <% if likes.size == 1 %>
-      <%= like.user.name %> </strong> が「いいね！」しました
-    <% elsif like == likes.last %>
-      </strong>and<strong>
-      <%= + like.user.name %></strong> が「いいね！」しました
-    <% elsif index > 1 %>
-      </strong><%= "and " + (likes.size-index).to_s + " 他 " %> が「いいね！」しました
-      <% break %>
-    <% elsif index == likes.size-2 || index == 1 %>
-      <%= like.user.name %>
-    <% else %>
-      <%= like.user.name + ", " %>
-    <% end %>
-  <% end %>
-</strong>
+<% if post.liked_by(current_user) %>
+	<%= link_to post_likes_path(post), method: :delete,remote: true do %>
+		<i class="fas fa-heart" style="color: #F96167"></i>
+		<span><%= post.likes.count %></span>
+	<% end %>
+<% else %>
+	<%= link_to post_likes_path(post), method: :post,remote: true do %>
+		<i class="far fa-heart"></i>
+		<span><%= post.likes.count %></span>
+	<% end %>
+<% end %>

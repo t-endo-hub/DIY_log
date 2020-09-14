@@ -1,26 +1,15 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!
   def create
-    @like = current_user.likes.build(like_params)
-    @post = @like.post
-    @like.save
-    post = Post.find(params[:post_id])
-    # ここから
-    post.create_notification_like!(current_user)
-    # ここまで
-    respond_to :js
+    @post = Post.find(params[:post_id])
+    favorite = current_user.likes.build(post_id: @post.id)
+    @post.create_notification_like!(current_user)
+    favorite.save
   end
 
   def destroy
-    @like = Like.find_by(id: params[:id])
-    @post = @like.post
-    @like.destroy
-    respond_to :js
-  end
-
-  private
-
-  def like_params
-    params.permit(:post_id)
+    @post = Post.find(params[:post_id])
+    favorite = current_user.likes.find_by(post_id: @post.id)
+    favorite.destroy
   end
 end

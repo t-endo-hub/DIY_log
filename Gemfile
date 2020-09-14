@@ -70,3 +70,7 @@ gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end

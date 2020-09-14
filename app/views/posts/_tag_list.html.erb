@@ -1,0 +1,6 @@
+<ul class="tag_card">
+  <% tag_list.each do |tag| %>
+    <li><%= link_to "#{tag}", posts_path(tag_name: tag.name), class: 'post-tag' %></li>
+  <% end %>
+</ul>
+

@@ -14,8 +14,9 @@ class Post < ApplicationRecord
   validates :content, length: { maximum: 150 }
 
   def liked_by(user)
-    Like.find_by(user_id: user.id, post_id: id)
+    likes.where(user_id: user.id).exists?
   end
+  
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索

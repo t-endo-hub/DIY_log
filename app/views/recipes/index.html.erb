@@ -1,42 +1,149 @@
-<div class="row">
-  <div class="col-md-6">
-     <%= attachment_image_tag @post,:image, class: "recipe_new", fallback: "no_image.jpg" %>
-  </div>
-  <div class="col-md-6">
-    <h4 class="recipe-border"> <%= @post.title %></h3><br>
-    <%= @post.content %>
-</div>
-</div>
-<div class="row">
-  <div class="col-md-6 border mt-5 p-3">
-    <h4 class="recipe-border">材料</h4>
-    <% @materials.each do |material| %>
-      <%= material.name %>
-      <%= material.quantity %>
-    <% end %>
-  </div>
-  <div class="col-md-6 border mt-5 p-3">
-    <h4 class="recipe-border">使用工具</h4>
-    <% @items.each do |item| %>
-      <%= item.name %>
-    <% end %>
-  </div>
-</div>
+<div class="container" style="padding-bottom: 100px;">
+	<div class="row" style="margin-top: 30px">
+		<div class="col-lg-6 col-12">
+			<%= attachment_image_tag @post, :image, format:"jpg",
+				fallback:"no_image.jpg", class:"post-image-show", style:"margin:10px 0" %>
+			<%= render 'posts/tag_list', tag_list:@post.tags %>
+			<div style="margin-top: 20px;">
+				<span class="font-md">
+					<span class="mr-w">
+						<%= link_to anchor: "comments" do %>
+							<i class="fas fa-comment" style="color: #F96167;"></i>
+								<span style="color: black"><%= @post.comments.count %>件</span>
+						<% end %>
+					</span>
+				</span>
+			</div>
+		</div>
 
-<h4 class="recipe-border">作り方</h4>
-<div class="recipe-index">
-  <% @recipes.each do |recipe| %>
-    <%= link_to  post_recipe_path(@post,recipe) do %>
-      <div class="row recipe">
-        <div class="recipe-image col-md-3">
-          <% if recipe.image %>
-            <%= attachment_image_tag recipe,:image, size: "150x150" %>
-          <% end %>
-        </div>
-        <div class="d-inline-block col-md-9">
-          <%= recipe.content %>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
+		<div class="col-lg-6 col-12">
+			<% if flash[:create] %>
+			 	<div class="good-flash"><i class="fas fa-check-circle"></i>
+			 		<%= flash[:create]%>
+			 	</div>
+			<% end %>
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px; font-weight: bold">
+				<%= @post.title %>
+				<% if user_signed_in? %>
+					<% if @post.user_id == current_user.id %>
+						<%= link_to "編集", posts_edit_path(@post),
+							class:"btn btn-warning btn-sm", style:"margin-bottom:5px",
+								data: {"turbolinks" => false} %>
+					<% end %>
+				<% end %>
+			</p>
+			<div class="row">
+				<div class="col-lg-12 col-12"><p><%= @post.content %></p></div>
+			</div>
+
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
+				<% if user_signed_in? %>
+					<% if @post.user_id == current_user.id %>
+						<%= link_to "編集", posts_edit_path(@post),
+							class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
+					<% end %>
+				<% end %>
+			</p>
+			<% if flash[:material] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:material]%></i>
+			 	</div>
+			<% end %>
+			<% @post.materials.each do |material| %>
+				<div class="row" style="margin-bottom: 10px">
+					<div class="col-lg-5 col-5 font-md-sp">
+						<%= material.name %>
+					</div>
+					<div class="col-lg-7 col-7 font-md-sp">
+						<%= material.quantity %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="row" style="margin-top:30px;">
+		<div class="col-lg-12 col-12">
+			<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
+				<% if user_signed_in? %>
+					<% if @post.user_id == current_user.id %>
+						<%= link_to "編集", edit_post_path(@post),
+							style:"margin-bottom:5px", class:"btn btn-warning btn-sm" %>
+					<% end %>
+				<% end %>
+			</p>
+			<% if flash[:recipe] %>
+			 	<div class="bad-flash"><i class="fas fa-exclamation-circle">
+			 		<%= flash[:recipe]%></i>
+			 	</div>
+			<% end %>
+			<% @sum = 0 %>
+			<% @post.recipes.each do |recipe| %>
+				<div class="row" style="margin-bottom: 10px">
+					<div class="col-lg-1 col-1 font-md-sp" style="text-align: right"  >
+						<%= @sum += 1 %>.
+					</div>
+					<div class="col-lg-11 col-11 font-md-sp">
+						<%= recipe.content %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+
+
+
+
+
+	<%
+=begin%>
+ <div style="margin-top:30px;" id="comments">
+		<% if @post.post_status == "完成"  %>
+			<span class="form-title" >Comments</span>
+				<div class="comment_<%= @post.id %>">
+					<%= render "comment", comments: @comments %>
+				</div>
+			<% if user_signed_in? %>
+				<div class="row" style="margin-top: 30px">
+					<div class="col-lg-12 col-12">
+						<span class="form-title" style="font-size: 20px">New Comment</span>
+						<div id="error_explanation"><%= render "layouts/error", {object: @comment} %></div>
+						<%= form_with model:[@post, @comment] do |f| %>
+							<%= f.text_area :content, rows:"2", autocomplete: "off",
+								style:"width:80%;", class:"font-md-sp" %><br>
+							<%= f.hidden_field :post_id, value: @post.id %>
+							<%= f.submit "コメント", class:"btn btn-warning submit-btn" %>
+						<% end %>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div> 
+<%
+=end%>
+
+	<%
+=begin%>
+ <% if @post.post_status == "完成"  %>
+		<div style="margin-top: 50px;padding-top: 20px; border-top: 1px solid #F96167">
+			<span class="form-title">Recommend</span>
+			<div class="product-contents" style="margin-top: 20px;">
+					<% @products.shuffle.first(8).each do |product| %>
+						<div class="product-content">
+							<%= link_to product_path(product) do %>
+								<%= attachment_image_tag product, :product_image, format:"jpg",
+									fallback:"top_vegetable.jpg", class:"product-image" %>
+							<p>
+								<i class="fas fa-seedling"></i><%= product.name %>
+								<span class="hidden-sp">：¥<%= product.price %>円</span>
+							</p>
+							<% end %>
+						</div>
+					<% end %>
+			</div>
+		</div>
+	<% end %> 
+<%
+=end%>
+
+
