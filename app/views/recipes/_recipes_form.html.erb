@@ -1,0 +1,9 @@
+<% recipes.each do |recipe| %>
+  <div class="float-left">
+    <% if recipe.image %>
+      <%= attachment_image_tag recipe,:image, size: "150x150" %>
+    <% end %>
+    <div><%= recipe.content %></div>
+    <%= link_to "削除", post_recipe_path(post, recipe), method: :delete, remote: true, class: "btn btn-danger" %>
+  </div>
+<% end %>
