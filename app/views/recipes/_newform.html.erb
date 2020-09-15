@@ -1,0 +1,7 @@
+ 		<% materials.each do |material| %>
+		 <div>
+      <%= material.name %>
+      <%= material.quantity %>
+      <%= link_to "削除", post_material_path(post, material), method: :DELETE, remote: true, class: "btn btn-danger" %>
+		 </div>
+    <% end %>

@@ -16,22 +16,19 @@
             <% end %>
           </div>
 
-            <% if user_signed_in? %>
           <%= link_to(post_path(post)) do %>
             <%= attachment_image_tag post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
-          <% end %>
 
           <div class="card-body">
           <h5><strong><%= post.title %></strong></h5>
             <div class="row parts">
 
+            <% if user_signed_in? %>
               いいね機能
               <div id="like_<%= post.id %>">
                  <%= render "/posts/like_text", post: post %>
               </div>
-
-
-              <%= link_to "", "#", class: "comment" %>
+            <% end %>
             </div>
             
             <div>

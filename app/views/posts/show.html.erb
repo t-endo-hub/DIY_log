@@ -4,7 +4,7 @@
   <div class="row post-wrap">
     <div class="col-md-7">
       <div class="card-left">
-        <%= attachment_image_tag @post,:image, class: "card-image-show", fallback: "no_image.jpg" %>
+        <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
         <%= render 'posts/tag_list', tag_list:@post.tags %>
       </div>
     </div>
