@@ -1,0 +1,6 @@
+ 		<% items.each do |item| %>
+		 <div>
+      <%= item.name %>
+      <%= link_to "削除", post_item_path(post, item), method: :DELETE, remote: true, class: "btn btn-danger" %>
+		 </div>
+    <% end %>

@@ -16,15 +16,15 @@
     <div class="row">
     <div class="col-md-6">
       <h4 class="border-bottom mt-5">材料</h4>
-      <div class="newform_<%= @post.id %>">
-        <%= render 'newform', materials:@materials, post:@post %>
+      <div class="materials_form_<%= @post.id %>">
+        <%= render 'materials_form', materials: @materials, post: @post %>
       </div>
 
       <%= form_for [@post,@material],remote: true do |f| %>
         <%= f.label :name %>
-        <%= f.text_field :name, class: 'new_form' %>
+        <%= f.text_field :name, class: 'materials_form' %>
         <%= f.label :quantity %>
-        <%= f.text_field :quantity, class: 'new_form' %>
+        <%= f.text_field :quantity, class: 'materials_form' %>
         <%= f.submit "追加", class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -32,14 +32,13 @@
 
     <div class="col-md-6">
       <h4 class="border-bottom mt-5">使用工具</h4>
-      <% @items.each do |item| %>
-        <%= item.name %>
-        <%= link_to "削除", post_item_path(@post.id, item), method: :delete, class: "btn btn-danger" %>
-      <% end %>
+      <div class="items_form_<%= @post.id %>">
+        <%= render 'items_form', items: @items, post: @post %>
+      </div>
 
-      <%= form_for ([@post,@item]) do |f| %>
+      <%= form_for [@post,@item],remote: true do |f| %>
         <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "items_form" %>
         <%= f.submit "追加", class: "btn btn-primary" %>
       <% end %>
     </div>
