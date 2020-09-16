@@ -4,8 +4,8 @@
 		<div class="col-lg-6">
 			<%= form_for(@post) do |f| %>
 			<%= attachment_image_tag @post, :image, format:"jpg",
-				fallback:"no_image.jpg", class:"post-image-show", id:"preview-image" %>
-			<%= f.attachment_field :image, id:"select-image", style:"margin: 10px 0" %><br>
+				fallback:"no_image.jpg", class:"post-image-show", id:"img_prev" %>
+			<%= f.attachment_field :image, id:"recipe-image", style:"margin: 10px 0" %><br>
 
 			<script type="text/javascript">
 			$(function() {

@@ -38,3 +38,45 @@ $(function () {
 	});
 });
 
+	
+	function textAreaHeightSet(argObj){
+		 argObj.style.height = "10px";
+		 var wSclollHeight = parseInt(argObj.scrollHeight);
+		 var wLineH = parseInt(argObj.style.lineHeight.replace(/px/, ''));
+		 if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
+		 argObj.style.height = wSclollHeight + "px";
+	 }
+
+
+	 //画像プレビュー
+$(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#recipe-image").change(function(){
+        readURL(this);
+    });
+  });
+
+			$(function() {
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$('#img_prev').attr('src', e.target.result);
+					}
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+			$("#select-image").change(function(){
+				readURL(this);
+			});
+			});
+
+			

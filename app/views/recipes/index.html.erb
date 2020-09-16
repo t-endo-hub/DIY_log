@@ -26,7 +26,7 @@
 				<%= @post.title %>
 				<% if user_signed_in? %>
 					<% if @post.user_id == current_user.id %>
-						<%= link_to "編集", posts_edit_path(@post),
+						<%= link_to "編集", edit_post_path(@post),
 							class:"btn btn-warning btn-sm", style:"margin-bottom:5px",
 								data: {"turbolinks" => false} %>
 					<% end %>
@@ -39,7 +39,7 @@
 			<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
 				<% if user_signed_in? %>
 					<% if @post.user_id == current_user.id %>
-						<%= link_to "編集", posts_edit_path(@post),
+						<%= link_to "編集", edit_post_path(@post),
 							class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
 					<% end %>
 				<% end %>

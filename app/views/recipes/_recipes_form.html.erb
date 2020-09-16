@@ -1,9 +1,15 @@
-<% recipes.each do |recipe| %>
-  <div class="float-left">
-    <% if recipe.image %>
-      <%= attachment_image_tag recipe,:image, size: "150x150" %>
-    <% end %>
-    <div><%= recipe.content %></div>
-    <%= link_to "削除", post_recipe_path(post, recipe), method: :delete, remote: true, class: "btn btn-danger" %>
-  </div>
-<% end %>
+<% @sum = 0 %>
+<div class="row" style="margin-bottom: 10px">
+  <% recipes.each do |recipe| %>
+    <div class="col-lg-3 col-3">
+     <%= form_for [post, recipe], remote: true do |f| %>
+          <%= attachment_image_tag recipe, :image, id:'img_prev', fallback: "no_image.jpg" %>
+        <%= f.text_area :content, class:'textArea', style:"width:100%", placeholder:'作り方', oninput:"textAreaHeightSet(this)",onchange:"textAreaHeightSet(this)" %>
+          <div style="text-align: right">
+            <%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
+            <%= link_to "削除", post_recipe_path(post, recipe),method: :delete,data: {confirm: "本当に削除してもよろしいですか？"},class:"btn btn-danger btn-sm", remote: true %>
+          </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
