@@ -5,15 +5,15 @@
 				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
 			</div>
 			<div class="col-md-6">
-				<h4 class="border-bottom mt-5">作品名</h3><br>
+				<h4 class="post-title">作品名</h3>
 				<%= @post.title %><br>
-				<h4 class="border-bottom mt-5">説明</h3>
+				<h4 class="post-title">説明</h3>
 				<%= @post.content %>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h4 class="border-bottom mt-5">材料</h4>
+				<h4 class="post-title">材料</h4>
 				<div class="materials_form_<%= @post.id %>">
 					<%= render 'materials_form', materials: @materials, post: @post %>
 				</div>
@@ -35,7 +35,7 @@
 
 
 			<div class="col-md-6">
-				<h4 class="border-bottom mt-5">使用工具</h4>
+				<h4 class="post-title">使用工具</h4>
 				<div class="items_form_<%= @post.id %>">
 					<%= render 'items_form', items: @items, post: @post %>
 				</div>
@@ -53,7 +53,7 @@
 			</div>
 		</div>
 
-	<h4 class="border-bottom mt-5">作り方</h4>
+	<h4 class="post-title">作り方</h4>
 
 		<div class="recipes_form_<%= @post.id %>">
 			<%= render 'recipes_form', recipes: @recipes, post: @post %>
@@ -95,59 +95,40 @@
 			<%= link_to '投稿する', root_path, class: 'btn btn-success' %>
 		</div>
 	<% else %>
-		<div class="row" style="margin-top: 30px">
-			<div class="col-lg-6 col-12">
-				<%= attachment_image_tag @post, :image, format:"jpg",fallback:"no_image.jpg", class:"post-image-show", style:"margin:10px 0" %>
-				<%= render 'posts/font_awesame', post:@post %>
-				<%= render 'posts/tag_list', tags:@post.tags %>
+		<div class="row">
+			<div class="col-md-6">
+				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
 			</div>
-
-			<div class="col-lg-6 col-12">
-				<% if flash[:create] %>
-					<div class="good-flash"><i class="fas fa-check-circle"></i>
-						<%= flash[:create]%>
-					</div>
-				<% end %>
-				<p style="border-bottom: 1px solid #F96167; font-size: 20px; font-weight: bold">
-					<%= @post.title %>
-					<% if user_signed_in? %>
-						<% if @post.user_id == current_user.id %>
-							<%= link_to "編集", edit_post_path(@post),
-								class:"btn btn-warning btn-sm", style:"margin-bottom:5px",
-									data: {"turbolinks" => false} %>
-						<% end %>
-					<% end %>
-				</p>
-				<div class="row">
-					<div class="col-lg-12 col-12"><p><%= @post.content %></p></div>
-				</div>
-
-				<p style="border-bottom: 1px solid #F96167; font-size: 20px;margin-top:20px" >材料
-					<% if user_signed_in? %>
-						<% if @post.user_id == current_user.id %>
-							<%= link_to "編集", edit_post_path(@post),
-								class:"btn btn-warning btn-sm", style:"margin-bottom:5px" %>
-						<% end %>
-					<% end %>
-				</p>
-				<% if flash[:material] %>
-					<div class="bad-flash"><i class="fas fa-exclamation-circle">
-						<%= flash[:material]%></i>
-					</div>
-				<% end %>
-				<% @post.materials.each do |material| %>
-					<div class="row" style="margin-bottom: 10px">
-						<div class="col-lg-5 col-5 font-md-sp">
-							<%= material.name %>
-						</div>
-						<div class="col-lg-7 col-7 font-md-sp">
-							<%= material.quantity %>
-						</div>
-					</div>
-				<% end %>
+			<div class="col-md-6">
+				<h4 class="post-title">作品名</h3><br>
+				<%= @post.title %><br>
+				<h4 class="post-title">説明</h3>
+				<%= @post.content %>
 			</div>
 		</div>
-		<p style="border-bottom: 1px solid #F96167; font-size: 20px" >作り方
+		<div class="row">
+			<div class="col-md-6">
+				<h4 class="post-title">材料</h4>
+				<div class="materials_form_<%= @post.id %>">
+					<% @post.materials.each do |material| %>
+						<%= material.name %>
+						<%= material.quantity %>
+					<% end %>
+				</div>
+			</div>
+
+
+			<div class="col-md-6">
+				<h4 class="post-title">使用工具</h4>
+				<div class="items_form_<%= @post.id %>">
+					<% @post.items.each do |item| %>
+						<%= item.name %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+			
+		<p class="post-title" >作り方
 	<% @sum = 0 %>
 		<div class="row" style="margin-bottom: 10px">
 			<% @recipes.each do |recipe| %>

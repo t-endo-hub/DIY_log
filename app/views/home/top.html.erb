@@ -7,3 +7,29 @@
 		</div>
 	</div>
 </div>
+
+<ul class="tabnav">
+    <li><a href="#tab01">メニュー1</a></li>
+    <li><a href="#tab02">メニュー2</a></li>
+    <li><a href="#tab03">メニュー3</a></li>
+</ul>
+<div class="tabcontent">
+    <div id="tab01">タブ1の内容</div>
+    <div id="tab02">タブ2の内容<br>タブ2の内容</div>
+    <div id="tab03">タブ3の内容<br>タブ3の内容<br>タブ3の内容</div>
+</div>
+
+<script type="text/javascript">
+	jQuery(function($){
+				$('.tabcontent > div').hide();
+		 
+				$('.tabnav a').click(function () {
+						$('.tabcontent > div').hide().filter(this.hash).fadeIn();
+		 
+						$('.tabnav a').removeClass('active');
+						$(this).addClass('active');
+		 
+						return false;
+				}).filter(':eq(0)').click();
+		});
+</script>
