@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_12_223328) do
+ActiveRecord::Schema.define(version: 2020_09_16_211438) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment", null: false
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2020_09_12_223328) do
     t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sales_status", default: 1
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

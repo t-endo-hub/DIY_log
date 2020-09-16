@@ -43,10 +43,18 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def update
+    @post = Post.find(params[:id])     
+        @post.update(sales_status: params[:post][:sales_status])
+        redirect_to post_path(@post)
+        flash[:create] = 'YOUR post RELEASE !'
+  end
+
+
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :tag_list, :image)
+    params.require(:post).permit(:title, :content, :sales_status, :tag_list, :image)
   end
 
   def set_post
