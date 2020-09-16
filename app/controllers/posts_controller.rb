@@ -46,10 +46,16 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :tag_list)
+    params.require(:post).permit(:title, :content, :tag_list, :image)
   end
 
   def set_post
     @post = Post.find(params[:id])
   end
+
+  def only_current_user
+    @post = Post.find(params[:id])
+    redirect_to user_path(current_user) if current_user != @post.user
+  end
+
 end

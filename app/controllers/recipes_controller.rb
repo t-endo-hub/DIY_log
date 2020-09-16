@@ -15,24 +15,15 @@ class RecipesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build(recipe_params)
-    if @recipe.save
-      redirect_to new_post_recipe_path(@post)
-      flash[:notice] = '投稿が保存されました'
-    else
-      redirect_to root_path
-      flash[:alert] = '投稿に失敗しました'
-    end
+    @recipes = @post.recipes.all
+    @recipe.save
   end
 
   def destroy
     @post = Post.find(params[:post_id])
-    @recipe = Recipe.find_by(id: params[:id])
-    if @recipe.destroy
-      redirect_to new_post_recipe_path(@post)
-    else
-      redirect_to root_path
-      flash[:alert] = '投稿に失敗しました'
-    end
+    @recipe = Recipe.find(params[:id])
+    @recipes = @post.recipes.all
+    @recipe.destroy
   end
 
   def index
@@ -60,4 +51,10 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:content, :image)
   end
+
+  def only_current_user
+    @post = Post.find(params[:post_id])
+    redirect_to user_path(current_user) if current_user != @post.user
+  end
+
 end

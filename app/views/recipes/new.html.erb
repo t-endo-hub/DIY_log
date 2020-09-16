@@ -1,60 +1,98 @@
+<div class="container">
 <div class="row">
   <div class="col-md-6">
-     <%= attachment_image_tag @post,:image, class: "recipe_new", fallback: "no_image.jpg" %>
+     <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
   </div>
+
   <div class="col-md-6">
     <h4 class="border-bottom mt-5">作品名</h3><br>
     <%= @post.title %><br>
     <h4 class="border-bottom mt-5">説明</h3>
     <%= @post.content %>
-
-    <h4 class="border-bottom mt-5">材料</h4>
-    <% @materials.each do |material| %>
-      <%= material.name %>
-      <%= material.quantity %>
-      <%= link_to "削除", post_material_path(@post.id, material), method: :delete, class: "btn btn-danger" %>
-    <% end %>
-
-    <%= form_for ([@post,@material]) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.label :quantity %>
-      <%= f.text_field :quantity %>
-      <%= f.submit "追加", class: "btn btn-primary" %>
-    <% end %>
-
-
-
-    <h4 class="border-bottom mt-5">使用工具</h4>
-    <% @items.each do |item| %>
-      <%= item.name %>
-      <%= link_to "削除", post_item_path(@post.id, item), method: :delete, class: "btn btn-danger" %>
-    <% end %>
-
-    <%= form_for ([@post,@item]) do |f| %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-      <%= f.submit "追加", class: "btn btn-primary" %>
-    <% end %>
   </div>
 </div>
 
+
+    <div class="row">
+    <div class="col-md-6">
+      <h4 class="border-bottom mt-5">材料</h4>
+      <div class="materials_form_<%= @post.id %>">
+        <%= render 'materials_form', materials: @materials, post: @post %>
+      </div>
+
+      <%= form_for [@post,@material],remote: true do |f| %>
+      <div class="row pt-2">
+        <div class="col-lg-5 col-4">
+          <%= f.text_field :name, placeholder:"材料", class: 'materials_form' %>
+        </div>
+        <div class="col-lg-2 col-2">
+          <%= f.text_field :quantity, :size=>"8",placeholder:"数量",class: 'materials_form' %>
+        </div>
+        <div class="col-lg-3 col-4">
+          <%= f.submit "追加", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+
+    <div class="col-md-6">
+      <h4 class="border-bottom mt-5">使用工具</h4>
+      <div class="items_form_<%= @post.id %>">
+        <%= render 'items_form', items: @items, post: @post %>
+      </div>
+
+      <%= form_for [@post,@item],remote: true do |f| %>
+        <div class="row pt-2">
+          <div class="col-lg-5">
+            <%= f.text_field :name, placeholder:"工具", class: 'items_form' %>
+          </div>
+          <div class="col-lg-3">
+            <%= f.submit "追加", class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+
 <h4 class="border-bottom mt-5">作り方</h4>
-<% @recipes.each do |recipe| %>
-  <div class="float-left">
-    <% if recipe.image %>
-      <%= attachment_image_tag recipe,:image, size: "150x150" %>
-    <% end %>
-    <div><%= recipe.content %></div>
-    <%= link_to "削除", post_recipe_path(@post.id, recipe), method: :delete, class: "btn btn-danger" %>
+
+  <div class="recipes_form_<%= @post.id %>">
+    <%= render 'recipes_form', recipes: @recipes, post: @post %>
   </div>
-<% end %>
 
-<%= form_for ([@post,@recipe]) do |f| %>
-  <%= f.label :content %>
-  <%= f.text_area :content %>
-  <%= f.attachment_field :image %>
-  <%= f.submit "追加", class: "btn btn-primary" %>
-<% end %>
+<div class="row" style="margin-bottom: 10px">
+  <div class="col-lg-3 col-3">
+    <%= form_for [@post,@recipe],remote: true do |f| %>
+      <%= attachment_image_tag @recipe, :image, id: 'recipe_prev', fallback: 'no_image.jpg' %>
+        <div class="upload-btn-wrapper">
+          <%= f.file_field :image, id:'recipe-image', class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
 
-<%= link_to '投稿する', root_path, class: 'btn btn-success' %>
+          <script type="text/javascript">
+            $(function() {
+              function readURL(input) {
+                  if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+              $('#recipe_prev').attr('src', e.target.result);
+                  }
+                  reader.readAsDataURL(input.files[0]);
+                  }
+              }
+              $("#recipe-image").change(function(){
+                  readURL(this);
+              });
+            });
+          </script>
+          
+          <button class="btn-type">画像を選択する</button>
+        </div>
+        <%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する", class:'recipes_form input-form' %>
+        <%= f.submit "追加", class:"btn btn-primary submit-btn-sm" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center my-4">
+    <%= link_to '投稿する', root_path, class: 'btn btn-success' %>
+  </div>
+</div>

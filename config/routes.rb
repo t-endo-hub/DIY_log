@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   get 'home/top'
-  get 'posts/new'
-  get 'posts/show'
-  get 'posts/edit'
   devise_for :users,
   controllers: { registrations: 'registrations' }
 
