@@ -4,6 +4,8 @@
   <div class="row post-wrap">
     <div class="col-md-7">
       <div class="card-left">
+
+
         <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
         <%= render 'posts/font_awesame', post:@post %>
         <%= render 'posts/tag_list', tags:@post.tags %>
@@ -45,7 +47,7 @@
           <% end %>
         </div>
         <%= link_to '作り方', post_recipes_path(@post), class: 'btn btn-success' %>
-        <% if @post.user_id != current_user.id %>
+        <% if @post.user_id != current_user.id && @post.sales_status == "販売中"  %>
           <%= link_to '購入', new_post_order_path(@post), class: 'btn btn-danger' %>
         <% end %>
       </div>
