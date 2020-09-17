@@ -13,8 +13,6 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, length: { maximum: 150 }
 
-  enum sales_status: { "販売中": 0, "未販売": 1, "売切れ": 2}
-
   def liked_by(user)
     likes.where(user_id: user.id).exists?
   end

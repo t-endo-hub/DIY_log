@@ -5,27 +5,6 @@
     <div class="col-md-7">
       <div class="card-left">
 
-        <% if user_signed_in? %>
-				<% if @post.user_id == current_user.id %>
-					<% if @post.sales_status == "未販売" %>
-						<%= form_for(@post) do |f| %>
-							<%= f.hidden_field :sales_status, value: "販売中" %>
-							<%= f.submit "販売する", class:"btn btn-warning submit-btn" %>
-						<% end %>
-					<% elsif  @post.sales_status == "販売中" %>
-						<%= form_for(@post) do |f| %>
-							<%= f.hidden_field :sales_status, value: "未販売" %>
-							<%= f.submit "未販売", class:"btn btn-warning submit-btn" %>
-						<% end %>
-					<% end %>
-          
-					<span style="float: right">
-					<%= link_to "レシピを削除する", post_path(@post),method: :delete,
-						data: {confirm: "本当に削除してもよろしいですか？"},class:"btn btn-danger btn-sm" %>
-					</span>
-				<% end %>
-			<% end %>
-
 
         <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
         <%= render 'posts/font_awesame', post:@post %>
@@ -68,7 +47,7 @@
           <% end %>
         </div>
         <%= link_to '作り方', post_recipes_path(@post), class: 'btn btn-success' %>
-        <% if @post.user_id != current_user.id %>
+        <% if @post.user_id != current_user.id && @post.sales_status == "販売中"  %>
           <%= link_to '購入', new_post_order_path(@post), class: 'btn btn-danger' %>
         <% end %>
       </div>

@@ -45,9 +45,9 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])     
-        @post.update(sales_status: params[:post][:sales_status])
-        redirect_to post_path(@post)
-        flash[:create] = 'YOUR post RELEASE !'
+    @post.update(sales_status: params[:post][:sales_status])
+    redirect_to post_path(@post)
+    flash[:create] = 'YOUR post RELEASE !'
   end
 
 
