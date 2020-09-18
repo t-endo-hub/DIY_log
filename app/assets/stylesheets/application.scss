@@ -7,6 +7,9 @@
 @import "posts";
 @import "recipes";
 @import "orders";
+@import "home";
+
+
 
 .tours-first-wrapper {
   background-color: black;
@@ -89,7 +92,7 @@
   }
 
   .post-tag{
-    background-color: #ffc107;
+    background-color: white;
     border-radius: 5px;
     margin: 10px 10px 10px 0;
     padding: 8px;
@@ -134,3 +137,4 @@
   padding: 20px;
   border: 1px dotted #ccc;
 }
+
