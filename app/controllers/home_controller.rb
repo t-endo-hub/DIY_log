@@ -4,7 +4,9 @@ class HomeController < ApplicationController
   end
 
 
-  def about; end
+  def about
+    @posts = Post.all
+  end
 
   def new_guest
     user = User.find_or_create_by!(name: 'ゲストユーザー', email: 'guest@example.com') do |user|
