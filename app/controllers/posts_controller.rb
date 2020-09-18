@@ -10,6 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    
     if @post.save
       redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'

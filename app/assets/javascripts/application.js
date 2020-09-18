@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require bxslider
 //= require activestorage
 //= require turbolinks
 //= require jquery3
@@ -80,5 +81,7 @@ $(function() {
 			});
 
 			
+
+
 		
 		

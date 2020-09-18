@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
-  def top; end
+  def top
+    @posts = Post.all
+  end
+
 
   def about; end
 
