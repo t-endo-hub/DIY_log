@@ -63,14 +63,14 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap', '~> 4.4.1'
+gem 'bxslider-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'acts-as-taggable-on', '~> 6.0'
-gem 'bxslider-rails'
 
 gem 'dotenv-rails'
 group :production do

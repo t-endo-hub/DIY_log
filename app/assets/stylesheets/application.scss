@@ -8,8 +8,12 @@
 @import "recipes";
 @import "orders";
 @import "home";
+@import "users";
 
-
+.c{
+  height: 500px;
+  width :100%;
+}
 
 .tours-first-wrapper {
   background-color: black;
@@ -135,6 +139,12 @@
 }
 .tabcontent{
   padding: 20px;
-  border: 1px dotted #ccc;
+}
+
+
+.card-img-top {
+   height: 30vw;
+  max-height: 300px;
+  min-height: 250px;
 }
 

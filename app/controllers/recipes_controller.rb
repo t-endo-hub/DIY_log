@@ -56,5 +56,4 @@ class RecipesController < ApplicationController
     @post = Post.find(params[:post_id])
     redirect_to user_path(current_user) if current_user != @post.user
   end
-
 end

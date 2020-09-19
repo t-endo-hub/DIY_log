@@ -32,8 +32,48 @@
 	</div>
 </div>
 
-       <ul class="slick01">
-         <li><img alt="画像1" src="slideshow1.jpg" /></li>
-         <li><img alt="画像2" src="slideshow2.jpg" /></li>
-         <li><img alt="画像3" src="slideshow3.jpg" /></li>
-       </ul>
+
+<div style="background-color: #f2f2f2">
+<div class="container">
+<div class="a">
+<% @posts.each do |post| %>
+  <div class="col-md-4">
+    <div class="card-wrap">
+      <div class="card test">
+        <div class="card-header align-items-center d-flex">
+          <%= link_to user_path(post.user), class: "no-text-decoration" do %>
+            <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
+          <% end %>
+          <%= link_to user_path(post.user), class: "black-color no-text-decoration",title: post.user.name do %>
+            <strong><%= post.user.name %></strong>
+          <% end %>
+        </div>
+
+        <%= link_to(post_path(post)) do %>
+          <%= attachment_image_tag post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
+          <div class="card-body">
+            <h5><strong><%= post.title %></strong></h5>
+            <div class="row parts">
+              <% if user_signed_in? %>
+                <div id="like_<%= post.id %>">
+                  <%= render "/posts/like_text", post: post %>
+                </div>
+              <% end %>
+            </div>
+            <div>
+              <span><strong><%= post.user.name %></strong></span>
+              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
+             
+              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "light-color post-time    no-text-decoration" %>
+              <hr>
+              <div class="row actions" id="comment-form-post-<%= post.id.to_s %>"></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
+</div>
