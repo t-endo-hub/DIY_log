@@ -8,6 +8,7 @@
 @import "recipes";
 @import "orders";
 @import "home";
+@import "users";
 
 .c{
   height: 500px;
@@ -138,7 +139,6 @@
 }
 .tabcontent{
   padding: 20px;
-  border: 1px dotted #ccc;
 }
 
 
@@ -147,3 +147,4 @@
   max-height: 300px;
   min-height: 250px;
 }
+
