@@ -20,12 +20,6 @@ RSpec.describe Post, type: :model do
       expect(@post).to_not be_valid
     end
 
-    it 'image_idがnilだと登録できない' do
-      @post.image_id = ''
-      expect(@post).to_not be_valid
-      expect(@post.errors[:image_id]).to include("can't be blank")
-    end
-
     it 'titleがnilだと投稿できない' do
       @post.title = ''
       expect(@post).to_not be_valid

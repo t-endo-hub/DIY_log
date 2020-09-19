@@ -15,12 +15,12 @@ RSpec.describe Item, type: :model do
 
     context 'データが正しく保存されない' do
       it 'post_idがnilだと登録できない' do
-        @item.post_id = ''
+        @item.post_id = nil
         expect(@item).to_not be_valid
       end
 
       it 'name' do
-        @item.name = ''
+        @item.name = nil
         expect(@item).to_not be_valid
         expect(@item.errors[:name]).to include("can't be blank")
       end

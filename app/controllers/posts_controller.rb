@@ -10,7 +10,6 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    
     if @post.save
       redirect_to new_post_recipe_path(@post)
       flash[:notice] = '投稿が保存されました'
@@ -21,17 +20,15 @@ class PostsController < ApplicationController
   end
 
   def index
-    if params[:tag_name]
-      @posts = Post.tagged_with(params[:tag_name].to_s)
-    else
-      @posts = Post.limit(10).includes(:user).order('created_at DESC')
-    end
-      @popular_user = User.limit(5).order('created_at DESC')
+    @posts = if params[:tag_name]
+               Post.tagged_with(params[:tag_name].to_s)
+             else
+               Post.limit(10).includes(:user).order('created_at DESC')
+             end
+    @popular_user = User.limit(5).order('created_at DESC')
   end
 
-  def show
-    
-  end
+  def show; end
 
   def edit; end
 
@@ -45,12 +42,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])     
+    @post = Post.find(params[:id])
     @post.update(sales_status: params[:post][:sales_status])
     redirect_to post_path(@post)
     flash[:create] = 'YOUR post RELEASE !'
   end
-
 
   private
 
@@ -66,5 +62,4 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     redirect_to user_path(current_user) if current_user != @post.user
   end
-
 end
