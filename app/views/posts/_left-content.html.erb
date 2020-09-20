@@ -1,0 +1,31 @@
+
+<nav>
+  <ul class="left-nav flex-column">
+    <li>
+      <%= link_to  posts_path, class:'nav-item mt-5' do %>
+        <i class="fas fa-share-alt mr-2"></i>最近の投稿
+      <% end %>
+    </li>
+    <li>
+      <%= link_to  like_ranking_posts_path, class:'nav-item' do %>
+        <i class="fas fa-crown mr-2"></i>いいね数順
+      <% end %>
+    </li>
+    <li>
+      <%= link_to  posts_path, class:'nav-item' do %>
+        <i class="fas fa-users mr-2"></i>最近の投稿
+      <% end %>
+    </li>
+  <ul>
+</nav>
+
+<script type="text/javascript">
+
+  jQuery(function($){
+      $('.left-nav a').click(function () {
+          $('.left-nav a').removeClass('active');
+          $(this).addClass('active');
+  
+      }).filter(':eq(0)').click();
+  });
+</script>    

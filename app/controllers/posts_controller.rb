@@ -48,6 +48,10 @@ class PostsController < ApplicationController
     flash[:create] = 'YOUR post RELEASE !'
   end
 
+  def like_ranking
+    @like_ranking_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+  end
+
   private
 
   def post_params

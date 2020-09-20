@@ -30,13 +30,6 @@
           <div class="m-2 card-right-name">
               <h5><strong><%= post.title %></strong></h5>
           </div>
-          <div class="comment-post-id">
-            <div class="m-2">
-              <div id="comment-post-<%= post.id.to_s %>">
-                <%= render 'comment_list', post: post %>
-              </div>
-            </div>
-          </div>
         </div>
         
         <div class="row parts" id="comment-form-post-<%= post.id.to_s %>">
@@ -47,6 +40,7 @@
           <% end %>
         </div>
         <%= link_to '作り方', post_recipes_path(post), class: 'btn btn-success' %>
+        hann
       </div>
     </div>
   </div>

@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :rooms, :only => [:create, :show, :index]
 
   resources :posts, only: %i(new create index show edit destroy update) do
+    collection do
+      get :like_ranking
+    end
     resource :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
     resources :recipes, only: %i(new index show edit create destroy)
