@@ -23,7 +23,7 @@
               <strong><%= post.user.name %></strong>
             <% end %>
 
-            <% if post.user_id == current_user.id %>
+            <% if post.user == current_user%>
               <%= link_to '削除する', post_path(post), method: :delete, class: "ml-auto mx-0 my-auto btn btn-danger" %>
             <% end %>
           </div>
@@ -34,7 +34,7 @@
         
         <div class="row parts" id="comment-form-post-<%= post.id.to_s %>">
           <%= form_with model: [post, Comment.new],  class: "w-100" do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :user_id, value: current_user %>
             <%= f.hidden_field :post_id, value: post.id %>
             <%= f.text_field :comment, class: "form-control comment-input border-0", placeholder: "コメント ...", autocomplete: :off %>
           <% end %>

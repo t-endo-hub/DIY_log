@@ -9,6 +9,7 @@
 @import "orders";
 @import "home";
 @import "users";
+@import "notifications";
 
 .c{
   height: 500px;
@@ -172,12 +173,13 @@
 }
 
 .nav-item {
-  color: #333;
+  color:#707272;
   line-height: 3rem;
   display: block;
   text-align: center;
   width: 80%;
   margin: 0 auto;
+  border-radius: 10px;
 }
 .nav-item:hover {
   background-color: grey;
@@ -220,4 +222,10 @@
 }
 .new-bg {
   background-color: #08d1d8;
+}
+
+.partition {
+  border-bottom: 1px solid #c0c0c0;
+  margin: 15px auto;
+  width: 80%;
 }
