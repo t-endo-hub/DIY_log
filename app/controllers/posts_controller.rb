@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index]
+  before_action :authenticate_user!, except: %i[index like_ranking]
   before_action :only_current_user, only: %i[edit destroy]
   before_action :set_post, only: %i[show destroy]
 
@@ -46,6 +46,10 @@ class PostsController < ApplicationController
     @post.update(sales_status: params[:post][:sales_status])
     redirect_to post_path(@post)
     flash[:create] = 'YOUR post RELEASE !'
+  end
+
+  def like_ranking
+    @like_ranking_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   private
