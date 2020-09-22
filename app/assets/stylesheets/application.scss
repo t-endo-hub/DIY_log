@@ -10,6 +10,7 @@
 @import "home";
 @import "users";
 @import "notifications";
+@import "rooms";
 
 .c{
   height: 500px;
@@ -228,4 +229,9 @@
   border-bottom: 1px solid #c0c0c0;
   margin: 15px auto;
   width: 80%;
+}
+
+.post-btn {
+  color:white;
+  background-color: blue
 }

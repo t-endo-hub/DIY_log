@@ -1,42 +1,20 @@
-<div class="container">
-  <div class="a">
-  <% @posts.each do |post| %>
-    <div class="col-md-4">
-      <div class="card-wrap">
-        <div class="card test">
-          <div class="card-header align-items-center d-flex">
-            <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-              <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
-            <% end %>
-            <%= link_to user_path(post.user), class: "black-color no-text-decoration",title: post.user.name do %>
-              <strong><%= post.user.name %></strong>
-            <% end %>
-          </div>
+<div class="about-main-image">
+  <h3 class="about-main-text">DIY LOG</h3>
+</div>
 
-          <%= link_to(post_path(post)) do %>
-            <%= attachment_image_tag post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
-            <div class="card-body">
-              <h5><strong><%= post.title %></strong></h5>
-              <div class="row parts">
-                <% if user_signed_in? %>
-                  <div id="like_<%= post.id %>">
-                    <%= render "/posts/like_text", post: post %>
-                  </div>
-                <% end %>
-              </div>
-              <div>
-                <span><strong><%= post.user.name %></strong></span>
-                <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
-              
-                <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "light-color post-time    no-text-decoration" %>
-                <hr>
-                <div class="row actions" id="comment-form-post-<%= post.id.to_s %>"></div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 about-item">
+      <div class="about-item-image"></div>
+      <p class="about-item-text">気軽に作品を共有</p>
     </div>
-  <% end %>
+    <div class="col-lg-3 about-item">
+      <div class="about-item-image"></div>
+      <p class="about-item-text">次回作のアイデア作りに</p>
+    </div>
+    <div class="col-lg-3 about-item">
+      <div class="about-item-image"></div>
+      <p class="about-item-text">
+    </div>
   </div>
 </div>

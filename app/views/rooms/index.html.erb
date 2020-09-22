@@ -1,0 +1,68 @@
+
+
+<%
+=begin%>
+ <div class="container">
+    <div class="home-content dm-bottom margin-bottom10">
+      <i class="fas fa-envelope icon dm-bg"></i>DM一覧
+    </div>
+
+
+  <% @anotherEntries.each do |e| %>
+    <div class="row">
+      <div class="users-index-item">
+      <!-- 左側に最新メッセージを送ったユーザーのプロフィール画像 -->
+        <div class="user-left">
+          <%= attachment_image_tag e.user,:image,fallback:'no_image.jpg', class: "dm-profile-icon" %>
+          <strong><%= e.user.name %></strong>
+        </div>
+      <!-- 右側に最新メッセージを送ったユーザーの名前及び、そのメッセージ -->
+        <div class="user-right">
+        <%= link_to room_path(e.room.id) do %>
+          <span class="badge badge-info"><i class="fas fa-envelope"></i>メッセージを見る</span>
+        <% end %>
+        <% @rooms.each do |room| %>
+          <%= room.messages.order(created_at: :desc).take.try(:content) %><br>
+        <% end %><br>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+ 
+<%
+=end%>
+
+
+<div class="container">
+  <div class="home-content dm-bottom">
+    <i class="fas fa-envelope icon dm-bg"></i>DM一覧
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-12">
+      <table class='table table-borderless'>
+        <tbody>
+          <% @anotherEntries.each do |e| %>
+            <tr>
+              <td style="margin-right: 100px;">
+                <%= attachment_image_tag e.user, :image, fallback:'no_image.jpg', class: "dm-profile-icon" %>
+              </td>
+              <td><h5 class="line-height"><strong><%= e.user.name %></strong></h5></td>
+              <td>
+                <p class="line-height"><%= Message.find_by(id: e.room.message_ids.last).content.truncate(45) %></p>
+              </td> 
+              <td>
+                <%= link_to room_path(e.room.id) do %>
+                  <span class="badge badge-info line-height"><i class="fas fa-envelope"></i>メッセージを見る</span>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
