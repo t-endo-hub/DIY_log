@@ -25,6 +25,12 @@ class RoomsController < ApplicationController
       @messages = @room.messages
       @message = Message.new
       @entries = @room.entries
+      
+      @entries.each do |entry|
+        if entry.user_id != current_user.id
+          @opponent_user = User.find_by(id: entry.user_id)
+        end
+      end
     else
       redirect_back(fallback_location: root_path)
     end

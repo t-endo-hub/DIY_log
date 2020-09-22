@@ -17,3 +17,35 @@
 .line-height {
   line-height: 40px;
 }
+
+.self-face {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-left: 10px;
+  float: right;
+}
+.opponent-face {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 10px;
+  float: left;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.self-message {
+  float: right;
+  margin-bottom: 20px;
+  background-color: #eff8f7;
+}
+
+
+.opponent-message {
+  margin-bottom: 20px;
+  background-color: #eef1f8fa;
+}
