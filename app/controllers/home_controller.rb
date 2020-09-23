@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
   def top
-    @posts = Post.all
+    if user_signed_in?
+      redirect_to posts_path
+    else
+      @posts = Post.all
+    end
   end
 
-  def about
-    @posts = Post.all
-  end
 
   def new_guest
     user = User.find_or_create_by!( name: 'ゲストユーザー', email: 'guest@example.com' ) do |user|

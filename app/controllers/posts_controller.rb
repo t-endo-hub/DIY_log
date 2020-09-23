@@ -21,10 +21,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:tag_name]
-               Post.tagged_with(params[:tag_name].to_s)
-             else
-               Post.limit(10).includes(:user).order('created_at DESC')
-             end
+              Post.tagged_with(params[:tag_name].to_s)
+            else
+              Post.limit(10).includes(:user).order('created_at DESC')
+            end
     @popular_user = User.limit(5).order('created_at DESC')
   end
 

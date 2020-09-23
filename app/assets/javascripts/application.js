@@ -20,13 +20,6 @@
 //= require_tree .
 
 
-$(function() {
-	$('.a').slick({
-			dots: true,
-			slidesToShow: 3,
-	});
-});
-
 $('#postcode').jpostal({
   postcode : [
     '#postcode'
