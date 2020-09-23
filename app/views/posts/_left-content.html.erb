@@ -11,13 +11,9 @@
         <i class="fas fa-crown mr-2"></i>いいね数順
       <% end %>
     </li>
-    <li>
-      <%= link_to  posts_path, class:'nav-item' do %>
-        <i class="fas fa-users mr-2"></i>最近の投稿
-      <% end %>
-    </li>
 
-    <% if user_signed_in? %>
+    
+  <% if user_signed_in? %>
 
     <div class="partition"></div>
 
@@ -55,6 +51,23 @@
     <li>
       <%= link_to "投稿", new_post_path , class: "btn post-btn nav-item" %>
     </li>
+
+  <% else %>
+
+  <div class="partition"></div>
+
+    <li>
+      <%= link_to   new_user_session_path, class:'nav-item' do %>
+        <i class="fas fa-users mr-2"></i>ログイン
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to   user_registration_path, class:'nav-item' do %>
+        <i class="fas fa-users mr-2"></i>新規登録
+      <% end %>
+    </li>
+
 
   <% end %>
   <ul>

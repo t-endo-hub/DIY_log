@@ -1,4 +1,32 @@
 <% posts.each do |post| %>
+  <div class="card-wrap">
+    <div class="card test">
+      <div class="card-header align-items-center d-flex">
+        <%= link_to user_path(post.user), class: "no-text-decoration" do %>
+          <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
+        <% end %>
+        <%= link_to user_path(post.user), class: "black-color no-text-decoration",
+          title: post.user.name do %>
+          <strong><%= post.user.name %></strong>
+        <% end %>
+
+      </div>
+
+      <%= attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_image.jpg" %>
+      
+      <%= render 'posts/font_awesame', post: post %>
+      <div class="card-body">
+        
+        <div>
+          <span><%= post.title %></span>
+          <hr>
+          <div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal js-modal">
     <div class="modal__bg js-modal-close"></div>
     <div class="modal__content">
@@ -9,43 +37,15 @@
   <script type="text/javascript">
     $(function(){
     $('.js-modal-open').on('click',function(){
-        $('.js-modal').fadeIn();
+        $(this).parent().parent().next().fadeIn();
         return false;
     });
     $('.js-modal-close').on('click',function(){
         $('.js-modal').fadeOut();
         return false;
     });
-  });
-</script>
-
-
-    <div class="card-wrap">
-      <div class="card test">
-        <div class="card-header align-items-center d-flex">
-          <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-            <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
-          <% end %>
-          <%= link_to user_path(post.user), class: "black-color no-text-decoration",
-            title: post.user.name do %>
-            <strong><%= post.user.name %></strong>
-          <% end %>
-
-        </div>
-
-        <%= link_to attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_image.jpg" %>
-        <%= render 'posts/font_awesame', post: post %>
-        <div class="card-body">
-          
-          <div>
-            <span><%= post.title %></span>
-            <hr>
-            <div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    });
+  </script>
 <% end %>
 
 

@@ -1,48 +1,47 @@
-
 <div class="container">
-<div class="col-md-10 col-md-offset-1 mx-auto postShow-wrap">
-  <div class="row post-wrap">
-    <div class="col-md-7">
-      <div class="card-left">
+  <div class="col-md-10 col-md-offset-1 mx-auto postShow-wrap">
+    <div class="row post-wrap">
+      <div class="col-md-7">
+        <div class="card-left">
 
-        <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
-        <%= render 'posts/font_awesame', post:post %>
-        <%= render 'posts/tag_list', tags:post.tags %>
-      </div>
-    </div>
-    <div class="col-md-5">
-      <div class="card-right">
-        <div class="card-right-comment">
-          <div class="card-right-name">
-            <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-              <%= attachment_image_tag post.user,:image, class: "post-profile-icon" %>
-            <% end %>
-            <h5><strong><%= post.title %></strong></h5>
-
-            <% if post.user == current_user %>
-              <%= link_to '削除する', post_path(post), method: :delete, class: "ml-auto mx-0 my-auto btn btn-danger" %>
-            <% end %>
-          </div>
-          <div class="m-2 card-right-name">
-            <p><%= post.content %></p>
-          </div>
-          <div id="comment-post-<%= post.id.to_s %>">
-            <%= render 'posts/comment_list', post:post %>
-          </div>
+          <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+          <%= render 'posts/font_awesame', post:post %>
+          <%= render 'posts/tag_list', tags:post.tags %>
         </div>
+      </div>
+      <div class="col-md-5">
+        <div class="card-right">
+          <div class="card-right-comment">
+            <div class="card-right-name">
+              <%= link_to user_path(post.user), class: "no-text-decoration" do %>
+                <%= attachment_image_tag post.user,:image, class: "post-profile-icon" %>
+              <% end %>
+              <h5><strong><%= post.title %></strong></h5>
 
-        <% if user_signed_in?	%>
-          <div class="row parts" id="comment-form-post-<%= post.id.to_s %>">
-            <%= form_with model: [post, Comment.new],  class: "w-100" do |f| %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :post_id, value: post.id %>
-              <%= f.text_field :comment, class: "form-control comment-input border-0", placeholder: "コメント ...", autocomplete: :off %>
-            <% end %>
+              <% if post.user == current_user %>
+                <%= link_to '削除する', post_path(post), method: :delete, class: "ml-auto mx-0 my-auto btn btn-danger" %>
+              <% end %>
+            </div>
+            <div class="m-2 card-right-name">
+              <p><%= post.content %></p>
+            </div>
+            <div id="comment-post-<%= post.id.to_s %>">
+              <%= render 'posts/comment_list', post:post %>
+            </div>
           </div>
-        <% end %>
-        <%= link_to '作り方', post_recipes_path(post), class: 'btn btn-success' %>
+
+          <% if user_signed_in?	%>
+            <div class="row parts" id="comment-form-post-<%= post.id.to_s %>">
+              <%= form_with model: [post, Comment.new],  class: "w-100" do |f| %>
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                <%= f.hidden_field :post_id, value: post.id %>
+                <%= f.text_field :comment, class: "form-control comment-input border-0", placeholder: "コメント ...", autocomplete: :off %>
+              <% end %>
+            </div>
+          <% end %>
+          <%= link_to '作り方', post_recipes_path(post), class: 'btn btn-success' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
