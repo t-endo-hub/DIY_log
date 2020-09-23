@@ -28,7 +28,8 @@ class PostsController < ApplicationController
     @popular_user = User.limit(5).order('created_at DESC')
   end
 
-  def show; end
+  def show
+  end
 
   def edit; end
 
@@ -50,6 +51,10 @@ class PostsController < ApplicationController
 
   def like_ranking
     @like_ranking_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+  end
+
+  def search
+    @posts = Post.search(params[:search])
   end
 
   private

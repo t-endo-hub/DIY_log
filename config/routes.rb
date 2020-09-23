@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :posts, only: %i(new create index show edit destroy update) do
     collection do
       get :like_ranking
+      get :search
     end
     resource :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
