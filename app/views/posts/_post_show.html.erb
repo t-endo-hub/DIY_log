@@ -5,7 +5,6 @@
     <div class="col-md-7">
       <div class="card-left">
 
-
         <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
         <%= render 'posts/font_awesame', post:post %>
         <%= render 'posts/tag_list', tags:post.tags %>

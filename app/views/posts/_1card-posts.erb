@@ -34,18 +34,11 @@
         </div>
 
         <%= link_to attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_image.jpg" %>
-        <%= render 'posts/font_awesame', post:post %>
+        <%= render 'posts/font_awesame', post: post %>
         <div class="card-body">
           
           <div>
-            <span><strong><%= post.user.name %></strong></span>
             <span><%= post.title %></span>
-            <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
-                        <div id="comment-post-<%= post.id.to_s %>">
-              <%= render '/posts/comment_list', { post: post } %>
-            </div>
-            <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post),
-              class: "light-color post-time no-text-decoration" %>
             <hr>
             <div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
             </div>

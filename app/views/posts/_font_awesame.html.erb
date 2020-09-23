@@ -11,7 +11,9 @@
       <% end %>
     </span>
     <% if user_signed_in? %>
-      <span id="like_<%= post.id %>"><%= render 'posts/like_text', post:post %></span>
+    <span class="like_<%= post.id %>">
+      <%= render 'posts/like_text', post: post %>
+    </span>
     <% else %>
     <i class="fas fa-heart" style="color: #F96167"></i>
       <span class="font-awesames"><%= post.likes.count %></span>

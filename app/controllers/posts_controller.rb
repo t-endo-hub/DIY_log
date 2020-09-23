@@ -28,7 +28,8 @@ class PostsController < ApplicationController
     @popular_user = User.limit(5).order('created_at DESC')
   end
 
-  def show; end
+  def show
+  end
 
   def edit; end
 

@@ -55,7 +55,7 @@
             <h5><strong><%= post.title %></strong></h5>
             <div class="row parts">
               <% if user_signed_in? %>
-                <div id="like_<%= post.id %>">
+                <div class="like_<%= post.id %>">
                   <%= render "/posts/like_text", post: post %>
                 </div>
               <% end %>
