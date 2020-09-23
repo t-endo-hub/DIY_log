@@ -24,7 +24,7 @@
 					</script>
 
 
-						<%= f.label :tag_list, 'タグ(間にはカンマ , をつけて下さい)'%>
+						<div style="margin-top: 30px;"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
 						<%= f.text_field :tag_list, value: @post.tag_list.join(','), class:"form-control",placeholder: "壁,机、、、" %>
 				</div>
 				<div class="col-lg-6">
@@ -35,22 +35,22 @@
 							</div>
 						<% end %>
 					</ul>
-					<p style="border-bottom: 1px solid #F5F5F5; font-size: 20px" >レシピ</p>
+					<h3 class="post-title" style="margin-bottom: 40px;" >レシピ</h3>
 					<% if flash[:notice] %>
 						<div class="bad-flash"><i class="fas fa-exclamation-circle">
 							<%= flash[:notice]%></i>
 						</div>
 					<% end %>
 					<div class="row">
-						<div class="col-lg-3">作品名</div>
+						<div class="col-lg-3"><strong>作品名</strong></div>
 						<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",style:"width:80%",placeholder:"レシピ名" %></p></div>
 					</div>
 					<div class="row">
-						<div class="col-lg-3">説明</div>
+						<div class="col-lg-3"><strong>説明</strong></div>
 						<div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"ポイント、特徴など" %></p></div>
 					</div>
 					<div style="text-align: center;margin: 20px 0">
-						<%= f.submit class:"btn btn-warning submit-btn" %>
+						<%= f.submit class:"btn about-btn submit-btn" %>
 					</div>
 				</div>
 		</div>

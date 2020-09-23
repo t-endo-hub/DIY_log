@@ -17,6 +17,11 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  def self.search(search)
+    return Post.all unless search
+    Post.where(['content LIKE ?', "%#{search}%"])
+  end
+
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
     temp = Notification.where(['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like'])
