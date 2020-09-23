@@ -1,29 +1,56 @@
 <div class="container">
-<h1>DM</h1>
+  <div class="row">
+    <div class="col-md-12">
+       <h3 class="home-content dm-bottom" style="margin-bottom: 40px;"><strong> <i class="fas fa-envelope icon dm-bg"></i><%=  @opponent_user.name%></strong></h3>
+    </div>
+  </div>
+</div>
 
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="offset-lg-1 col-lg-10 offset-lg-1">
+      <% @messages.each do |m| %>
+        
+        <%# 自分のメッセージ %>
+        <% if m.user_id == current_user.id %>
+          <div class="user-dm">
+           <%= attachment_image_tag m.user, :image, class: "img-fluid self-face", fallback: "no_image.jpg" %>
+            <div class="self-message card offset-md-4 col-md-6 offset-sm-2 col-sm-6">
+              <div class="card-body message">
+                <p>
+                  <strong><%= m.content %></strong><br>
+                  <span style="float: right;"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                </p>
+              </div>
+            </div>
+          </div>
 
-<hr>
-<% if @messages.present? %>
-  <% @messages.each do |m| %>
-    <%= attachment_image_tag m.user,:image,class: "post-profile-icon" %>
-    <strong><%= m.content %></strong>
-    <strong><a href="/users/<%= m.user_id %>"> </a></strong>
-    <hr>
-  <% end %>
-<% else %>
-  <h3 class="text-center">メッセージはまだありません</h3>
-<% end %>
+        <%# 相手側のメッセージ %>
+        <% elsif m.user_id != current_user.id %>
+          <div class="user-dm">
+              <%= attachment_image_tag m.user, :image, class: "img-fluid opponent-face", fallback: "no_image.jpg" %>
+            <div class="opponent-message card col-md-6 col-sm-6">
+              <div class="card-body message">
+                <p>
+                  <strong><%= m.content %></strong><br>
+                  <%= m.created_at.strftime("%Y-%m-%d %H:%M") %>
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
-<%= form_for @message do |f| %>
-  <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
-  <br>
-  <%= f.submit "投稿する" %>
-<% end %>
-
-<%= link_to "投稿一覧にもどる", root_path %>
+      <% end %>
+    </div>
+    <%# 送信フォームの表示 %>
+    <div class="offset-md-1 col-md-10 offset-md-1">
+      <%= form_for @message do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, autofocus: true, autocomplete: "content", placeholder: "メッセージを入力して下さい", class: "form-control", style: "height: 100px;" %>
+        </div>
+        <%= f.hidden_field :room_id, value: @room.id %>
+        <p class="text-right"><%= f.submit "送信", class: "btn btn-info" %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
