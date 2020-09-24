@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require bxslider
 //= require activestorage
 //= require turbolinks
 //= require jquery3
@@ -40,7 +39,7 @@ $(function () {
 	});
 });
 
-	
+	// テキストエリア高さ自動調整
 	function textAreaHeightSet(argObj){
 		 argObj.style.height = "10px";
 		 var wSclollHeight = parseInt(argObj.scrollHeight);

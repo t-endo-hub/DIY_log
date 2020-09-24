@@ -1,85 +1,74 @@
-
 <nav>
-  <ul class="left-nav flex-column">
+  <ul class="left-nav">
     <li>
-      <%= link_to  posts_path, class:'nav-item mt-5' do %>
+      <%= link_to  posts_path, class:'nav-item mt-5', id:'menu-post' do %>
         <i class="fas fa-share-alt mr-2"></i>最近の投稿
       <% end %>
     </li>
     <li>
-      <%= link_to  like_ranking_posts_path, class:'nav-item' do %>
+      <%= link_to  like_ranking_posts_path, class:'nav-item', id:'menu-like-ranking' do %>
         <i class="fas fa-crown mr-2"></i>いいね数順
       <% end %>
     </li>
-
-    
-  <% if user_signed_in? %>
-
-    <div class="partition"></div>
-
-    <li>
-      <%= link_to  user_path(current_user), class:'nav-item' do %>
-        <i class="fas fa-user mr-2"></i>マイページ
-      <% end %>
-    </li>
-    <li>
-      <%= link_to  rooms_path, class:'nav-item' do %>
-        <i class="fas fa-envelope mr-2"></i>DM
-      <% end %>
-    </li>
-    <li>
-      <%= link_to  notifications_path, class:'nav-item' do %>
-        <i class="fas fa-bell mr-2"></i>通知
-      <% end %>
-    </li>
-    <li>
-      <%= link_to  edit_user_registration_path(current_user), class:'nav-item' do %>
-        <i class="fas fa-cog mr-2"></i>プロフィール設定
-      <% end %>
-    </li>
-
-    <div class="partition"></div>
-
-     <li>
-      <%= link_to destroy_user_session_path, method: :delete, class:'nav-item' do %>
-        <i></i>ログアウト
-      <% end %>
-    </li>
-
-    <div class="partition"></div>
-
-    <li>
-      <%= link_to "投稿", new_post_path , class: "btn post-btn nav-item" %>
-    </li>
-
-  <% else %>
-
-  <div class="partition"></div>
-
-    <li>
-      <%= link_to   new_user_session_path, class:'nav-item' do %>
-        <i class="fas fa-users mr-2"></i>ログイン
-      <% end %>
-    </li>
-
-    <li>
-      <%= link_to   user_registration_path, class:'nav-item' do %>
-        <i class="fas fa-users mr-2"></i>新規登録
-      <% end %>
-    </li>
-
-
-  <% end %>
+    <% if user_signed_in? %>
+      <div class="partition"></div>
+      <li>
+        <%= link_to  user_path(current_user), class:'nav-item' do %>
+          <i class="fas fa-user mr-2"></i>マイページ
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  rooms_path, class:'nav-item' do %>
+          <i class="fas fa-envelope mr-2"></i>DM
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  notifications_path, class:'nav-item' do %>
+          <i class="fas fa-bell mr-2"></i>通知
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  edit_user_registration_path(current_user), class:'nav-item' do %>
+          <i class="fas fa-cog mr-2"></i>プロフィール設定
+        <% end %>
+      </li>
+      <div class="partition"></div>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, class:'nav-item' do %>
+          <i></i>ログアウト
+        <% end %>
+      </li>
+      <div class="partition"></div>
+      <li>
+        <%= link_to "投稿", new_post_path , class: "btn post-btn nav-item" %>
+      </li>
+    <% else %>
+      <div class="partition"></div>
+      <li>
+        <%= link_to   new_user_session_path, class:'nav-item' do %>
+          <i class="fas fa-users mr-2"></i>ログイン
+        <% end %>
+      </li>
+      <li>
+        <%= link_to   user_registration_path, class:'nav-item' do %>
+          <i class="fas fa-users mr-2"></i>新規登録
+        <% end %>
+      </li>
+    <% end %>
   <ul>
 </nav>
 
 <script type="text/javascript">
-
-  jQuery(function($){
-      $('.left-nav a').click(function () {
-          $('.left-nav a').removeClass('active');
-          $(this).addClass('active');
-  
-      }).filter(':eq(0)').click();
+  $(function(){
+    $('.left-nav a').removeClass('active');
+    if (location.pathname == "/posts"){
+      $('#menu-post').addClass('active');
+      console.log('posts')
+    }else{
+      $('#menu-like-ranking').addClass('active')
+      console.log('like-ranking')
+    } 
   });
 </script>    
+
+

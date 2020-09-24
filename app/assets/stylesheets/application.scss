@@ -129,11 +129,6 @@
 }
 
 
-.c{
-  height: 500px;
-  width :100%;
-}
-
 .tours-first-wrapper {
   background-color: black;
   height: 650px;
@@ -300,14 +295,14 @@
   border-radius: 10px;
 }
 .nav-item:hover {
-  background-color: grey;
-  color:white;
+  background-color: #f2f2f2;
+  color:black;
 }
 .left-nav > li {
   list-style: none;
 }
 .left-nav li a.active{
-  background-color: #08d1d8;
+  background-color: #17a2b8;
   color: white;
 }
 
