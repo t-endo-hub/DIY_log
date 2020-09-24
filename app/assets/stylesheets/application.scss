@@ -318,6 +318,7 @@
   padding: 10px 0 10px 10px;
   font-size: 20px;
   font-weight: 600;
+  margin-bottom: 40px;
 }
 
 .icon {
@@ -336,10 +337,10 @@
 }
 
 .new-bottom {
-  border-bottom: 3px solid #08d1d8;
+  border-bottom: 3px solid #17a2b8;
 }
 .new-bg {
-  background-color: #08d1d8;
+  background-color: #17a2b8;
 }
 
 .partition {
@@ -351,4 +352,22 @@
 .post-btn {
   color:white;
   background-color: blue
+}
+
+.back-btn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  border-bottom: solid 3px #585a5a;
+  border-left: solid 3px #585a5a;
+  color: #585a5a;
+  transition: .4s;
+  margin: 20px 0;
+}
+
+.back-btn:hover {
+  padding-left: 0.7em;
+  padding-right: 0.3em;
 }

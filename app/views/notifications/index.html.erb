@@ -1,20 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-4">
-     <%= render 'posts/left-content' %>
-    </div>
-
-    <div class="col-lg-1"></div>
-
-    <div class="col-lg-5">
-        <div class="home-content new-bottom margin-bottom10">
-            <i class="fas fa-bell icon new-bg"></i>通知
+  <%= render 'partial/back_btn' %>
+    <div class="col-lg-12">
+      <div class="home-content new-bottom margin-bottom10 text-center">
+        <i class="fas fa-bell icon new-bg"></i>通知
+      </div>
+      <% if @notifications.exists? %>
+        <div class="users-index">
+          <%= render @notifications %>
         </div>
-        <% if @notifications.exists? %>
-    <div class="users-index">
-        <%= render @notifications %>
+      <% else %>
+        <div class="no-notification">通知はありません</div>
+      <% end %>
     </div>
-<% else %>
-    <p>通知はありません</p>
-<% end %>
-    </div>
+</div>

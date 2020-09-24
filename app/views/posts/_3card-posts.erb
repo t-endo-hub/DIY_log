@@ -11,45 +11,39 @@
               title: post.user.name do %>
               <strong><%= post.user.name %></strong>
             <% end %>
-
-            <% if user_signed_in? %>
           </div>
-          <%= link_to(post_path(post)) do %>
-            <%= attachment_image_tag post,:image,  fallback: "no_image.jpg",class: "card-img-top" %>
-          <% end %>
-
+            <%= attachment_image_tag post,:image,  fallback: "no_image.jpg",class: " js-modal-open card-img-top" %>
           <div class="card-body">
-            <div class="row parts">
-
-              <div id="like-icon-post-<%= post.id.to_s %>">
-                <% if post.liked_by(current_user).present? %>
-                  <%= link_to post_likes_path(post.id, post.liked_by(current_user)), method: :DELETE, remote: true, class: "loved hide-text" %>
-                <% else %>
-                  <%= link_to "いいね", post_likes_path(post), method: :POST, remote: true, class: "love hide-text" %>
-                <% end %>
-              </div>
-              <%= link_to "", "#", class: "comment" %>
-            </div>
-
-           
-            
-            <div>
-              <span><strong><%= post.user.name %></strong></span>
-              <span><%= post.title %></span>
-              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
-                          <div id="comment-post-<%= post.id.to_s %>">
-                <%= render '/posts/comment_list', { post: post } %>
-              </div>
-              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post),
-                class: "light-color post-time no-text-decoration" %>
-              <hr>
-              <div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
-              </div>
-            </div>
+           <%= render 'posts/font_awesame', post: post %>
+            <span><%= post.title %></span>
           </div>
         </div>
+
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+            <%= render 'posts/post_show', post:post %>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $(function(){
+          $('.js-modal-open').on('click',function(){
+              $(this).parent().next().fadeIn();
+              return false;
+          });
+          $('.js-modal-close').on('click',function(){
+              $('.js-modal').fadeOut();
+              return false;
+          });
+          });
+        </script>
+
+        
       </div>
     </div>
-   <% end %>
+
+    
   <% end %>
 </div>
