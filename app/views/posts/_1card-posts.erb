@@ -3,7 +3,7 @@
     <div class="card test">
       <div class="card-header align-items-center d-flex">
         <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-          <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
+          <%= attachment_image_tag post.user,:image, fallback: "no_image.jpg", class: "post-profile-icon" %>
         <% end %>
         <%= link_to user_path(post.user), class: "black-color no-text-decoration",
           title: post.user.name do %>

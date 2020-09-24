@@ -12,6 +12,16 @@ class RecipesController < ApplicationController
     @items = @post.items.all
   end
 
+  def index
+    @post = Post.find(params[:post_id])
+    @recipe = @post.recipes.build
+    @recipes = @post.recipes.all
+    @material = @post.materials.build
+    @materials = @post.materials.all
+    @item = @post.items.build
+    @items = @post.items.all
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build(recipe_params)
@@ -25,26 +35,6 @@ class RecipesController < ApplicationController
     @recipes = @post.recipes.all
     @recipe.destroy
   end
-
-  def index
-    @post = Post.find(params[:post_id])
-    @recipe = @post.recipes.build
-    @recipes = @post.recipes.all
-    @material = @post.materials.build
-    @materials = @post.materials.all
-    @item = @post.items.build
-    @items = @post.items.all
-  end
-
-  def show
-    @post = Post.find(params[:post_id])
-    @recipe = @post.recipes.find(params[:id])
-    @recipes = @post.recipes.all
-    @materials = @post.materials.all
-    @items = @post.items.all
-  end
-
-  def edit; end
 
   private
 

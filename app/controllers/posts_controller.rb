@@ -8,6 +8,14 @@ class PostsController < ApplicationController
     @post.recipes.build
   end
 
+  def index
+    @posts = if params[:tag_name]
+              Post.tagged_with(params[:tag_name].to_s)
+            else
+              Post.limit(10).includes(:user).order('created_at DESC')
+            end
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -19,19 +27,8 @@ class PostsController < ApplicationController
     end
   end
 
-  def index
-    @posts = if params[:tag_name]
-              Post.tagged_with(params[:tag_name].to_s)
-            else
-              Post.limit(10).includes(:user).order('created_at DESC')
-            end
-    @popular_user = User.limit(5).order('created_at DESC')
-  end
-
   def show
   end
-
-  def edit; end
 
   def destroy
     if @post.user == current_user
@@ -46,7 +43,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(sales_status: params[:post][:sales_status])
     redirect_to post_path(@post)
-    flash[:create] = 'YOUR post RELEASE !'
+    flash[:create] = '投稿が編集されました'
   end
 
   def like_ranking

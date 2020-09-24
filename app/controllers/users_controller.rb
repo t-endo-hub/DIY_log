@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @like_posts = @user.like_posts
+    @follow_users = @user.followings
+    @follower_users = @user.followers
     @posts = @user.posts.all
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
@@ -24,8 +27,5 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    @like_posts = @user.like_posts
-    @follow_users = @user.followings
-    @follower_users = @user.followers
   end
 end
