@@ -25,17 +25,7 @@ class UsersController < ApplicationController
       end
     end
     @like_posts = @user.like_posts
-  end
-
-  def followings
-    @user = User.find(params[:id])
-    @users = @user.followings
-    render 'show_follow'
-  end
-
-  def followers
-    @user = User.find(params[:id])
-    @users = @user.followers
-    render 'show_follower'
+    @follow_users = @user.followings
+    @follower_users = @user.followers
   end
 end

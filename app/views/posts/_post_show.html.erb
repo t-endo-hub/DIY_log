@@ -19,7 +19,7 @@
               <h5><strong><%= post.title %></strong></h5>
 
               <% if post.user == current_user %>
-                <%= link_to '削除する', post_path(post), method: :delete, class: "ml-auto mx-0 my-auto btn btn-danger" %>
+                <%= link_to '削除', post_path(post), method: :delete, class: "ml-auto mx-0 my-auto btn btn-danger" %>
               <% end %>
             </div>
             <div class="m-2 card-right-name">
