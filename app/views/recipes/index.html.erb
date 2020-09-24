@@ -1,19 +1,20 @@
 <div class="container" style="padding-bottom: 100px;">
+	<%= render 'partial/back_btn' %>
 	<% if @post.user == current_user %>
 		<div class="row">
 			<div class="col-md-6">
 				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
 			</div>
 			<div class="col-md-6">
-				<h4 class="post-title">作品名</h3>
+				<h4 class="recipe-title">作品名</h4>
 				<%= @post.title %><br>
-				<h4 class="post-title">説明</h3>
+				<h4 class="recipe-title">説明</h3>
 				<%= @post.content %>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h4 class="post-title">材料</h4>
+				<h4 class="recipe-title">材料</h4>
 				<div class="materials_form_<%= @post.id %>">
 					<%= render 'materials_form', materials: @materials, post: @post %>
 				</div>
@@ -35,7 +36,7 @@
 
 
 			<div class="col-md-6">
-				<h4 class="post-title">使用工具</h4>
+				<h4 class="recipe-title">使用工具</h4>
 				<div class="items_form_<%= @post.id %>">
 					<%= render 'items_form', items: @items, post: @post %>
 				</div>
@@ -53,7 +54,7 @@
 			</div>
 		</div>
 
-	<h4 class="post-title">作り方</h4>
+	<h4 class="recipe-title">作り方</h4>
 
 		<div class="recipes_form_<%= @post.id %>">
 			<%= render 'recipes_form', recipes: @recipes, post: @post %>
@@ -100,15 +101,15 @@
 				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
 			</div>
 			<div class="col-md-6">
-				<h4 class="post-title">作品名</h3><br>
+				<h4 class="recipe-title">作品名</h3><br>
 				<%= @post.title %><br>
-				<h4 class="post-title">説明</h3>
+				<h4 class="recipe-title">説明</h3>
 				<%= @post.content %>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h4 class="post-title">材料</h4>
+				<h4 class="recipe-title">材料</h4>
 				<div class="materials_form_<%= @post.id %>">
 					<% @post.materials.each do |material| %>
 						<%= material.name %>
@@ -119,7 +120,7 @@
 
 
 			<div class="col-md-6">
-				<h4 class="post-title">使用工具</h4>
+				<h4 class="recipe-title">使用工具</h4>
 				<div class="items_form_<%= @post.id %>">
 					<% @post.items.each do |item| %>
 						<%= item.name %>
@@ -128,15 +129,36 @@
 			</div>
 		</div>
 			
-		<p class="post-title" >作り方
-	<% @sum = 0 %>
+		<p class="recipe-title" >作り方
+		<% @sum = 0 %>
 		<div class="row" style="margin-bottom: 10px">
-			<% @recipes.each do |recipe| %>
-				<div class="col-lg-3 col-3">
+			<% @recipes.each do |recipe| %>			
+				<div class="col-lg-3">
 					<%= @sum += 1 %>.
-					<%= attachment_image_tag recipe, :image, id:'img_prev', fallback: "no_image.jpg" %>
+					<%= attachment_image_tag recipe, :image, id:'img_prev', class:'recipe-modal-open', fallback: "no_image.jpg" %>
 					<%= recipe.content %>
 				</div>
+
+				<div class="modal js-modal">
+					<div class="modal__bg js-modal-close"></div>
+					<div class="modal__content">
+						<%= render 'recipes/recipe_show', recipe:recipe %>
+					</div>
+				</div>
+
+				<script type="text/javascript">
+					$(function(){
+					$('.recipe-modal-open').on('click',function(){
+							$(this).parent().next().fadeIn();
+							return false;
+					});
+					$('.js-modal-close').on('click',function(){
+							$('.js-modal').fadeOut();
+							return false;
+					});
+				});
+			</script>
+
 			<% end %>
 		</div>
 	<% end %>

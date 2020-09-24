@@ -65,7 +65,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap', '~> 4.4.1'
-gem 'bxslider-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'

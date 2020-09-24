@@ -1,19 +1,18 @@
 <div class="container">
-<div class="row">
-  <div class="col-md-6">
-     <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+    </div>
+
+    <div class="col-md-6">
+      <h4 class="border-bottom mt-5">作品名</h4><br>
+      <%= @post.title %><br>
+      <h4 class="border-bottom mt-5">説明</h4>
+      <%= @post.content %>
+    </div>
   </div>
 
-  <div class="col-md-6">
-    <h4 class="border-bottom mt-5">作品名</h3><br>
-    <%= @post.title %><br>
-    <h4 class="border-bottom mt-5">説明</h3>
-    <%= @post.content %>
-  </div>
-</div>
-
-
-    <div class="row">
+  <div class="row">
     <div class="col-md-6">
       <h4 class="border-bottom mt-5">材料</h4>
       <div class="materials_form_<%= @post.id %>">
@@ -21,21 +20,19 @@
       </div>
 
       <%= form_for [@post,@material],remote: true do |f| %>
-      <div class="row pt-2">
-        <div class="col-lg-5 col-4">
-          <%= f.text_field :name, placeholder:"材料", class: 'materials_form' %>
+        <div class="row pt-2">
+          <div class="col-lg-5 col-4">
+            <%= f.text_field :name, placeholder:"材料", class: 'materials_form' %>
+          </div>
+          <div class="col-lg-2 col-2">
+            <%= f.text_field :quantity, :size=>"8",placeholder:"数量",class: 'materials_form' %>
+          </div>
+          <div class="col-lg-3 col-4">
+            <%= f.submit "追加", class: "btn btn-primary" %>
+          </div>
         </div>
-        <div class="col-lg-2 col-2">
-          <%= f.text_field :quantity, :size=>"8",placeholder:"数量",class: 'materials_form' %>
-        </div>
-        <div class="col-lg-3 col-4">
-          <%= f.submit "追加", class: "btn btn-primary" %>
-        </div>
-      </div>
       <% end %>
     </div>
-
-
     <div class="col-md-6">
       <h4 class="border-bottom mt-5">使用工具</h4>
       <div class="items_form_<%= @post.id %>">
@@ -53,18 +50,18 @@
         </div>
       <% end %>
     </div>
-</div>
+  </div>
 
-<h4 class="border-bottom mt-5">作り方</h4>
+  <h4 class="border-bottom mt-5">作り方</h4>
 
   <div class="recipes_form_<%= @post.id %>">
     <%= render 'recipes_form', recipes: @recipes, post: @post %>
   </div>
 
-<div class="row" style="margin-bottom: 10px">
-  <div class="col-lg-3 col-3">
-    <%= form_for [@post,@recipe],remote: true do |f| %>
-      <%= attachment_image_tag @recipe, :image, id: 'recipe_prev', fallback: 'no_image.jpg' %>
+  <div class="row" style="margin-bottom: 10px">
+    <div class="col-lg-3 col-3">
+      <%= form_for [@post,@recipe],remote: true do |f| %>
+        <%= attachment_image_tag @recipe, :image, id: 'recipe_prev', fallback: 'no_image.jpg' %>
         <div class="upload-btn-wrapper">
           <%= f.file_field :image, id:'recipe-image', class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
 

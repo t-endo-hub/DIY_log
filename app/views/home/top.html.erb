@@ -1,79 +1,39 @@
-<div class="row">
-	<ul class="tag-bar">
-		<li>
-			人気のタグ
-		</li>
-		<li>
-			<%= link_to '椅子', posts_path(tag_name: "椅子")  %>
-		</li>
-		<li>
-			<%= link_to 'テーブル', posts_path(tag_name: "テーブル")  %>
-		</li>
-		<li>
-			<%= link_to '壁紙', posts_path(tag_name: "壁紙")  %>
-		</li>
-		<li>
-			<%= link_to '簡単', posts_path(tag_name: "簡単")  %>
-		</li>
-	</ul>
-</div>
-<div class="main-image">
-	<div class="main-image-box">
-		<div class="main-image-box-text">
-			<%= link_to home_about_path do %>
-				<h1 class="main-text">WHAT<br> DIY<br> LOG?</h1>
-			<% end %>
-			<span class = "registration-btn">
-				<%= link_to new_user_registration_path do %>
-					<i class="fas fa-hiking fa-2x registration-logo"></i>sign up!
-				<% end %>
-			</span>
-		</div>
-	</div>
+<div class="about-main-image">
+  <h3 class="about-main-text">DIY LOG</h3>
 </div>
 
+<h1 class="text-center" style="margin:100px 0; font-weight: bolder;">DIY LOGではこんなことができます</h1>
 
-<div style="background-color: #f2f2f2">
 <div class="container">
-<div class="a">
-<% @posts.each do |post| %>
-  <div class="col-md-4">
-    <div class="card-wrap">
-      <div class="card test">
-        <div class="card-header align-items-center d-flex">
-          <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-            <%= attachment_image_tag post.user,:image,class: "post-profile-icon" %>
-          <% end %>
-          <%= link_to user_path(post.user), class: "black-color no-text-decoration",title: post.user.name do %>
-            <strong><%= post.user.name %></strong>
-          <% end %>
-        </div>
+  <div class="row">
+    <div class="col-lg-4">
+      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> DM(メッセージ)</strong>
+      <img class="about-item card" src="/assets/about1.png">
+    </div>
+    <div class="col-lg-4">
+      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> 記事の一覧・お気に入り</strong>
+      <img class="about-item card" src="/assets/about2.png">
+    </div>
+    <div class="col-lg-4">
+      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> ユーザーのフォロー</strong>
+      <img class="about-item card" src="/assets/about3.png">
+    </div>
+  </div>
+  <p class="text-center">
+    <%= link_to "試しに記事を見てみる", posts_path, class:'btn about-btn btn-lg' %>
+  </p>
 
-        <%= link_to(post_path(post)) do %>
-          <%= attachment_image_tag post,:image, class: "card-img-top", fallback: "no_image.jpg" %>
-          <div class="card-body">
-            <h5><strong><%= post.title %></strong></h5>
-            <div class="row parts">
-              <% if user_signed_in? %>
-                <div class="like_<%= post.id %>">
-                  <%= render "/posts/like_text", post: post %>
-                </div>
-              <% end %>
-            </div>
-            <div>
-              <span><strong><%= post.user.name %></strong></span>
-              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "post-time no-text-decoration" %>
-             
-              <%= link_to time_ago_in_words(post.created_at).upcase + "前", post_path(post), class: "light-color post-time    no-text-decoration" %>
-              <hr>
-              <div class="row actions" id="comment-form-post-<%= post.id.to_s %>"></div>
-            </div>
-          </div>
-        <% end %>
+<div class="about-registraion">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="text-center" style="margin-top: 40px;"><strong>DIY LOG は気軽にあなたの作品を共有できます</strong></h3>
+      <h3 class="text-center"><strong>まずは会員登録から始めましょう</strong></h3>
+      <p class="text-center"><%= link_to "今すぐ新規登録",  new_user_registration_path, class:"btn btn-lg about-registration-btn" %>
+      <h3 class="text-center" style="margin-top: 60px;"><strong>ログイン はこちら</strong></h3>
+      <div class="row">
+        <p class="text-center" style="margin:0 auto;"><%= link_to "ログイン",   new_user_session_path, method: :POST, class:"btn btn-lg about-registration-btn" %>
+        <p class="text-center" style="margin:0 auto;"><%= link_to "ゲストログイン",   home_guest_sign_in_path, method: :POST, class:"btn btn-lg about-registration-btn" %>
       </div>
     </div>
   </div>
-<% end %>
-</div>
-</div>
 </div>

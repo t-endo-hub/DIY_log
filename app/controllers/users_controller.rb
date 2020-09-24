@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  def index
-    @users = User.all
-  end
-
   def show
     @user = User.find(params[:id])
+    @like_posts = @user.like_posts
+    @follow_users = @user.followings
+    @follower_users = @user.followers
     @posts = @user.posts.all
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
@@ -24,18 +23,5 @@ class UsersController < ApplicationController
         @entry = Entry.new
       end
     end
-    @like_posts = @user.like_posts
-  end
-
-  def followings
-    @user = User.find(params[:id])
-    @users = @user.followings
-    render 'show_follow'
-  end
-
-  def followers
-    @user = User.find(params[:id])
-    @users = @user.followers
-    render 'show_follower'
   end
 end

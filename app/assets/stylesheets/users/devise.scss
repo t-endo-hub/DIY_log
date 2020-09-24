@@ -20,12 +20,12 @@
 }
 
 .logo-img {
-  background-image: image-url("logo.png");
+  background-image: image-url("logo.jpg");
   background-repeat: no-repeat;
-  height: 56px;
-  width: 180px;
-  background-size: 160px;
-  background-size: 180px!important;
+  background-size: cover;
+  background-position: center;
+  height: 100px;
+  width: 300px;
 }
 
 .form-control {
