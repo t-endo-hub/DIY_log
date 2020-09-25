@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @posts = if params[:tag_name]
               Post.tagged_with(params[:tag_name].to_s).includes(:user)
             else
-              Post.limit(10).includes(:user).order('created_at DESC')
+              Post.page(params[:page]).per(10).includes(:user).order('created_at DESC')
             end
   end
 
