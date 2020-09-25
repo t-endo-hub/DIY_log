@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to new_post_recipe_path(@post)
-      flash[:notice] = '投稿が保存されました'
+      flash[:notice] = '材料等を入力してください'
     else
       redirect_to root_path
       flash[:alert] = '投稿に失敗しました'
