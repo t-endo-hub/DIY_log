@@ -22,16 +22,6 @@ ActiveRecord::Schema.define(version: 2020_09_12_223328) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "deliveries", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "name", null: false
-    t.string "address", null: false
-    t.string "postcode", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_deliveries_on_user_id"
-  end
-
   create_table "entries", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
@@ -88,25 +78,11 @@ ActiveRecord::Schema.define(version: 2020_09_12_223328) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
-    t.string "name", null: false
-    t.string "postcode", null: false
-    t.string "address", null: false
-    t.integer "payment", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_orders_on_post_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
     t.text "content"
     t.string "image_id"
-    t.string "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -174,8 +150,6 @@ ActiveRecord::Schema.define(version: 2020_09_12_223328) do
     t.datetime "updated_at", null: false
     t.string "name", default: "", null: false
     t.text "discription"
-    t.string "address"
-    t.string "postcode"
     t.string "image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -19,26 +19,6 @@
 //= require_tree .
 
 
-$('#postcode').jpostal({
-  postcode : [
-    '#postcode'
-  ],
-  address : {
-    '#address' : '%3%4%5'
-  }
-});
-
-$(function () {
-	$('#postcode').jpostal({
-		postcode : [
-			'#postcode'
-		],
-		address : {
-			'#address' : '%3%4%5'
-		}
-	});
-});
-
 	// テキストエリア高さ自動調整
 	function textAreaHeightSet(argObj){
 		 argObj.style.height = "10px";
