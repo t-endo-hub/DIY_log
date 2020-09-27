@@ -54,37 +54,18 @@
 			</div>
 		</div>
 
-	<h4 class="recipe-title">作り方</h4>
+		<h4 class="recipe-title">作り方</h4>
 
 		<div class="recipes_form_<%= @post.id %>">
 			<%= render 'recipes_form', recipes: @recipes, post: @post %>
 		</div>
 
-	<div class="row" style="margin-bottom: 10px">
-		<div class="col-lg-3 col-3">
-			<%= form_for [@post,@recipe],remote: true do |f| %>
-			
-				<%= attachment_image_tag @recipe, :image, id: 'recipe_prev', fallback: 'no_image.jpg' %>
+		<div class="row" style="margin-bottom: 10px">
+			<div class="col-lg-3 col-3">
+				<%= form_for [@post,@recipe],remote: true do |f| %>
+					<%= attachment_image_tag @recipe, :image, id:"recipe-prev", class:"recipes_form", fallback: 'no_image.jpg' %>
 					<div class="upload-btn-wrapper">
-						<%= f.file_field :image, id:'recipe-image', class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
-
-						<script type="text/javascript">
-							$(function() {
-								function readURL(input) {
-										if (input.files && input.files[0]) {
-										var reader = new FileReader();
-										reader.onload = function (e) {
-								$('#recipe_prev').attr('src', e.target.result);
-										}
-										reader.readAsDataURL(input.files[0]);
-										}
-								}
-								$("#recipe-image").change(function(){
-										readURL(this);
-								});
-							});
-						</script>
-						
+						<%= f.file_field :image, id:"recipe-image", class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
 						<button class="btn-type">画像を選択する</button>
 					</div>
 					<%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する", class:'recipes_form input-form' %>

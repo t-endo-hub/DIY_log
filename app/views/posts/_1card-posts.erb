@@ -9,19 +9,12 @@
           title: post.user.name do %>
           <strong><%= post.user.name %></strong>
         <% end %>
-
       </div>
-
       <%= attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_image.jpg" %>
-      
-      <%= render 'posts/font_awesame', post: post %>
+      <%= 'posts/font_awesame', post: post %>
       <div class="card-body">
-        
         <div>
           <span><%= post.title %></span>
-          <hr>
-          <div class="row actions" id="comment-form-post-<%= post.id.to_s %>">
-          </div>
         </div>
       </div>
     </div>

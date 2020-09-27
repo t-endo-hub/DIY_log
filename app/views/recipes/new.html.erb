@@ -61,7 +61,7 @@
   <div class="row" style="margin-bottom: 10px">
     <div class="col-lg-3 col-3">
       <%= form_for [@post,@recipe],remote: true do |f| %>
-        <%= attachment_image_tag @recipe, :image, id: 'recipe_prev', fallback: 'no_image.jpg' %>
+        <%= attachment_image_tag @recipe, :image, id: 'recipe-prev', fallback: 'no_image.jpg' %>
         <div class="upload-btn-wrapper">
           <%= f.file_field :image, id:'recipe-image', class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
 
@@ -71,7 +71,7 @@
                   if (input.files && input.files[0]) {
                   var reader = new FileReader();
                   reader.onload = function (e) {
-              $('#recipe_prev').attr('src', e.target.result);
+              $('#recipe-prev').attr('src', e.target.result);
                   }
                   reader.readAsDataURL(input.files[0]);
                   }

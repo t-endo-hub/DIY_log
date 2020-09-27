@@ -1,2 +1,2 @@
-$('#comment-post-<%= @post.id.to_s %>').
+$('#comment-post-<%= @post.id %>').
   html('<%= j render "posts/comment_list", { post: @post } %>');

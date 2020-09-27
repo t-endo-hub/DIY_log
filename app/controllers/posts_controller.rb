@@ -27,8 +27,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def show; end
-
   def destroy
     if @post.user == current_user
       flash[:notice] = '投稿が削除されました' if @post.destroy
@@ -36,13 +34,6 @@ class PostsController < ApplicationController
       flash[:alert] = '投稿の削除に失敗しました'
     end
     redirect_to root_path
-  end
-
-  def update
-    @post = Post.find(params[:id])
-    @post.update(sales_status: params[:post][:sales_status])
-    redirect_to post_path(@post)
-    flash[:create] = '投稿が編集されました'
   end
 
   def like_ranking

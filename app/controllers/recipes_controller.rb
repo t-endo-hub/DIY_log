@@ -26,7 +26,11 @@ class RecipesController < ApplicationController
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build(recipe_params)
     @recipes = @post.recipes.all
-    @recipe.save
+    if @recipe.save
+    else
+      flash[:alert] = ""
+      redirect_to request.referer
+    end
   end
 
   def destroy

@@ -4,18 +4,18 @@
       <i class="fas fa-user" style="color: #F96167"></i>
       <span class="font-awesomes"><%= post.user.name %></span>
     <% end %>
+
     <span class="mr-w">
-      <%= link_to anchor: "comments" do %>
-        <i class="fas fa-comment" style="color: #F96167"></i>
-          <span class="font-awesomes"><%= post.comments.count %>件</span>
-      <% end %>
+      <i class="fas fa-comment" style="color: #F96167"></i>
+      <span class="font-awesomes"><%= post.comments.count %>件</span>
     </span>
+
     <% if user_signed_in? %>
-    <span class="like_<%= post.id %>">
+    <span class="like-<%= post.id %>">
       <%= render 'posts/like_text', post: post %>
     </span>
     <% else %>
-    <i class="fas fa-heart" style="color: #F96167"></i>
+      <i class="fas fa-heart" style="color: #F96167"></i>
       <span class="font-awesomes"><%= post.likes.count %></span>
     <% end %>
   </span>

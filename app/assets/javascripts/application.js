@@ -28,23 +28,6 @@
 		 argObj.style.height = wSclollHeight + "px";
 	 }
 
-
-	 //画像プレビュー
-$(function() {
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-    $('#img-prev').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#recipe-image").change(function(){
-        readURL(this);
-    });
-  });
-
 			$(function() {
 			function readURL(input) {
 				if (input.files && input.files[0]) {
@@ -59,20 +42,19 @@ $(function() {
 				readURL(this);
 			});
 			});
-
-			
-
-//モーダル
-$(function(){
-	$('.js-modal-open').on('click',function(){
-			$('.js-modal').fadeIn();
-			return false;
-	});
-	$('.js-modal-close').on('click',function(){
-			$('.js-modal').fadeOut();
-			return false;
-	});
-});
-
 		
 		
+			$(function() {
+				function readURL(input) {
+						if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function (e) {
+				$('#recipe-prev').attr('src', e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+						}
+				}
+				$("#recipe-image").change(function(){
+						readURL(this);
+				});
+			});

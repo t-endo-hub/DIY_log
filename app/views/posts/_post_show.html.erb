@@ -25,13 +25,13 @@
             <div class="m-2 card-right-name">
               <p><%= post.content %></p>
             </div>
-            <div id="comment-post-<%= post.id.to_s %>">
+            <div id="comment-post-<%= post.id %>">
               <%= render 'posts/comment_list', post:post %>
             </div>
           </div>
 
           <% if user_signed_in?	%>
-            <div class="row parts" id="comment-form-post-<%= post.id.to_s %>">
+            <div class="row parts" id="comment-form-post-<%= post.id %>">
               <%= form_with model: [post, Comment.new],  class: "w-100" do |f| %>
                 <%= f.hidden_field :user_id, value: current_user.id %>
                 <%= f.hidden_field :post_id, value: post.id %>

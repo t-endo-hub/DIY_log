@@ -18,13 +18,13 @@
 .card-wrap {
   margin: 40px 0px;
 }
-.test {
+.border-radius {
     text-decoration: none;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     transition: 0.3s;
     border-radius: 20px;
 }
-.test:hover {
+.border-radius:hover {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.5);
   transform: translateY(-5px);
 }
