@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit create destroy]
-  before_action :only_current_user, only: %i[edit destroy]
+  before_action :authenticate_user!, only: %i[new create destroy]
+  before_action :only_current_user, only: %i[destroy]
 
   def new
     @post = Post.find(params[:post_id])

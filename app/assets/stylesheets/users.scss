@@ -1,3 +1,28 @@
 .follow-btn {
   width: 100px;
 }
+
+.tabnav{
+  margin: 0;
+  padding: 0;
+}
+.tabnav li{
+  display: inline;
+}
+.tabnav li a{
+  display: inline-block;
+  background: #405dca;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  text-decoration: none;
+}
+.tabnav li a:hover,
+.tabnav li a.active{
+  background: #ddd;
+  color: #333;
+}
+.tabcontent{
+  padding: 20px;
+}
+

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+
   def show
     @user = User.find(params[:id])
     @like_posts = @user.like_posts
@@ -8,7 +9,7 @@ class UsersController < ApplicationController
     @posts = @user.posts.all
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
-    unless @user.id == current_user.id
+    if @user.id != current_user.id
       @current_user_entry.each do |cu|
         @user_entry.each do |u|
           if cu.room_id == u.room_id

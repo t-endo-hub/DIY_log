@@ -1,6 +1,6 @@
 <% posts.each do |post| %>
   <div class="card-wrap">
-    <div class="card test">
+    <div class="card border-radius">
       <div class="card-header align-items-center d-flex">
         <%= link_to user_path(post.user), class: "no-text-decoration" do %>
           <%= attachment_image_tag post.user,:image, fallback: "no_image.jpg", class: "post-profile-icon" %>
