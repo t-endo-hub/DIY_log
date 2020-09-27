@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index like_ranking]
-  before_action :only_current_user, only: %i[edit destroy]
+  before_action :only_current_user, only: %i[destroy]
   before_action :set_post, only: %i[show destroy]
 
   def new
@@ -10,10 +10,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:tag_name]
-              Post.tagged_with(params[:tag_name].to_s).includes(:user)
-            else
-              Post.page(params[:page]).per(10).includes(:user).order('created_at DESC')
-            end
+               Post.tagged_with(params[:tag_name].to_s).includes(:user)
+             else
+               Post.page(params[:page]).per(10).includes(:user).order('created_at DESC')
+             end
   end
 
   def create
@@ -27,8 +27,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     if @post.user == current_user

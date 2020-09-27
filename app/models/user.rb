@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-
   attachment :image
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -44,6 +43,7 @@ class User < ApplicationRecord
     end
   end
 
+  # パスワードを入力しなくてもユーザー情報を変更できる
   def update_without_current_password(params, *options)
     params.delete(:current_password)
 
@@ -52,7 +52,7 @@ class User < ApplicationRecord
       params.delete(:password_confirmation)
     end
 
-    result = update_attributes(params, *options)
+    result = update(params, *options)
     clean_up_passwords
     result
   end

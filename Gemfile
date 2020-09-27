@@ -65,15 +65,15 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap4-kaminari-views'
 gem 'devise'
+gem 'dotenv-rails'
 gem 'jquery-rails'
+gem 'kaminari'
+gem 'rails-i18n', '~> 5.1'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'kaminari'
-gem 'bootstrap4-kaminari-views'
-gem 'rails-i18n', '~> 5.1' 
-gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end

@@ -135,7 +135,7 @@
 			<% @recipes.each do |recipe| %>			
 				<div class="col-lg-3">
 					<%= @sum += 1 %>.
-					<%= attachment_image_tag recipe, :image, id:'img_prev', class:'recipe-modal-open', fallback: "no_image.jpg" %>
+					<%= attachment_image_tag recipe, :image, id:'img-prev', class:'recipe-modal-open', fallback: "no_image.jpg" %>
 					<%= recipe.content %>
 				</div>
 
