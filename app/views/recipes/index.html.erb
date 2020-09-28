@@ -3,7 +3,7 @@
 	<% if @post.user == current_user %>
 		<div class="row">
 			<div class="col-md-6">
-				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_pic.png" %>
 			</div>
 			<div class="col-md-6">
 				<h4 class="recipe-title">作品名</h4>
@@ -22,7 +22,7 @@
 				<%= form_for [@post,@material],remote: true do |f| %>
 				<div class="row pt-2">
 					<div class="col-lg-5 col-4">
-						<%= f.text_field :name, placeholder:"材料", class: 'materials_form' %>
+						<%= f.text_field :name, placeholder: "材料", class: 'materials_form' %>
 					</div>
 					<div class="col-lg-2 col-2">
 						<%= f.text_field :quantity, :size=>"8",placeholder:"数量",class: 'materials_form' %>
@@ -33,7 +33,6 @@
 				</div>
 				<% end %>
 			</div>
-
 
 			<div class="col-md-6">
 				<h4 class="recipe-title">使用工具</h4>
@@ -63,7 +62,7 @@
 		<div class="row" style="margin-bottom: 10px">
 			<div class="col-lg-3 col-3">
 				<%= form_for [@post,@recipe],remote: true do |f| %>
-					<%= attachment_image_tag @recipe, :image, id:"recipe-prev", class:"recipes_form", fallback: 'no_image.jpg' %>
+					<%= attachment_image_tag @recipe, :image, id:"recipe-prev", class:"recipes_form", fallback: "no_pic.png" %>
 					<div class="upload-btn-wrapper">
 						<%= f.file_field :image, id:"recipe-image", class:'recipes_form', accept: 'image/jpeg,image/gif,image/png', onChange:'inform()' %>
 						<button class="btn-type">画像を選択する</button>
@@ -79,7 +78,7 @@
 	<% else %>
 		<div class="row">
 			<div class="col-md-6">
-				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+				<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_pic.png" %>
 			</div>
 			<div class="col-md-6">
 				<h4 class="recipe-title">作品名</h3><br>
@@ -99,7 +98,6 @@
 				</div>
 			</div>
 
-
 			<div class="col-md-6">
 				<h4 class="recipe-title">使用工具</h4>
 				<div class="items_form_<%= @post.id %>">
@@ -116,7 +114,7 @@
 			<% @recipes.each do |recipe| %>			
 				<div class="col-lg-3">
 					<%= @sum += 1 %>.
-					<%= attachment_image_tag recipe, :image, id:'img-prev', class:'recipe-modal-open', fallback: "no_image.jpg" %>
+					<%= attachment_image_tag recipe, :image, id: "img-prev", class: "recipe-modal-open", fallback: "no_pic.png" %>
 					<%= recipe.content %>
 				</div>
 

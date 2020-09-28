@@ -10,7 +10,7 @@
           <strong><%= post.user.name %></strong>
         <% end %>
       </div>
-      <%= attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_image.jpg" %>
+      <%= attachment_image_tag post ,:image, class: "card-img-top js-modal-open", fallback: "no_pic.png" %>
       <%= render 'posts/font_awesome', post: post %>
       <div class="card-body">
         <div>

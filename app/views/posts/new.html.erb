@@ -10,8 +10,8 @@
 	<%= form_for(@post) do |f| %>
 		<div class="row" style="margin-top: 30px">
 				<div class="col-lg-6">
-						<%= attachment_image_tag @post, :image, format:"jpg",fallback:"no_image.jpg", class:"post-image-show", id:"preview-image" %>
-						<%= f.attachment_field :image, id:"select-image", style:"margin: 10px 0" %><br>
+					<%= attachment_image_tag @post, :image, format: "jpg", fallback: "no_pic.png", class: "post-image-show", id:"preview-image" %>
+					<%= f.attachment_field :image, id: "select-image", style: "margin: 10px 0" %><br>
 
 					<script type="text/javascript">
 					$(function() {
@@ -30,9 +30,8 @@
 					});
 					</script>
 
-
-						<div style="margin-top: 30px;"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
-						<%= f.text_field :tag_list, value: @post.tag_list.join(','), class:"form-control",placeholder: "壁,机、、、" %>
+					<div style="margin-top: 30px;"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
+					<%= f.text_field :tag_list, value: @post.tag_list.join(','), class: "form-control", placeholder: "壁,机、、、" %>
 				</div>
 				<div class="col-lg-6">
 					<ul>
@@ -50,11 +49,11 @@
 					<% end %>
 					<div class="row">
 						<div class="col-lg-3"><strong>作品名</strong></div>
-						<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off",style:"width:80%",placeholder:"作品名" %></p></div>
+						<div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-3"><strong>説明</strong></div>
-						<div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off",rows:"3",style:"width:100%",placeholder:"ポイント、特徴など" %></p></div>
+						<div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off", rows: "3", style: "width:100%", placeholder: "ポイント、特徴など" %></p></div>
 					</div>
 					<div style="text-align: center;margin: 20px 0">
 						<%= f.submit class:"btn btn-primary" %>

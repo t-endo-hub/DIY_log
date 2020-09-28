@@ -4,7 +4,7 @@
       <div class="col-md-7">
         <div class="card-left">
 
-          <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_image.jpg" %>
+          <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_pic.png" %>
           <%= render 'posts/font_awesome', post:post %>
           <%= render 'posts/tag_list', tags:post.tags %>
         </div>
@@ -14,7 +14,7 @@
           <div class="card-right-comment">
             <div class="card-right-name">
               <%= link_to user_path(post.user), class: "no-text-decoration" do %>
-                <%= attachment_image_tag post.user,:image, class: "post-profile-icon" %>
+                <%= attachment_image_tag post.user,:image, fallback: "no_image.jpg", class: "post-profile-icon" %>
               <% end %>
               <h5><strong><%= post.title %></strong></h5>
 
