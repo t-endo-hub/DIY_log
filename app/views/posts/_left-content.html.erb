@@ -61,7 +61,7 @@
 <script type="text/javascript">
   $(function(){
     $('.left-nav a').removeClass('active');
-    if (location.pathname == "/posts"){
+    if (location.pathname != "/posts/like_ranking"){
       $('#menu-post').addClass('active');
       console.log('posts')
     }else{
