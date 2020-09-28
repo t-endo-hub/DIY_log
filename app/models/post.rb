@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   attachment :image
 
   has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
   has_many :recipes, dependent: :destroy
   has_many :materials, dependent: :destroy

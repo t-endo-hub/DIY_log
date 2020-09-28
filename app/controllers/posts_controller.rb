@@ -10,9 +10,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:tag_name]
-               Post.tagged_with(params[:tag_name].to_s).includes(:user)
+               Post.tagged_with(params[:tag_name].to_s).includes(:user, :tags)
              else
-               Post.page(params[:page]).per(10).includes(:user).order('created_at DESC')
+               Post.page(params[:page]).per(10).includes(:user, :tags).order('created_at DESC')
              end
   end
 
@@ -37,7 +37,8 @@ class PostsController < ApplicationController
   end
 
   def like_ranking
-    @like_ranking_posts = Post.find(Like.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
+    # 各投稿のいいね数を比較して並び替え
+    @like_ranking_posts = Post.includes(:user, :tags).sort {|a,b| b.liked_users.count <=> a.liked_users.count}
   end
 
   def search
