@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @like_posts = @user.like_posts
     @follow_users = @user.followings
     @follower_users = @user.followers
-    @posts = @user.posts.all
+    @posts = @user.posts.includes(:user, :tags)
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     if @user.id != current_user.id

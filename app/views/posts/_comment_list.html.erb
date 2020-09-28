@@ -1,4 +1,4 @@
-<% post.comments.each do |comment| %>
+<% post.comments.includes([:user]).each do |comment| %>
   <div class="mb-2">
     <% if comment.user == current_user %>
       <%= link_to "", post_comment_path(post.id, comment), method: :delete, remote: true, class: "delete-comment" %>
