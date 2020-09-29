@@ -93,7 +93,7 @@
 				<div class="materials_form_<%= @post.id %>">
 					<% @post.materials.each do |material| %>
 						<%= material.name %>
-						<%= material.quantity %>
+						<%= material.quantity %><br>
 					<% end %>
 				</div>
 			</div>
@@ -102,7 +102,7 @@
 				<h4 class="recipe-title">使用工具</h4>
 				<div class="items_form_<%= @post.id %>">
 					<% @post.items.each do |item| %>
-						<%= item.name %>
+						<%= item.name %><br>
 					<% end %>
 				</div>
 			</div>
