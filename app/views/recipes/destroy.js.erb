@@ -1,2 +1,2 @@
-$(".recipes_form").val("");
-$(".recipes_form_<%= @post.id %>").html("<%= j(render 'recipes/recipes_form',{ recipes: @recipes, post: @post} ) %>");
+$(".post_recipes").val("");
+$(".post_recipes_<%= @post.id %>").html("<%= j(render 'posts/post_recipes',{ recipes: @recipes, post: @post} ) %>");

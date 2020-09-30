@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
     @post = Post.find(params[:post_id])
     @recipe = @post.recipes.build(recipe_params)
     @recipes = @post.recipes.all
-    @recipe.save
+    if @recipe.save
     else
       flash[:alert] = '作り方の追加に失敗しました'
       redirect_to request.referer

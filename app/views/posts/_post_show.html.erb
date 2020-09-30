@@ -40,6 +40,9 @@
             </div>
           <% end %>
           <%= link_to '作り方', post_recipes_path(post), class: 'btn btn-success' %>
+          <% if post.user == current_user %>
+            <%= link_to "編集", edit_post_path(post), class: "btn btn-primary" %>
+          <% end %>
         </div>
       </div>
     </div>

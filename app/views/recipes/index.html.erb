@@ -1,8 +1,5 @@
 <div class="container" style="padding-bottom: 100px;">
 	<%= render 'partial/back_btn' %>
-	<% if @post.user == current_user %>
-		<%= link_to "編集", edit_post_path(@post), class: "btn btn-primary" %>
-	<% end %>
 	<div class="row">
 		<div class="col-md-6">
 			<%= attachment_image_tag @post,:image, class: "post-image-show", fallback: "no_pic.png" %>
@@ -17,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h4 class="recipe-title">材料</h4>
-			<div class="materials_form_<%= @post.id %>">
+			<div class="post_materials_<%= @post.id %>">
 				<% @post.materials.each do |material| %>
 					<%= material.name %>
 					<%= material.quantity %><br>
@@ -27,7 +24,7 @@
 
 		<div class="col-md-6">
 			<h4 class="recipe-title">使用工具</h4>
-			<div class="items_form_<%= @post.id %>">
+			<div class="post_items_<%= @post.id %>">
 				<% @post.items.each do |item| %>
 					<%= item.name %><br>
 				<% end %>
