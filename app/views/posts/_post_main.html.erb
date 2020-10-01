@@ -1,0 +1,49 @@
+<%= form_for (post) do |f| %>
+  <div class="row" style="margin-top: 30px">
+    <div class="col-lg-6">
+      <%= attachment_image_tag post, :image, format: "jpg", fallback: "no_pic.png", class: "post-image-show", id:"post-prev" %>
+      <%= f.attachment_field :image, id: "select-image", style: "margin: 10px 0" %><br>
+
+    <script>
+    	$(function() {
+        function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              $('#post-prev').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+        $("#select-image").change(function(){
+          readURL(this);
+        });
+      });
+    </script>
+
+      <div style="margin-top: 30px;"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
+      <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", placeholder: "壁,机、、、" %>
+    </div>
+    <div class="col-lg-6">
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <div class="bad-flash"><i class="fas fa-exclamation-circle"></i>
+            <%= message %>
+          </div>
+        <% end %>
+      </ul>
+      <h3 class="post-title" style="margin-bottom: 40px;" >投稿</h3>
+      <div class="row">
+        <div class="col-lg-3"><strong>作品名</strong></div>
+        <div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p></div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3"><strong>説明</strong></div>
+        <div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off", rows: "3", style: "width:100%", placeholder: "ポイント、特徴など" %></p></div>
+      </div>
+      <div style="text-align: center;margin: 20px 0">
+        <%= f.submit class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

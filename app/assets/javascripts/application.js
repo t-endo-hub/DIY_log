@@ -19,6 +19,7 @@
 //= require_tree .
 
 
+
 	// テキストエリア高さ自動調整
 	function textAreaHeightSet(argObj){
 		 argObj.style.height = "10px";
@@ -27,34 +28,15 @@
 		 if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
 		 argObj.style.height = wSclollHeight + "px";
 	 }
-
-	$(function() {
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-			reader.onload = function (e) {
-				$('#img-prev').attr('src', e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-	$("#select-image").change(function(){
-		readURL(this);
-	});
-	});
-
-
-	$(function() {
-		function readURL(input) {
-				if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-		$('#recipe-prev').attr('src', e.target.result);
-				}
-				reader.readAsDataURL(input.files[0]);
-				}
-		}
-		$("#recipe-image").change(function(){
-				readURL(this);
+	
+	$(function(){
+		$('.recipe-modal-open').on('click',function(){
+				$(this).parent().next().fadeIn();
+				return false;
+		});
+		$('.js-modal-close').on('click',function(){
+				$('.js-modal').fadeOut();
+				return false;
 		});
 	});
+

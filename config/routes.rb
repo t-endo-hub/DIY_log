@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
     resource :likes, only: %i(create destroy)
     resources :comments, only: %i(create destroy)
-    resources :recipes, only: %i(new index show edit create destroy)
+    resources :recipes, only: %i(new index show create destroy)
     resources :materials, only: %i(create destroy)
     resources :items, only: %i(create destroy)
     resources :orders, only: %i(new create) do

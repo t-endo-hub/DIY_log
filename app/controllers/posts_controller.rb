@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index like_ranking]
-  before_action :only_current_user, only: %i[destroy]
-  before_action :set_post, only: %i[show destroy]
+  before_action :authenticate_user!, except: %i[index update like_ranking]
+  before_action :only_current_user, only: %i[update destroy]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def new
     @post = Post.new
@@ -16,6 +16,15 @@ class PostsController < ApplicationController
              end
   end
 
+  def edit
+    @recipe = @post.recipes.build
+    @recipes = @post.recipes.all
+    @material = @post.materials.build
+    @materials = @post.materials.all
+    @item = @post.items.build
+    @items = @post.items.all
+  end
+
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
@@ -25,6 +34,15 @@ class PostsController < ApplicationController
       redirect_to root_path
       flash[:alert] = '投稿に失敗しました'
     end
+  end
+
+  def update
+    if @post.update(post_params)
+      flash[:notice] = "投稿の更新に成功しました"
+    else
+      flash[:alert] = "投稿の更新に失敗しました"
+    end
+    redirect_to request.referer
   end
 
   def destroy
@@ -38,7 +56,7 @@ class PostsController < ApplicationController
 
   def like_ranking
     # 各投稿のいいね数を比較して並び替え
-    @like_ranking_posts = Post.includes(:user, :tags).sort {|a,b| b.liked_users.count <=> a.liked_users.count}
+    @like_ranking_posts = Post.includes(:user, :tags).sort { |a, b| b.liked_users.count <=> a.liked_users.count }
   end
 
   def search
@@ -48,7 +66,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :sales_status, :tag_list, :image)
+    params.require(:post).permit(:title, :content, :tag_list, :image)
   end
 
   def set_post
