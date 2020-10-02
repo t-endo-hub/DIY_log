@@ -46,35 +46,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe '投稿詳細ページ' do
-    context '投稿詳細ページが表示される' do
-      before do
-        sign_in @user
-        get :show, params: { id: @post.id }
-      end
-      it 'リクエストは200 OKになること' do
-        expect(response.status).to eq 200
-      end
-    end
-
-    context 'ログインしていないユーザーは投稿詳細ページが正しく表示されない' do
-      before do
-        get :show, params: { id: @post.id }
-      end
-      it 'リクエストが200 OKにならないこと' do
-        expect(response.status).to_not eq 200
-      end
-
-      it '302レスポンスが返ってきているか？' do
-        expect(response).to have_http_status '302'
-      end
-
-      it 'ログイン画面にリダイレクトされているか？' do
-        expect(response).to redirect_to '/users/sign_in'
-      end
-    end
-  end
-
   describe '投稿編集ページ' do
     context '投稿編集ページが表示される' do
       before do

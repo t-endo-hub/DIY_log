@@ -24,12 +24,6 @@ RSpec.describe Material, type: :model do
         expect(@material).to_not be_valid
         expect(@material.errors[:name]).to include("can't be blank")
       end
-
-      it 'quantityがnilだと登録できない' do
-        @material.quantity = ''
-        expect(@material).to_not be_valid
-        expect(@material.errors[:quantity]).to include("can't be blank")
-      end
     end
   end
 end
