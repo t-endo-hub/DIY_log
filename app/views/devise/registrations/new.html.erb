@@ -1,3 +1,13 @@
+<% if resource.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>       
+
 <div class="main">
   <div class="card devise-card">
     <div class="form-wrap">
@@ -30,15 +40,16 @@
           <%= f.submit "登録する", class: "btn btn-primary w-100" %>
         </div>
       <% end %>
-
       <div class="actions">
-        <%= link_to "ゲストログイン",  home_guest_sign_in_path, method: :POST, class: "btn btn-primary w-100 mt-3" %>
-      <br>
+        <%= link_to "ゲストログイン",  home_guest_sign_in_path, method: :POST, class: "btn btn-primary w-100 mt-3" %><br>
 
-      <p class="devise-link">
-        アカウントをお持ちですか？
-        <%= link_to "サインインする", new_user_session_path %>
-      </p>
+
+        <p class="devise-link">
+          アカウントをお持ちですか？
+          <%= link_to "サインインする", new_user_session_path %>
+        </p>
+      </div>
     </div>
+
   </div>
 </div>

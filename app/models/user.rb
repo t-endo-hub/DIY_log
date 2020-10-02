@@ -3,6 +3,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true
+  validates :discription,  length: { maximum: 200 }
 
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -16,8 +17,6 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  has_many :orders, dependent: :destroy
-  has_many :deliveries, dependent: :destroy
 
   def follow(other_user)
     relationships.find_or_create_by(follow_id: other_user.id) unless self == other_user
