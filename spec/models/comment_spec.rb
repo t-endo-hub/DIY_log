@@ -22,12 +22,42 @@ RSpec.describe Comment, type: :model do
       it 'commentがnilだと登録できない' do
         @comment.comment = ''
         expect(@comment).to_not be_valid
-        expect(@comment.errors[:comment]).to include("can't be blank")
+        expect(@comment.errors[:comment]).to include("を入力してください")
       end
 
       it 'commentが151文字以上だと投稿できない' do
         @comment.comment = 'a' * 151
         expect(@comment).to_not be_valid
+      end
+    end
+
+    describe 'アソシエーションのテスト' do
+      let(:association) do
+        described_class.reflect_on_association(target)
+      end
+  
+      context 'Userモデルとの関係' do
+        let(:target) { :user }
+  
+        it 'N:1となっている' do
+          expect(association.macro).to eq :belongs_to
+        end
+      end
+
+      context 'Postモデルとの関係' do
+        let(:target) { :post }
+  
+        it 'N:1となっている' do
+          expect(association.macro).to eq :belongs_to
+        end
+      end
+
+      context 'Notificationモデルとの関係' do
+        let(:target) { :notifications }
+  
+        it '1:Nとなっている' do
+          expect(association.macro).to eq :has_many
+        end
       end
     end
   end

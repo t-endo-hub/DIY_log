@@ -23,7 +23,7 @@ RSpec.describe Post, type: :model do
     it 'titleがnilだと投稿できない' do
       @post.title = ''
       expect(@post).to_not be_valid
-      expect(@post.errors[:title]).to include("can't be blank")
+      expect(@post.errors[:title]).to include("を入力してください")
     end
 
     it 'titleが51文字以上だと投稿できない' do
@@ -34,6 +34,68 @@ RSpec.describe Post, type: :model do
     it 'contentが151文字以上だと投稿できない' do
       @post.content = 'a' * 151
       expect(@post).to_not be_valid
+    end
+  end
+
+  describe 'アソシエーションのテスト' do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
+
+    context 'Userモデルとの関係' do
+      let(:target) { :user }
+
+      it 'N:1となっている' do
+        expect(association.macro).to eq :belongs_to
+      end
+    end
+
+    context 'Likeモデルとの関係' do
+      let(:target) { :likes }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Commentモデルとの関係' do
+      let(:target) { :comments }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Recipeモデルとの関係' do
+      let(:target) { :recipes }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Materialモデルとの関係' do
+      let(:target) { :materials }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Itemモデルとの関係' do
+      let(:target) { :items }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
+    end
+
+    context 'Notificationモデルとの関係' do
+      let(:target) { :notifications }
+
+      it '1:Nとなっている' do
+        expect(association.macro).to eq :has_many
+      end
     end
   end
 end

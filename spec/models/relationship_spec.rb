@@ -24,4 +24,26 @@ RSpec.describe Relationship, type: :model do
       expect(@relationship).not_to be_valid
     end
   end
+
+  describe 'アソシエーションのテスト' do
+    let(:association) do
+      described_class.reflect_on_association(target)
+    end
+
+    context 'Userモデルとの関係' do
+      let(:target) { :user }
+
+      it 'N:1となっている' do
+        expect(association.macro).to eq :belongs_to
+      end
+    end
+
+    context 'Userモデル(follow)との関係' do
+      let(:target) { :follow }
+
+      it 'N:1となっている' do
+        expect(association.macro).to eq :belongs_to
+      end
+    end
+  end
 end
