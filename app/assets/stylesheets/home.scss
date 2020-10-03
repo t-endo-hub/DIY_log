@@ -29,7 +29,7 @@
 }
 
 .top-item {
-  margin:20px 0 100px 0;
+  margin: 20px 0 100px 0;
   width: 100%;
   height: auto;
 }
@@ -54,4 +54,26 @@
   background-color: #f5f8fa;
   border-radius: 15px;
   margin-top: 60px;
+}
+
+@media (max-width: 991px) {
+  .top-main-text {
+    font-size: 50px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+.top-item {
+  width: 80%;
+  margin: 20px auto;
+}
+  .top-item img {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .top-item strong {
+    font-size: 20px;
+  }
 }

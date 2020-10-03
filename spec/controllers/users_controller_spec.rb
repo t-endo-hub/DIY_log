@@ -13,9 +13,6 @@ RSpec.describe UsersController, type: :controller do
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
-      pending 'プロフィール編集リンクが表示される' do
-        expect(response.body).to have_link 'プロフィールを編集'
-      end
     end
 
     context 'ログインしていないユーザーはユーザー詳細ページが正しく表示されない' do
@@ -32,16 +29,6 @@ RSpec.describe UsersController, type: :controller do
 
       it 'ログイン画面にリダイレクトされているか？' do
         expect(response).to redirect_to '/users/sign_in'
-      end
-    end
-
-    context '自分の情報以外の編集ページが表示されない' do
-      before do
-        @user = FactoryBot.create(:user_yamada)
-        get :show, params: { id: @user.id }
-      end
-      pending 'フォローボタンが表示されること' do
-        expect(response.body).to have_link 'Follow'
       end
     end
   end

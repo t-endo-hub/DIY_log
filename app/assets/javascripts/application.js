@@ -29,6 +29,7 @@
 		 argObj.style.height = wSclollHeight + "px";
 	 }
 	
+	 //recipeモーダル
 	$(function(){
 		$('.recipe-modal-open').on('click',function(){
 				$(this).parent().next().fadeIn();
