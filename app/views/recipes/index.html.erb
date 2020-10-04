@@ -36,7 +36,7 @@
 	<% @sum = 0 %>
 	<div class="row" style="margin-bottom: 10px">
 		<% @recipes.each do |recipe| %>			
-			<div class="col-lg-3">
+			<div class="col-3">
 				<%= @sum += 1 %>.
 				<%= attachment_image_tag recipe, :image, id: "recipe-image", class: "recipe-modal-open", fallback: "no_pic.png" %>
 				<%= recipe.content %>
@@ -49,7 +49,18 @@
 				</div>
 			</div>
 
-			
+		<script>
+			$(function(){
+				$('.recipe-modal-open').on('click',function(){
+						$(this).parent().next().fadeIn();
+						return false;
+				});
+				$('.js-modal-close').on('click',function(){
+						$('.js-modal').fadeOut();
+						return false;
+				});
+			});
+	</script>			
 		<% end %>
 	</div>
 </div>

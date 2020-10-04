@@ -1,7 +1,7 @@
 <% @sum = 0 %>
 <div class="row" style="margin-bottom: 10px">
   <% recipes.each do |recipe| %>
-    <div class="col-lg-3">
+    <div class="col-3">
       <%= form_for [post, recipe], remote: true do |f| %>
         <%= @sum += 1 %>.
         <%= attachment_image_tag recipe, :image, id: "recipe-image", class: "post_recipes", fallback: "no_pic.png" %>
