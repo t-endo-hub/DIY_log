@@ -3,7 +3,6 @@
     <div class="row post-wrap">
       <div class="col-lg-7">
         <div class="card-left">
-
           <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_pic.png" %>
           <%= render 'posts/font_awesome', post:post %>
           <%= render 'posts/tag_list', tags:post.tags %>
