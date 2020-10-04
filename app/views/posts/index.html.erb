@@ -2,13 +2,12 @@
   <div class="row">
     <% if params[:tag_name] %>
       <%= render 'partial/back_btn' %>
-      <div class="col-lg-12">
+      <div class="col-12">
         <div class="home-content new-bottom margin-bottom10 text-center">
           <i class="fas fa-share-alt icon new-bg"></i>＃<%= params[:tag_name] %>
         </div>
           <%= render 'posts/3card-posts', posts:@posts %>
       </div>
-
     <% else %>
       <div class="col-lg-4">
         <%= render 'partial/left_content' %>

@@ -1,3 +1,11 @@
 <div class="container">
+  <div class="row">
+		<%= render 'partial/back_btn' %>
+		<div class="col-lg-12">
+			<div class="home-content new-bottom margin-bottom10 text-center">
+				<i class="fas fa-comment icon new-bg"></i>#<%= params[:search] %>
+			</div>
+		</div>
+	</div>
   <%= render 'posts/3card-posts', posts: @posts %>
 </div>
