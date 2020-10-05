@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-     <%= render 'left-content' %>
+     <%= render 'partial/left_content' %>
     </div>
     <div class="col-lg-1"></div>
-    <div class="col-lg-5">
-      <div class="home-content like-bottom margin-bottom10">
+    <div class="col-lg-5 offset-lg-0 col-8 offset-2">
+      <div class="home-content like-bottom clearfix margin-bottom10">
         <i class="fas fa-crown icon like-bg"></i>いいねランキング
       </div>
         <%= render 'posts/1card-posts', posts:@like_ranking_posts %>

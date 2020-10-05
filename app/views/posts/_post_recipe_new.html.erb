@@ -4,7 +4,7 @@
   </div>
 
   <div class="row" style="margin-bottom: 10px">
-    <div class="col-lg-3 col-3">
+    <div class="col-3">
       <%= form_for [post,recipe],remote: true do |f| %>
         <%= attachment_image_tag recipe, :image, id: "recipe-prev", fallback: "no_pic.png" %>
         <div class="upload-btn-wrapper">

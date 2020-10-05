@@ -29,14 +29,5 @@
 		 argObj.style.height = wSclollHeight + "px";
 	 }
 	
-	$(function(){
-		$('.recipe-modal-open').on('click',function(){
-				$(this).parent().next().fadeIn();
-				return false;
-		});
-		$('.js-modal-close').on('click',function(){
-				$('.js-modal').fadeOut();
-				return false;
-		});
-	});
+	 //recipeモーダル
 

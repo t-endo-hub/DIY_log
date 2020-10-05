@@ -1,5 +1,5 @@
 <nav>
-  <ul class="left-nav">
+  <ul class="left_nav">
     <li>
       <%= link_to  posts_path, class:'nav-item mt-5', id:'menu-post' do %>
         <i class="fas fa-share-alt mr-2"></i>最近の投稿
@@ -42,6 +42,12 @@
       <li>
         <%= link_to "投稿", new_post_path , class: "btn post-btn nav-item" %>
       </li>
+      <li class="mt-3 text-center">
+        <%= form_tag(search_posts_path,:method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil %>
+        <% end %>
+      </li>
     <% else %>
       <div class="partition"></div>
       <li>
@@ -58,9 +64,9 @@
   <ul>
 </nav>
 
-<script type="text/javascript">
+<script>
   $(function(){
-    $('.left-nav a').removeClass('active');
+    $('.left_nav a').removeClass('active');
     if (location.pathname != "/posts/like_ranking"){
       $('#menu-post').addClass('active');
       console.log('posts')

@@ -1,15 +1,14 @@
 <div class="container">
-  <div class="col-md-10 col-md-offset-1 mx-auto postShow-wrap">
+  <div class="col-lg-10 col-lg-offset-1 mx-auto postShow-wrap">
     <div class="row post-wrap">
-      <div class="col-md-7">
+      <div class="col-lg-7 col-12">
         <div class="card-left">
-
           <%= attachment_image_tag post,:image, class: "post-image-show", fallback: "no_pic.png" %>
           <%= render 'posts/font_awesome', post:post %>
           <%= render 'posts/tag_list', tags:post.tags %>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-lg-5 col-12">
         <div class="card-right">
           <div class="card-right-comment">
             <div class="card-right-name">
