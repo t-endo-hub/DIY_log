@@ -1,4 +1,4 @@
-class MaterialsController < ApplicationController
+class Users::MaterialsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @material = @post.materials.build(material_params)

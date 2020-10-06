@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Users::ItemsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @item = @post.items.build(item_params)

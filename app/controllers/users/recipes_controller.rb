@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class Users::RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
   before_action :only_current_user, only: %i[destroy]
   before_action :set_post, only: %i[new index]
