@@ -1,0 +1,2 @@
+$(".post_recipes").val("");
+$(".post_recipes_<%= @post.id %>").html("<%= j(render 'users/posts/post_recipes',{ recipes: @recipes, post: @post} ) %>");

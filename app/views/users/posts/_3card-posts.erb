@@ -1,0 +1,45 @@
+<div class="row">
+  <% posts.each do |post| %>
+    <div class="col-lg-4 offset-lg-0 col-8 offset-2">
+      <div class="card-wrap">
+        <div class="card border-radius">
+          <div class="card-header align-items-center d-flex">
+            <%= link_to users_user_path(post.user), class: "no-text-decoration" do %>
+              <%= attachment_image_tag post.user,:image, fallback: "no_image.jpg", class: "post-profile-icon" %>
+            <% end %>
+            <%= link_to users_user_path(post.user), class: "black-color no-text-decoration",
+              title: post.user.name do %>
+              <strong><%= post.user.name %></strong>
+            <% end %>
+          </div>
+            <%= attachment_image_tag post,:image,  fallback: "no_pic.png", class: " js-modal-open card-img-top" %>
+          <div class="card-body">
+           <%= render 'users/posts/font_awesome', post: post %>
+            <span><%= post.title %></span>
+          </div>
+        </div>
+
+        <div class="modal js-modal">
+          <div class="modal__bg js-modal-close"></div>
+          <div class="modal__content">
+            <%= render 'users/posts/post_show', post:post %>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $(function(){
+          $('.js-modal-open').on('click',function(){
+              $(this).parent().next().fadeIn();
+              return false;
+          });
+          $('.js-modal-close').on('click',function(){
+              $('.js-modal').fadeOut();
+              return false;
+          });
+          });
+        </script>
+
+      </div>
+    </div>
+  <% end %>
+</div>

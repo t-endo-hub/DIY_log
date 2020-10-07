@@ -28,7 +28,7 @@ class Users::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to new_post_recipe_path(@post)
+      redirect_to new_users_post_recipe_path(@post)
       flash[:notice] = '材料等を入力してください'
     else
       redirect_to root_path
@@ -75,6 +75,6 @@ class Users::PostsController < ApplicationController
 
   def only_current_user
     @post = Post.find(params[:id])
-    redirect_to user_path(current_user) if current_user != @post.user
+    redirect_to users_user_path(current_user) if current_user != @post.user
   end
 end

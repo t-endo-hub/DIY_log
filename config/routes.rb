@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :messages, :only => [:create]
     resources :rooms, :only => [:create, :show, :index]
 
-    resources :posts, only: %i(new create index show edit destroy update) do
+    resources :posts, only: %i(new create index edit destroy update) do
       collection do
         get :like_ranking
         get :search

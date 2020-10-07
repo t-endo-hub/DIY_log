@@ -1,0 +1,2 @@
+$(".post_items").val("");
+$(".post_items_<%= @post.id %>").html("<%= j(render 'users/posts/post_items',{ items: @items, post: @post} ) %>");

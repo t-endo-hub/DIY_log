@@ -1,0 +1,16 @@
+<% @sum = 0 %>
+<div class="row" style="margin-bottom: 10px">
+  <% recipes.each do |recipe| %>
+    <div class="col-3">
+      <%= form_for([post,recipe], url:users_post_recipes_path(post) ,remote: true) do |f| %>
+        <%= @sum += 1 %>.
+        <%= attachment_image_tag recipe, :image, id: "recipe-image", class: "post_recipes", fallback: "no_pic.png" %>
+        <%= f.text_area :content, class:"textArea", style:"width:100%", placeholder:'作り方', oninput:"textAreaHeightSet(this)",onchange:"textAreaHeightSet(this)" %>
+        <div style="text-align: right">
+          <%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>
+          <%= link_to "削除", users_post_recipe_path(post, recipe),method: :delete,data: {confirm: "本当に削除してもよろしいですか？"},class:"btn btn-danger btn-sm", remote: true %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

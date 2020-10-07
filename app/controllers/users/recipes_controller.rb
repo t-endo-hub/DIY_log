@@ -47,7 +47,7 @@ class Users::RecipesController < ApplicationController
 
   def only_current_user
     @post = Post.find(params[:post_id])
-    redirect_to user_path(current_user) if current_user != @post.user
+    redirect_to users_user_path(current_user) if current_user != @post.user
   end
 
   def set_post
