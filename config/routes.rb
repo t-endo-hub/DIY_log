@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     post 'admins/sign_in' => 'admins/sessions#create', as: 'admin_session'
     delete 'admins/sign_out' => 'admins/sessions#destroy', as: 'destroy_admin_session'    
   end
+
+  namespace :admins do
+    resources :users, only: %i(index show destroy)
+  end
+  
   
   devise_for :users,
   controllers: { registrations: 'registrations' }

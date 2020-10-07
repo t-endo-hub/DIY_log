@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 text-center">
+      <%= attachment_image_tag @user,:image, fallback: "no_image.jpg", class: "profile_img" %><br>
+    </div>
+    <div class="col-lg-8 mt-4">
+    <div class="row">
+      <h4 class="mr-4"><strong><%= @user.name %></strong></h4>
+    </div>
+    <div class="mt-3"><%= @user.discription %></div>
+    </div>
+  </div>
+</div>
