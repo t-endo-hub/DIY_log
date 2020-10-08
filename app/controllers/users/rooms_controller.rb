@@ -1,17 +1,18 @@
 class Users::RoomsController < ApplicationController
   before_action :authenticate_user!
 
+ 
   def index
     @rooms = Room.all
     @user = current_user
 
     # DM一覧画面に最後のメッセージを表示
-    @current_entries = current_user.entries
+    @current_entries = current_user.entries.includes(:room)
     room_ids = []
     @current_entries.each do |entry|
       room_ids << entry.room.id
     end
-    @another_entries = Entry.where(room_id: room_ids).where('user_id != ?', @user.id)
+    @another_entries = Entry.where(room_id: room_ids).where('user_id != ?', @user.id).includes(:user, :room)
   end
 
   def show
