@@ -17,7 +17,10 @@
               </td>
               <td><h5 class="line-height"><strong><%= e.user.name %></strong></h5></td>
               <td>
-                <p class="line-height"><%= Message.find_by(id: e.room.message_ids.last).content.truncate(45) %></p>
+              //メッセージがあれば表示
+                <% if Message.find_by(id: e.room.message_ids.last) %>
+                  <p class="line-height"><%= Message.find_by(id: e.room.message_ids.last).content.truncate(45) %></p>
+                <% end %>
               </td> 
               <td>
                 <%= link_to users_room_path(e.room.id) do %>

@@ -3,10 +3,10 @@ class Users::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @like_posts = @user.like_posts
+    @like_posts = @user.like_posts.includes(:user, :tags)
     @follow_users = @user.followings
     @follower_users = @user.followers
-    @posts = @user.posts.includes(:user, :tags)
+    @posts = @user.posts.includes(:tags)
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     if @user.id != current_user.id

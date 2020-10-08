@@ -18,9 +18,9 @@
         <%= render 'users/relationships/follow_btn', user:@user %>
         <% unless @user.id == current_user.id %>
           <% if @is_room == true %>
-            <p class="user-show-room"><a href="/rooms/<%= @room_id %>" class="btn btn-primary ml-4">DM</a>
+            <p class="user-show-room"><a href="/users/rooms/<%= @room_id %>" class="btn btn-primary ml-4">DM</a>
           <% else %>
-            <%= form_for @room do |f| %>
+            <%= form_for(@room, url:users_rooms_path, method: :POST) do |f| %>
               <%= fields_for @entry do |e| %>
                 <%= e.hidden_field :user_id, value: @user.id %>
               <% end %>
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+  <script>
     jQuery(function($){
           $('.tabcontent > div').hide();
       
@@ -70,6 +70,7 @@
       
               return false;
           }).filter(':eq(0)').click();
+          console.log('test')
       });
   </script>    
 </div>

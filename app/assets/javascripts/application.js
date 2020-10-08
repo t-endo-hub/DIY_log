@@ -29,5 +29,4 @@
 		 argObj.style.height = wSclollHeight + "px";
 	 }
 	
-	 //recipeモーダル
 

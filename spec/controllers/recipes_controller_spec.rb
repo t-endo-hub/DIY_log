@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RecipesController, type: :controller do
+RSpec.describe Users::RecipesController, type: :controller do
   before do
     @user = FactoryBot.create(:user_tanaka)
     @post = FactoryBot.create(:post)
