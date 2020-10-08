@@ -1,0 +1,11 @@
+<div class="mb-3">
+  <% tags.each do |tag| %>
+  <div class="d-inline-block m-1">
+    <span class="tags">
+      <%= link_to users_posts_path(tag_name: tag.name) do %>
+        <%= tag.name %>
+      <% end %>
+    </span>
+  </div>
+  <% end %>
+</div>

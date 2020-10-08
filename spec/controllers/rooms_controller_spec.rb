@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe RoomsController, type: :controller do
+RSpec.describe Users::RoomsController, type: :controller do
 end

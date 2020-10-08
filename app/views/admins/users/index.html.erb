@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <table class='table table-borderless'>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr class="border-bottom">
+              <td style="margin-right: 100px;">
+                <%= link_to admins_user_path(user) do %>
+                 <%= attachment_image_tag user, :image, fallback: "no_image.jpg", class: "dm-profile-icon" %>
+                <% end %>
+              </td>
+              <td><h5 style="line-height: 40px;"><strong><%= link_to user.name, admins_user_path(user) %></h5></td>
+              <td><%= link_to "削除", admins_user_path(user), method: :DELETE, class: "btn btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

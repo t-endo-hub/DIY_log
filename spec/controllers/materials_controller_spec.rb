@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe MaterialsController, type: :controller do
+RSpec.describe Users::MaterialsController, type: :controller do
 end

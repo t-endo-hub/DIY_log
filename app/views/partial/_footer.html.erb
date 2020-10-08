@@ -1,5 +1,11 @@
 <footer>
   <nav class="footer">
-    <div class="footer-image"></div>
+    <div class=" container admin-login">
+      <% if admin_signed_in? %>
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :DELETE %>
+      <% else %>
+        <%= link_to '管理者ログイン', new_admin_session_path %>
+      <% end %>
+    </div>
   </nav>
 </footer>

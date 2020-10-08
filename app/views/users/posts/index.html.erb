@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <% if params[:tag_name] %>
+      <%= render 'partial/back_btn' %>
+      <div class="col-12">
+        <div class="home-content new-bottom margin-bottom10 text-center">
+          <i class="fas fa-share-alt icon new-bg"></i>＃<%= params[:tag_name] %>
+        </div>
+          <%= render 'users/posts/3card-posts', posts:@posts %>
+      </div>
+    <% else %>
+      <div class="col-lg-4">
+        <%= render 'partial/left_content' %>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-5 offset-lg-0 col-8 offset-2">
+        <div class="home-content new-bottom margin-bottom10">
+          <i class="fas fa-share-alt icon new-bg"></i>最近の投稿
+        </div>
+          <%= render 'users/posts/1card-posts', posts:@posts %>
+          <%= paginate @posts %>
+      </div>
+    <% end %>
+  </div>
+</div>

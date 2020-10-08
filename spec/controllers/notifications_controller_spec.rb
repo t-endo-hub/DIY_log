@@ -1,4 +1,4 @@
 require 'rails_helper'
 
-RSpec.describe NotificationsController, type: :controller do
+RSpec.describe Users::NotificationsController, type: :controller do
 end

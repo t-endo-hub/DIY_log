@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostsController, type: :controller do
+RSpec.describe Users::PostsController, type: :controller do
   before do
     @user = FactoryBot.create(:user_tanaka)
     @post = FactoryBot.create(:post)
@@ -84,7 +84,7 @@ RSpec.describe PostsController, type: :controller do
         expect(response.status).to_not eq 200
       end
       it 'マイページにリダイレクトされているか？' do
-        expect(response).to redirect_to '/users/2'
+        expect(response).to redirect_to 'users/users/2'
       end
     end
   end
