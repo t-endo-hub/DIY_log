@@ -84,7 +84,7 @@ RSpec.describe Users::PostsController, type: :controller do
         expect(response.status).to_not eq 200
       end
       it 'マイページにリダイレクトされているか？' do
-        expect(response).to redirect_to 'users/users/2'
+        expect(response).to redirect_to '/users/users/2'
       end
     end
   end
