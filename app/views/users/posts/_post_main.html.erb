@@ -1,26 +1,8 @@
 <%= form_for(post, url:users_posts_path(post), method: :POST) do |f| %>
   <div class="row" style="margin-top: 30px">
     <div class="col-lg-6">
-      <%= attachment_image_tag post, :image, format: "jpg", fallback: "no_pic.png", class: "post-image-show", id:"post-prev" %>
-      <%= f.attachment_field :image, id: "select-image", style: "margin: 10px 0" %><br>
-
-    <script>
-    	$(function() {
-        function readURL(input) {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-              $('#post-prev').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-          }
-        }
-        $("#select-image").change(function(){
-          readURL(this);
-        });
-      });
-    </script>
-
+      <%= attachment_image_tag post, :image, format: "jpg", fallback: "no_pic.png", class: "post-image-show image-prev" %>
+      <%= f.attachment_field :image, class: "select-image", style: "margin: 10px 0" %><br>
       <div style="margin-top: 30px;"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
       <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", placeholder: "壁,机、、、" %>
     </div>

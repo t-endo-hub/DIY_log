@@ -4,7 +4,7 @@
     <div class="col-3">
       <%= form_for([post,recipe], url:users_post_recipes_path(post) ,remote: true) do |f| %>
         <%= @sum += 1 %>.
-        <%= attachment_image_tag recipe, :image, id: "recipe-image", class: "post_recipes", fallback: "no_pic.png" %>
+        <%= attachment_image_tag recipe, :image, class: "recipe-image post_recipes", fallback: "no_pic.png" %>
         <%= f.text_area :content, class:"textArea", style:"width:100%", placeholder:'作り方', oninput:"textAreaHeightSet(this)",onchange:"textAreaHeightSet(this)" %>
         <div style="text-align: right">
           <%= f.submit "変更", class:"btn btn-warning submit-btn-sm" %>

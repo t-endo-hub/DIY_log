@@ -38,7 +38,7 @@
 		<% @recipes.each do |recipe| %>			
 			<div class="col-3">
 				<%= @sum += 1 %>.
-				<%= attachment_image_tag recipe, :image, id: "recipe-image", class: "recipe-modal-open", fallback: "no_pic.png" %>
+				<%= attachment_image_tag recipe, :image, class: "recipe-image recipe-modal-open", fallback: "no_pic.png" %>
 				<%= recipe.content %>
 			</div>
 

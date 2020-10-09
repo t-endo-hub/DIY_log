@@ -14,11 +14,6 @@
   border-bottom: 3px solid tomato;
   margin-top: 40px;
 }
-.recipe-image {
-  height: auto;
-  min-height: 170px;
-  
-}
 
 .recipe-title {
   border-bottom: 1px solid #a6aaaa94;
@@ -56,12 +51,7 @@
   opacity: 0;
 }
 
-#recipe-prev {
-  width: 100%;
-  height: 100px;
-}
-
-#recipe-image {
+.recipe-image {
   width: 100%;
   height: 100px;
 }

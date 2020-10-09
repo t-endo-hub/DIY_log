@@ -20,28 +20,17 @@
 
 
 
-	// テキストエリア高さ自動調整
-	function textAreaHeightSet(argObj){
-		 argObj.style.height = "10px";
-		 var wSclollHeight = parseInt(argObj.scrollHeight);
-		 var wLineH = parseInt(argObj.style.lineHeight.replace(/px/, ''));
-		 if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
-		 argObj.style.height = wSclollHeight + "px";
-	 }
-	
-	 //left nav 背景色
-  $(function(){
-    $('.left_nav a').removeClass('active');
-    if (location.pathname != "/users/posts/like_ranking"){
-      $('#menu-post').addClass('active');
-      console.log('posts')
-    }else{
-      $('#menu-like-ranking').addClass('active')
-      console.log('like-ranking')
-    } 
-	});
-	
-	//投稿モーダル表示
+// テキストエリア高さ自動調整
+function textAreaHeightSet(argObj){
+		argObj.style.height = "10px";
+		var wSclollHeight = parseInt(argObj.scrollHeight);
+		var wLineH = parseInt(argObj.style.lineHeight.replace(/px/, ''));
+		if(wSclollHeight < (wLineH * 2)){wSclollHeight=(wLineH * 2);}
+		argObj.style.height = wSclollHeight + "px";
+	}
+
+// 投稿モーダル表示
+document.addEventListener("turbolinks:load", function() {
 	$(function(){
 		$('.js-modal-open').on('click',function(){
 				$(this).parent().parent().next().fadeIn();
@@ -52,4 +41,52 @@
 				return false;
 		});
 	});
+})
 
+// left nav 背景色
+document.addEventListener("turbolinks:load", function() {
+	$(function(){
+		$('.left_nav a').removeClass('active');
+		if (location.pathname != "/users/posts/like_ranking"){
+			$('#menu-post').addClass('active');
+			console.log('posts')
+		}else{
+			$('#menu-like-ranking').addClass('active')
+			console.log('like-ranking')
+		} 
+	});
+})
+
+// 画像プレビュー
+document.addEventListener("turbolinks:load", function() {
+	$(function() {
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$('.image-prev').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+		$('.select-image').change(function(){
+			readURL(this);
+		});
+	});
+})
+
+// ユーザー詳細ページタブメニュー
+document.addEventListener("turbolinks:load", function() {
+	jQuery(function($){
+		$('.tabcontent > div').hide();
+		
+		$('.tabnav a').click(function () {
+			$('.tabcontent > div').hide().filter(this.hash).fadeIn();
+			
+			$('.tabnav a').removeClass('active');
+			$(this).addClass('active');
+			
+			return false;
+		}).filter(':eq(0)').click();
+	});
+})
