@@ -29,4 +29,27 @@
 		 argObj.style.height = wSclollHeight + "px";
 	 }
 	
+	 //left nav 背景色
+  $(function(){
+    $('.left_nav a').removeClass('active');
+    if (location.pathname != "/users/posts/like_ranking"){
+      $('#menu-post').addClass('active');
+      console.log('posts')
+    }else{
+      $('#menu-like-ranking').addClass('active')
+      console.log('like-ranking')
+    } 
+	});
+	
+	//投稿モーダル表示
+	$(function(){
+		$('.js-modal-open').on('click',function(){
+				$(this).parent().parent().next().fadeIn();
+				return false;
+		});
+		$('.js-modal-close').on('click',function(){
+				$('.js-modal').fadeOut();
+				return false;
+		});
+	});
 
