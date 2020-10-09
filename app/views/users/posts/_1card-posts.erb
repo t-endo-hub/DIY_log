@@ -20,25 +20,9 @@
     </div>
   </div>
 
-  <div class="modal js-modal">
-    <div class="modal__bg js-modal-close"></div>
-    <div class="modal__content">
-      <%= render 'users/posts/post_show', post:post %>
-    </div>
-  </div>
-
-  <script type="text/javascript">
-    $(function(){
-    $('.js-modal-open').on('click',function(){
-        $(this).parent().parent().next().fadeIn();
-        return false;
-    });
-    $('.js-modal-close').on('click',function(){
-        $('.js-modal').fadeOut();
-        return false;
-    });
-    });
-  </script>
+  <!-- 投稿モーダル -->
+  <%= render 'users/posts/post_show', post:post %>
+  
 <% end %>
 
 

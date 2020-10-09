@@ -1,12 +1,12 @@
 <nav>
   <ul class="left_nav">
     <li>
-      <%= link_to  users_posts_path, class:'nav-item mt-5', id:'menu-post' do %>
+      <%= link_to  users_posts_path, class:'nav-item mt-5', id:'menu-post'  do %>
         <i class="fas fa-share-alt mr-2"></i>最近の投稿
       <% end %>
     </li>
     <li>
-      <%= link_to  like_ranking_users_posts_path, class:'nav-item', id:'menu-like-ranking' do %>
+      <%= link_to  like_ranking_users_posts_path, class:'nav-item', id:'menu-like-ranking'  do %>
         <i class="fas fa-crown mr-2"></i>いいね数順
       <% end %>
     </li>
@@ -64,17 +64,5 @@
   <ul>
 </nav>
 
-<script>
-  $(function(){
-    $('.left_nav a').removeClass('active');
-    if (location.pathname != "/users/posts/like_ranking"){
-      $('#menu-post').addClass('active');
-      console.log('posts')
-    }else{
-      $('#menu-like-ranking').addClass('active')
-      console.log('like-ranking')
-    } 
-  });
-</script>    
 
 
