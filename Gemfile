@@ -78,6 +78,7 @@ gem 'rails-i18n', '~> 5.1'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "refile-s3"
 group :production do
   gem 'mysql2'
 end
