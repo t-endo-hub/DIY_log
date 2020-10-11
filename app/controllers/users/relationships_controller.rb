@@ -4,22 +4,12 @@ class Users::RelationshipsController < ApplicationController
   def create
     following = current_user.follow(@user)
     @user.create_notification_follow!(current_user)
-    if following.save
-      flash[:success] = 'ユーザーをフォローしました'
-    else
-      flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-    end
-    redirect_to request.referer
+    following.save
   end
 
   def destroy
     following = current_user.unfollow(@user)
-    if following.destroy
-      flash[:success] = 'ユーザーのフォローを解除しました'
-    else
-      flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
-    end
-    redirect_to request.referer
+    following.destroy
   end
 
   private
