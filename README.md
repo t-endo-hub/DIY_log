@@ -2,14 +2,12 @@
 
 <img src="app/assets/images/readme.jpg" alt="DIY LOG" title="サイトロゴ"><br>
 ## **サイト概要**
-<hr>
 「もっとカジュアルにDIYを」<br>
 DIYをする方に向けた、DIY特化型SNSサービスです。
 <br>
 <br>
 
 ## **URL**
-<hr>
 https://diylog.work<br>
 【ゲストログイン】ボタンからテストユーザーとしてログインできます。<br>
 テストユーザーではユーザー編集以外の機能が使えます。
@@ -17,7 +15,6 @@ https://diylog.work<br>
 <br>
 
 ## **制作の背景**
-<hr>
 1. 私の趣味であるDIYの素晴らしさを多くの人に知ってもらいたい。<br>
 2. DIYのレシピサイト自体は存在するが、未経験者目線で見ると少し複雑でとっつきにくい<br>
 上記２つの理由からこのサイトを制作することにしました。<br>
@@ -26,21 +23,18 @@ https://diylog.work<br>
 <br>
 
 ## **ターゲットユーザー**
-<hr>
 ・レシピを参考にDIYをするユーザ<br>
 ・SNSとしてDIY好き同士で繋がりたいユーザー
 <br>
 <br>
 
 ## **主な利用シーン**
-<hr>
 ・DIYにチャレンジしたいとき<br>
 ・作ったレシピを共有したいとき
 <br>
 <br>
 
 ## **機能一覧**
-<hr>
 
 + guineapig
   + フォローされたとき、投稿にコメントされたとき、投稿がお気に入りされたときに通知が来る。
@@ -61,7 +55,6 @@ https://docs.google.com/spreadsheets/d/15X4uNo8008gP_WllnuBtxRkhUszWKZ5rvKUxfgOd
 <br>
 
 ##  **開発環境**
-<hr>
 
 ### **フロントエンド**
 + Bootstrap 4.5.0
