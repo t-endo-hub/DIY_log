@@ -1,7 +1,7 @@
 class Users::RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
   before_action :only_current_user, only: %i[destroy]
-  before_action :set_post, only: %i[new index update]
+  before_action :set_post, only: %i[new index update destroy]
 
   def new
     @recipe = @post.recipes.build
@@ -30,7 +30,10 @@ class Users::RecipesController < ApplicationController
   end
 
   def update
-    @recipe = @post.recipes.update(recipe_params)
+    @post = Post.find(params[:post_id])
+    @recipe = Recipe.find(params[:id])
+    @recipes = @post.recipes.all
+    @recipe.update(recipe_params)
   end
 
   def destroy
