@@ -1,3 +1,3 @@
 $(".post_recipes_<%= @post.id %>").html("<%= j(render 'users/posts/post_recipes',{ recipes: @recipes, post: @post} ) %>");
 $(".post_recipes").val("");
-$(".image-prev").attr('src', '<%= image_url("no_pic.png") %>')
+$(".recipe-prev").attr('src', '<%= image_url("no_pic.png") %>')

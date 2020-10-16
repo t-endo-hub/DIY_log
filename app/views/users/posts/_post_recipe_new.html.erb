@@ -6,9 +6,9 @@
   <div class="row" style="margin-bottom: 10px">
     <div class="col-3">
       <%= form_for([post,recipe], url:users_post_recipes_path(post), remote: true) do |f| %>
-        <%= attachment_image_tag recipe, :image, class: "recipe-image image-prev", fallback: "no_pic.png" %>
+        <%= attachment_image_tag recipe, :image, class: "recipe-image recipe-prev", fallback: "no_pic.png" %>
         <div class="upload-btn-wrapper">
-          <%= f.file_field :image, class:'post_recipes select-image', accept: 'image/jpeg,image/gif,image/png' %>
+          <%= f.file_field :image, class:'post_recipes select-recipe', accept: 'image/jpeg,image/gif,image/png' %>
           <button class="btn-type">画像を選択する</button>
         </div>
         <%= f.text_area :content, rows:"2",style:"width:100%",placeholder:"作り方を入力する", class:'post_recipes input-form' %>
@@ -20,3 +20,23 @@
   <div class="text-center my-4">
     <%= link_to '投稿する', root_path, class: 'btn btn-success' %>
   </div>
+
+  <script>
+  document.addEventListener("turbolinks:load", function() {
+    $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('.recipe-prev').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $('.select-recipe').change(function(){
+        readURL(this);
+      });
+    });
+  })
+</script>
+

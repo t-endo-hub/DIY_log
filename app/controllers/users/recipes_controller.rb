@@ -1,7 +1,7 @@
 class Users::RecipesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create destroy]
   before_action :only_current_user, only: %i[destroy]
-  before_action :set_post, only: %i[new index]
+  before_action :set_post, only: %i[new index update]
 
   def new
     @recipe = @post.recipes.build
@@ -13,11 +13,8 @@ class Users::RecipesController < ApplicationController
   end
 
   def index
-    @recipe = @post.recipes.build
     @recipes = @post.recipes.all
-    @material = @post.materials.build
     @materials = @post.materials.all
-    @item = @post.items.build
     @items = @post.items.all
   end
 
@@ -30,6 +27,10 @@ class Users::RecipesController < ApplicationController
       flash[:alert] = '作り方の追加に失敗しました'
       redirect_to request.referer
     end
+  end
+
+  def update
+    @recipe = @post.recipes.update(recipe_params)
   end
 
   def destroy
