@@ -1,6 +1,6 @@
 class Users::PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index like_ranking]
-  before_action :only_current_user, only: %i[update edit destroy]
+  before_action :only_current_user, only: %i[update edit update destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
   def new
