@@ -43,6 +43,11 @@ RSpec.describe Users::PostsController, type: :controller do
       it 'リクエストは200 OKとなること' do
         expect(response.status).to eq 200
       end
+
+      it "ログインしている場合、root_pathで表示される" do
+        sign_in @user
+        expect(response).to have_http_status(200)
+      end
     end
   end
 
@@ -56,6 +61,7 @@ RSpec.describe Users::PostsController, type: :controller do
         expect(response.status).to eq 200
       end
     end
+  end
 
     context 'ログインしていないユーザーは投稿編集ページが正しく表示されない' do
       before do
@@ -87,9 +93,8 @@ RSpec.describe Users::PostsController, type: :controller do
         expect(response).to redirect_to '/users/users/2'
       end
     end
-  end
 
-  describe 'Post #create' do
+  describe '新規投稿' do
     before do
       @post = FactoryBot.build(:post)
     end
@@ -98,6 +103,21 @@ RSpec.describe Users::PostsController, type: :controller do
       it 'データベースの値が保存される' do
         expect(@post.save).to be_truthy
       end
+    end
+
+    it "投稿した値が正しく保存されているか？" do
+      @post.save
+      post :create
+      @post.reload
+      expect(@post.title).to eq("流木で作った椅子")
+      expect(@post.content).to eq("いい感じの流木で作ったいい感じの椅子です")
+    end
+  end
+
+  describe '投稿削除' do
+    it '投稿削除される' do
+      sign_in @user
+      expect{ @post.destroy }.to change{ Post.count }.by(-1)
     end
   end
 end
