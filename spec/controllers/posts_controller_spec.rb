@@ -44,7 +44,7 @@ RSpec.describe Users::PostsController, type: :controller do
         expect(response.status).to eq 200
       end
 
-      it "ログインしている場合、root_pathで表示される" do
+      it 'ログインしている場合、root_pathで表示される' do
         sign_in @user
         expect(response).to have_http_status(200)
       end
@@ -63,36 +63,36 @@ RSpec.describe Users::PostsController, type: :controller do
     end
   end
 
-    context 'ログインしていないユーザーは投稿編集ページが正しく表示されない' do
-      before do
-        get :edit, params: { id: @post.id }
-      end
-      it 'リクエストが200 OKにならないこと' do
-        expect(response.status).to_not eq 200
-      end
-
-      it '302レスポンスが返ってきているか？' do
-        expect(response).to have_http_status '302'
-      end
-
-      it 'ログイン画面にリダイレクトされているか？' do
-        expect(response).to redirect_to '/users/sign_in'
-      end
+  context 'ログインしていないユーザーは投稿編集ページが正しく表示されない' do
+    before do
+      get :edit, params: { id: @post.id }
+    end
+    it 'リクエストが200 OKにならないこと' do
+      expect(response.status).to_not eq 200
     end
 
-    context '自分の投稿以外の編集ページが表示されない' do
-      before do
-        sign_in FactoryBot.create(:user_yamada)
-        @user = User.create(name: '田中', email: 'tanaka@gmail.com', password: '123123')
-        get :edit, params: { id: @post.id }
-      end
-      it 'リクエストが200 OKにならないこと' do
-        expect(response.status).to_not eq 200
-      end
-      it 'マイページにリダイレクトされているか？' do
-        expect(response).to redirect_to '/users/users/2'
-      end
+    it '302レスポンスが返ってきているか？' do
+      expect(response).to have_http_status '302'
     end
+
+    it 'ログイン画面にリダイレクトされているか？' do
+      expect(response).to redirect_to '/users/sign_in'
+    end
+  end
+
+  context '自分の投稿以外の編集ページが表示されない' do
+    before do
+      sign_in FactoryBot.create(:user_yamada)
+      @user = User.create(name: '田中', email: 'tanaka@gmail.com', password: '123123')
+      get :edit, params: { id: @post.id }
+    end
+    it 'リクエストが200 OKにならないこと' do
+      expect(response.status).to_not eq 200
+    end
+    it 'マイページにリダイレクトされているか？' do
+      expect(response).to redirect_to '/users/users/2'
+    end
+  end
 
   describe '新規投稿' do
     before do
@@ -105,19 +105,19 @@ RSpec.describe Users::PostsController, type: :controller do
       end
     end
 
-    it "投稿した値が正しく保存されているか？" do
+    it '投稿した値が正しく保存されているか？' do
       @post.save
       post :create
       @post.reload
-      expect(@post.title).to eq("流木で作った椅子")
-      expect(@post.content).to eq("いい感じの流木で作ったいい感じの椅子です")
+      expect(@post.title).to eq('流木で作った椅子')
+      expect(@post.content).to eq('いい感じの流木で作ったいい感じの椅子です')
     end
   end
 
   describe '投稿削除' do
     it '投稿削除される' do
       sign_in @user
-      expect{ @post.destroy }.to change{ Post.count }.by(-1)
+      expect { @post.destroy }.to change { Post.count }.by(-1)
     end
   end
 end

@@ -18,7 +18,7 @@ RSpec.describe Entry, type: :model do
       let(:target) { :room }
 
       it 'N:1となっている' do
-       expect(association.macro).to eq :belongs_to
+        expect(association.macro).to eq :belongs_to
       end
     end
   end

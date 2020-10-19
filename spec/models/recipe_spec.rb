@@ -22,7 +22,7 @@ RSpec.describe Recipe, type: :model do
       it 'contentがnilだと登録できない' do
         @recipe.content = ''
         expect(@recipe).to_not be_valid
-        expect(@recipe.errors[:content]).to include("を入力してください")
+        expect(@recipe.errors[:content]).to include('を入力してください')
       end
 
       it 'contentが151文字以上だと投稿できない' do

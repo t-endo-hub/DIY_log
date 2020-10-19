@@ -49,7 +49,7 @@ RSpec.describe Users::RecipesController, type: :controller do
   describe '投稿削除' do
     it '投稿削除される' do
       sign_in @user
-      expect{ @recipe.destroy }.to change{ Recipe.count }.by(-1)
+      expect { @recipe.destroy }.to change { Recipe.count }.by(-1)
     end
   end
 end
