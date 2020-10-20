@@ -2,20 +2,20 @@
   <h3 class="top-main-text">DIY LOG</h3>
 </div>
 
-<h1 class="text-center" style="margin:100px 0; font-weight: bolder;">DIY LOGで出来ること</h1>
+<h1 class="main-title">DIY LOGで出来ること</h1>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-4 top-content">
-      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> DM(メッセージ)</strong>
+      <h4><i class="fas fa-check" aria-hidden="true"></i><strong> DM(メッセージ)</strong>
       <%= image_tag asset_path("about1.png", alt: "機能紹介画像"), class: "top-item card" %>
     </div>
     <div class="col-lg-4 top-content">
-      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> 記事の一覧・お気に入り</strong>
+      <h4><i class="fas fa-check" aria-hidden="true"></i><strong> 記事の一覧・お気に入り</strong>
       <%= image_tag asset_path("about2.png", alt: "機能紹介画像"), class: "top-item card" %>
     </div>
     <div class="col-lg-4 top-content">
-      <h4><i class="fas fa-check" style="color:#128da0;" aria-hidden="true"></i><strong> ユーザーのフォロー</strong>
+      <h4><i class="fas fa-check" aria-hidden="true"></i><strong> ユーザーのフォロー</strong>
       <%= image_tag asset_path("about3.png", alt: "機能紹介画像"), class: "top-item card" %>
     </div>
   </div>
@@ -26,13 +26,13 @@
   <div class="top-registraion">
     <div class="row">
       <div class="col-lg-12">
-        <h3 class="text-center" style="margin-top: 40px;"><strong>DIY LOG は気軽にあなたの作品を共有できます</strong></h3>
+        <h3 class="text-center mt-4""><strong>DIY LOG は気軽にあなたの作品を共有できます</strong></h3>
         <h3 class="text-center"><strong>まずは会員登録から始めましょう</strong></h3>
         <p class="text-center"><%= link_to "今すぐ新規登録",  new_user_registration_path, class:"btn btn-lg top-registration-btn" %>
-        <h3 class="text-center" style="margin-top: 60px;"><strong>ログイン はこちら</strong></h3>
+        <h3 class="text-center mt-5"><strong>ログイン はこちら</strong></h3>
         <div class="row">
-          <p class="text-center" style="margin:0 auto;"><%= link_to "ログイン",   new_user_session_path, class:"btn btn-lg top-registration-btn" %>
-          <p class="text-center" style="margin:0 auto;"><%= link_to "ゲストログイン",   home_guest_sign_in_path, method: :POST, class:"btn btn-md top-registration-btn" %>
+          <p class="text-center mx-auto"><%= link_to "ログイン",   new_user_session_path, class:"btn btn-lg top-registration-btn" %>
+          <p class="text-center mx-auto"><%= link_to "ゲストログイン",   home_guest_sign_in_path, method: :POST, class:"btn btn-md top-registration-btn" %>
         </div>
       </div>
     </div>

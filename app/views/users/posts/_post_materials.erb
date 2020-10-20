@@ -1,6 +1,6 @@
 <% materials.each do |material| %>
 	<%= form_for([post,material], url:users_post_materials_path(post) ,remote: true) do |f| %>
-		<div class="row" style="padding-top: 10px">
+		<div class="row pt-1">
 			<div class="col-lg-5 col-4">
 				<%= f.text_field :name, placeholder:"具材" %>
 			</div>

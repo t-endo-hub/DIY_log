@@ -2,7 +2,7 @@
   <%= render 'partial/back_btn' %>
   <div class="row">
     <div class="col-lg-12">
-       <h3 class="home-content dm-bottom" style="margin-bottom: 40px;"><strong> <i class="fas fa-envelope icon dm-bg"></i><%=  @opponent_user.name%></strong></h3>
+       <h3 class="home-content dm-bottom mb-4"><strong> <i class="fas fa-envelope icon dm-bg"></i><%=  @opponent_user.name%></strong></h3>
     </div>
   </div>
 </div>
@@ -20,7 +20,7 @@
               <div class="card-body message">
                 <p>
                   <strong><%= m.content %></strong><br>
-                  <span style="float: right;"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+                  <span class="float-right"><%= m.created_at.strftime("%Y-%m-%d %H:%M") %></span>
                 </p>
               </div>
             </div>
