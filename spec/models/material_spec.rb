@@ -22,7 +22,7 @@ RSpec.describe Material, type: :model do
       it 'nameがnilだと登録できない' do
         @material.name = ''
         expect(@material).to_not be_valid
-        expect(@material.errors[:name]).to include("を入力してください")
+        expect(@material.errors[:name]).to include('を入力してください')
       end
     end
   end

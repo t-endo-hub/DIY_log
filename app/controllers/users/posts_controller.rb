@@ -38,9 +38,9 @@ class Users::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:notice] = "投稿の更新に成功しました"
+      flash[:notice] = '投稿の更新に成功しました'
     else
-      flash[:alert] = "投稿の更新に失敗しました"
+      flash[:alert] = '投稿の更新に失敗しました'
     end
     redirect_to request.referer
   end

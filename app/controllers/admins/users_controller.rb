@@ -9,11 +9,11 @@ class Admins::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if @user.destroy
-      flash[:notice] = "ユーザーを削除しました"
-    else
-      flash[:notice] = "ユーザーの削除の失敗しました"
-    end
+    flash[:notice] = if @user.destroy
+                       'ユーザーを削除しました'
+                     else
+                       'ユーザーの削除の失敗しました'
+                     end
     redirect_to request.referer
   end
 end

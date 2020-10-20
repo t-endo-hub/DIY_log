@@ -12,7 +12,7 @@
         <tbody>
           <% @another_entries.each do |e| %>
             <tr>
-              <td style="margin-right: 100px;">
+              <td>
                 <%= attachment_image_tag e.user, :image, fallback: "no_image.jpg", class: "dm-profile-icon" %>
               </td>
               <td><h5 class="line-height"><strong><%= e.user.name %></strong></h5></td>

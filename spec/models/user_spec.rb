@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
       it 'nameがnilだと登録されない' do
         @user.name = ''
         expect(@user).to_not be_valid
-        expect(@user.errors[:name]).to include("を入力してください")
+        expect(@user.errors[:name]).to include('を入力してください')
       end
 
       it 'emailが重複すると登録されない' do
@@ -33,31 +33,31 @@ RSpec.describe User, type: :model do
       it 'emailがnilだと登録されない' do
         @user.email = ''
         expect(@user).to_not be_valid
-        expect(@user.errors[:email]).to include("を入力してください")
+        expect(@user.errors[:email]).to include('を入力してください')
       end
 
       it 'passwordがnilだと登録されない' do
         @user.password = ''
         expect(@user).to_not be_valid
-        expect(@user.errors[:password]).to include("を入力してください")
+        expect(@user.errors[:password]).to include('を入力してください')
       end
 
       it 'パスワードが5文字以下だと登録されない' do
         @user.password = '1234'
         expect(@user).to_not be_valid
-        expect(@user.errors[:password]).to include("は6文字以上で入力してください")
+        expect(@user.errors[:password]).to include('は6文字以上で入力してください')
       end
 
       it 'パスワードと確認が一致していないと登録されない' do
         @user.password_confirmation = '000001'
         expect(@user).to_not be_valid
-        expect(@user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
+        expect(@user.errors[:password_confirmation]).to include('とPasswordの入力が一致しません')
       end
 
       it '自己紹介文が200文字以下でなければ登録されない' do
-        @user.discription = "a" * 201
+        @user.discription = 'a' * 201
         @user.valid?
-        expect(@user.errors[:discription]).to include("は200文字以内で入力してください")
+        expect(@user.errors[:discription]).to include('は200文字以内で入力してください')
       end
     end
   end

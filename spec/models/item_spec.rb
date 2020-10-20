@@ -22,7 +22,7 @@ RSpec.describe Item, type: :model do
       it 'name' do
         @item.name = nil
         expect(@item).to_not be_valid
-        expect(@item.errors[:name]).to include("を入力してください")
+        expect(@item.errors[:name]).to include('を入力してください')
       end
     end
   end

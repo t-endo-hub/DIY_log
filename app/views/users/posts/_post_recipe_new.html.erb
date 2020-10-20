@@ -3,7 +3,7 @@
     <%= render 'users/posts/post_recipes', recipes: recipes, post: post %>
   </div>
 
-  <div class="row" style="margin-bottom: 10px">
+  <div class="row mb-1">
     <div class="col-3">
       <%= form_for([post,recipe], url:users_post_recipes_path(post), remote: true) do |f| %>
         <%= attachment_image_tag recipe, :image, class: "recipe-image recipe-prev", fallback: "no_pic.png" %>

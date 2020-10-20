@@ -23,7 +23,7 @@ RSpec.describe Post, type: :model do
     it 'titleがnilだと投稿できない' do
       @post.title = ''
       expect(@post).to_not be_valid
-      expect(@post.errors[:title]).to include("を入力してください")
+      expect(@post.errors[:title]).to include('を入力してください')
     end
 
     it 'titleが51文字以上だと投稿できない' do

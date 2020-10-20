@@ -39,12 +39,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rspec-rails', '~> 3.8'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -77,8 +77,8 @@ gem 'kaminari'
 gem 'rails-i18n', '~> 5.1'
 gem 'refile', require: 'refile/rails', github: 'manfe/refile'
 gem 'refile-mini_magick'
+gem 'refile-s3'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem "refile-s3"
 group :production do
   gem 'mysql2'
 end

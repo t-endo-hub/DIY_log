@@ -45,7 +45,7 @@
 
 
 .card-img-top {
-   height: 30vw;
+  height: 30vw;
   max-height: 300px;
   min-height: 250px;
 }
@@ -58,12 +58,14 @@
   top: 0;
   width: 100%;
 }
+
 .modal__bg{
   background: rgba(0,0,0,0.2);
   height: 100vh;
   position: absolute;
   width: 100%;
 }
+
 .modal__content{
   background-color: #fff;
   left: 50%;
@@ -82,13 +84,16 @@
   margin: 0 auto;
   border-radius: 10px;
 }
+
 .nav-item:hover {
   background-color: #f2f2f2;
   color:black;
 }
+
 .left_nav > li {
   list-style: none;
 }
+
 .left_nav li a.active{
   background-color: #17a2b8;
   color: white;
@@ -97,6 +102,7 @@
 .like-bottom {
   border-bottom: 3px solid #f79b24;
 }
+
 .home-content {
   padding-bottom: 10px;
   font-size: 20px;
@@ -122,6 +128,7 @@
 .new-bottom {
   border-bottom: 3px solid #17a2b8;
 }
+
 .new-bg {
   background-color: #17a2b8;
 }
@@ -168,7 +175,6 @@
   border-radius: 10px;
 }
 
-
 @media (max-width: 991px) {
   .left_nav {
     display: none;
@@ -195,19 +201,17 @@
   .nav-item {
     color: white;
   }
+
   .nav-item:first-child {
     padding-top: 20px;
   }
+
   .nav-item:last-child {
     padding-bottom: 20px;
     line-height: 20px;
     margin: 0 auto;
   }
 
-  .header-separated {
-    height: 190px;
-    width: auto;
-  }
 
   .post-image-show {
     max-height: 300px;
