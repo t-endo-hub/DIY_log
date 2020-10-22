@@ -175,6 +175,16 @@
   border-radius: 10px;
 }
 
+.field_with_errors {
+  input {
+    @extend .is-invalid;
+  }
+}
+
+.bad-flash {
+  color: red;
+}
+
 @media (max-width: 991px) {
   .left_nav {
     display: none;

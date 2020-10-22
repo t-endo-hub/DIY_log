@@ -1,3 +1,4 @@
+<%= render 'partial/validates_errors_flash', object: @item %>
 <% items.each do |item| %>
 	<%= form_for([post,item], url:users_post_items_path(post) ,remote: true) do |f| %>
 		<div class="row mt-2">
