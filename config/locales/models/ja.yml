@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        content: 本文
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+      item:
+        name: 工具
+      material:
+        name: 材料
+      recipe:
+        content: レシピ
