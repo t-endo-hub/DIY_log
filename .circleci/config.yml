@@ -1,77 +1,52 @@
-# CircleCIのバージョン。最新が2.1
 version: 2.1
-
-# 走らせるコンテナの指定。無料枠だと1つのみ
 jobs:
-  # jobsが一つの場合は、名前がbuildの必要あり
   build:
-    #dockerコンテナを指定
     docker:
-    #どのdockerイメージを使うか rubyのバージョン
-    - image: circleci/ruby:2.5.7-node-browsers
+    - image: circleci/ruby:2.5.7-node
       environment:
-        - BUNDLER_VERSION: 2.1.4
-        - RAILS_ENV: 'test'
-
-    #自身のアプリディレクトリ名を設定
-    working_directory: ~/DIY_log
-
-    #CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定する
+        RAILS_ENV: test
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_USERNAME: 'root'
+        MYSQL_PASSWORD: ''
+        MYSQL_PORT: 3306
+    - image: circleci/mysql:5.7-ram
+      environment:
+        MYSQL_DATABASE: qiita_clone_test
+        MYSQL_ALLOW_EMPTY_PASSWORD: true
+        MYSQL_ROOT_HOST: '%'
+    working_directory: ~/qiita_clone
     steps:
     - checkout
-
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
         - v1-dependencies-
-
     - run:
         name: install dependencies
         command: |
-          gem install bundler -v 2.1.4
           bundle install --jobs=4 --retry=3 --path vendor/bundle
     - save_cache:
         paths:
-          - ./vendor/bundle
+        - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-
-    - run: bundle exec rake db:create
-    - run: bundle exec rake db:schema:load
-
+    # Database setup
+    - run: rm ./config/database.yml
+    - run: mv ./config/database.yml.ci ./config/database.yml
     - run:
-        name: Rubocop
-        command: bundle exec rubocop
-
+        name: Prepare db
+        command: |
+          bundle exec rake db:create db:schema:load --trace
     # run tests!
     - run:
-        name: run tests
+        name: Run rspec
         command: |
           mkdir /tmp/test-results
-          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-            circleci tests split --split-by=timings)"
-          bundle exec rspec \
-            --format progress \
-            --format RspecJunitFormatter \
-            --out /tmp/test-results/rspec.xml \
-            --format progress \
-            $TEST_FILES
+          TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+          bundle exec rspec --format progress --color --format documentation
+
     # collect reports
     - store_test_results:
         path: /tmp/test-results
     - store_artifacts:
         path: /tmp/test-results
         destination: test-results
-
-    - add_ssh_keys:
-        fingerprints:
-            - "49:54:0f:8a:75:99:eb:25:9b:d5:8f:8a:29:40:58:22"
-
-    - deploy:
-          name: Capistrano deploy
-          # masterブランチの時のみデプロイ動作
-          command: |
-            if [ "${CIRCLE_BRANCH}" != "master" ]; then
-              exit 0
-            fi
-            bundle exec cap production deploy
-
