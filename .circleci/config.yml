@@ -9,6 +9,8 @@ jobs:
         MYSQL_USERNAME: 'root'
         MYSQL_PASSWORD: ''
         MYSQL_PORT: 3306
+        BUNDLER_VERSION: 2.0.1
+
     - image: circleci/mysql:5.7-ram
       environment:
         MYSQL_DATABASE: qiita_clone_test
@@ -17,6 +19,16 @@ jobs:
     working_directory: ~/qiita_clone
     steps:
     - checkout
+
+    - run:
+      name: setup bundler
+      command: |
+        sudo gem update --system
+        sudo gem uninstall bundler
+        sudo rm /usr/local/bin/bundle
+        sudo rm /usr/local/bin/bundler
+        sudo gem install bundler
+
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
