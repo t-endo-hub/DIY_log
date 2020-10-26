@@ -1,27 +1,22 @@
+# rubyのバージョンを指定
 FROM ruby:2.5.7
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-
 RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y sqlite3 --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y default-mysql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-# コンテナ起動した時に、コンテナ内でmyappディレクトリを作成
-RUN mkdir /DIY_log
-# 作業ディレクトリを指定
-WORKDIR /DIY_log
+# Docker内部でworkdirをどこに置くか、どういう名前にするかを決める記述
+RUN mkdir /workdir
+WORKDIR /workdir
 
-COPY Gemfile /DIY_log/Gemfile
-COPY Gemfile.lock /DIY_log/Gemfile.lock
+# Docker内部でGemfile、Gemfile.lockをどこに配置するかを決める記述
+ADD Gemfile /workdir/Gemfile
+ADD Gemfile.lock /workdir/Gemfile.lock
 
+# Gemfile.lockにかいてあるbundlerバージョンが2.0.1以降だとエラーが出るため
 ENV BUNDLER_VERSION 2.1.4
 RUN gem install bundler
 RUN bundle install
 
-# アプリケーション(カレントディレクトリ)をコピーして、コンテナ内のディレクトリに貼り付け
-COPY . /DIY_log
-
-EXPOSE 3000
-
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+ADD . /workdir
 
