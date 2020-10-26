@@ -9,7 +9,6 @@ jobs:
         MYSQL_USERNAME: 'root'
         MYSQL_PASSWORD: ''
         MYSQL_PORT: 3306
-        BUNDLER_VERSION: 2.0.1
 
     - image: circleci/mysql:5.7-ram
       environment:
@@ -20,15 +19,6 @@ jobs:
     steps:
     - checkout
 
-    - run:
-      name: setup bundler
-      command: |
-        sudo gem update --system
-        sudo gem uninstall bundler
-        sudo rm /usr/local/bin/bundle
-        sudo rm /usr/local/bin/bundler
-        sudo gem install bundler
-
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "Gemfile.lock" }}
@@ -36,6 +26,7 @@ jobs:
     - run:
         name: install dependencies
         command: |
+          gem install bundler -v 2.1.4
           bundle install --jobs=4 --retry=3 --path vendor/bundle
     - save_cache:
         paths:
