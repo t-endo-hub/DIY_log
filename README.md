@@ -70,7 +70,7 @@ https://docs.google.com/spreadsheets/d/15X4uNo8008gP_WllnuBtxRkhUszWKZ5rvKUxfgOd
 <br>
 
 ### **開発環境**
-+ Docker
++ Docker/Docker-compose
 + MYSQL
 
 ### **本版環境**
