@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">  
+    <%= render 'partial/back_btn' %>
+    <div class="col-12">
+      <div class="home-content new-bottom margin-bottom10 text-center">
+        <i class="fas fa-share-alt icon new-bg"></i>＃<%= @category.name %>
+      </div>
+        <%= render 'users/posts/3card-posts', posts:@category_posts %>
+    </div>
+  </div>
+</div>

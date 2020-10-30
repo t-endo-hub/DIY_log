@@ -3,7 +3,7 @@
 		<%= message %>
 	</p>
 <% end %>
-<h4 class="border-bottom mt-5">作り方</h4>
+<h4 class="border-bottom mt-5 d-inline-block">作り方</h4><span class="badge badge-success ml-2">任意</span>
 <div class="post_recipes_<%= post.id %>">
   <%= render 'users/posts/post_recipes', recipes: recipes, post: post %>
 </div>

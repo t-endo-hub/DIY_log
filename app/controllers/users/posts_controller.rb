@@ -58,6 +58,11 @@ class Users::PostsController < ApplicationController
     @like_ranking_posts = Post.includes(:user, :tags).sort { |a, b| b.liked_users.count <=> a.liked_users.count }
   end
 
+  def category_posts
+    @category = Category.find(params[:category_id])
+    @category_posts = @category.posts.order(created_at: :desc).all
+  end
+
   def search
     @posts = Post.search(params[:search]).includes(:user, :tags)
   end
@@ -65,7 +70,7 @@ class Users::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :tag_list, :image)
+    params.require(:post).permit(:title, :content, :tag_list, :image, :category_id)
   end
 
   def set_post

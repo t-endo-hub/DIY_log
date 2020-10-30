@@ -1,4 +1,4 @@
-class Admins::CategoriesController < ApplicationController
+class CategoriesController < ApplicationController
   before_action :set_category, only: %i[edit update destroy]
 
   def index
@@ -30,6 +30,12 @@ class Admins::CategoriesController < ApplicationController
     @category.destroy
     redirect_to request.referer
   end
+
+  def category_posts
+    @category = Category.find(params[:id])
+    @category_posts = @category.posts.order(created_at: :desc).all
+  end
+
 
   private
 

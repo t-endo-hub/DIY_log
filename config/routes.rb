@@ -12,8 +12,6 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :users, only: %i(index show destroy)
-    resources :categories, except: [:new, :show]
-
   end
   
   
@@ -33,7 +31,9 @@ Rails.application.routes.draw do
       collection do
         get :like_ranking
         get :search
-      end
+        
+      end      
+
       resource :likes, only: %i(create destroy)
       resources :comments, only: %i(create destroy)
       resources :recipes, only: %i(new index show create update destroy)
@@ -47,8 +47,14 @@ Rails.application.routes.draw do
       end
     end
     
+    resources :categories, except: [:new, :show]
     resources :relationships, only: %i(create destroy index)
     resources :notifications, only: %i(index)
     delete "/destroy_all" => "notifications#destroy_all", as: "destroy_all_users_notifications"
+  end
+  resources :categories, except: [:new, :show] do
+    member do
+      get :category_posts
+    end
   end
 end
