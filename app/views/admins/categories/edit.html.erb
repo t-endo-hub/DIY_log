@@ -1,2 +1,11 @@
-<h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <%= form_with model: @category, url: admins_category_path, method: :PATCH, local: true do |f| %>
+        <%= f.label :name, "カテゴリー名" %>
+        <%= f.text_field :name, class:'form_control' %>
+        <%= f.submit "編集", class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
