@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :users, only: %i(index show destroy)
+    resources :categories, except: [:new, :show]
+
   end
   
   
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
     end
     resources :messages, :only => [:create]
     resources :rooms, :only => [:create, :show, :index]
-
+    
     resources :posts, only: %i(new create index edit destroy update) do
       collection do
         get :like_ranking
