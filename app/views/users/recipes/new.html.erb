@@ -14,7 +14,7 @@
 
   <div class="row">
     <div class="col-lg-6">
-      <h4 class="border-bottom mt-5">材料</h4>
+      <h4 class="border-bottom mt-5 d-inline-block">材料</h4><span class="badge badge-success ml-2">任意</span>
       <div class="post_materials_<%= @post.id %>">
         <%= render 'users/posts/post_materials', materials: @materials, post: @post %>
       </div>
@@ -34,7 +34,7 @@
       <% end %>
     </div>
     <div class="col-lg-6">
-      <h4 class="border-bottom mt-5">使用工具</h4>
+      <h4 class="border-bottom mt-5 d-inline-block">使用工具</h4><span class="badge badge-success ml-2">任意</span>
       <div class="post_items_<%= @post.id %>">
         <%= render 'users/posts/post_items', items: @items, post: @post %>
       </div>

@@ -26,12 +26,13 @@ Rails.application.routes.draw do
     end
     resources :messages, :only => [:create]
     resources :rooms, :only => [:create, :show, :index]
-
+    
     resources :posts, only: %i(new create index edit destroy update) do
       collection do
         get :like_ranking
         get :search
-      end
+      end      
+
       resource :likes, only: %i(create destroy)
       resources :comments, only: %i(create destroy)
       resources :recipes, only: %i(new index show create update destroy)
@@ -48,5 +49,10 @@ Rails.application.routes.draw do
     resources :relationships, only: %i(create destroy index)
     resources :notifications, only: %i(index)
     delete "/destroy_all" => "notifications#destroy_all", as: "destroy_all_users_notifications"
+  end
+  resources :categories, except: [:new, :show] do
+    member do
+      get :category_posts
+    end
   end
 end

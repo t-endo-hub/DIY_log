@@ -3,18 +3,25 @@
     <div class="col-lg-6">
       <%= attachment_image_tag post, :image, format: "jpg", fallback: "no_pic.png", class: "post-image-show image-prev" %>
       <%= f.attachment_field :image, class: "select-image my-1" %><br>
-      <div class="mt-3"><strong>タグ(間にはカンマ , をつけて下さい)</strong></div>
+
+      <%= f.label :category_id, "カテゴリー", class:"mt-3 font-weight-bold" %><span class="badge badge-success ml-2">任意</span>
+
+      <%= f.collection_select :category_id, Category.all, :id, :name, { prompt: '選択してください' }, class: 'form-control' %>
+
+      <%= f.label :category_id, "キーワード(間にはカンマ , をつけて下さい)", class:"mt-3 font-weight-bold" %><span class="badge badge-success ml-2">任意</span>
       <%= f.text_field :tag_list, value: post.tag_list.join(','), class: "form-control", placeholder: "壁,机、、、" %>
     </div>
     <div class="col-lg-6">
       <%= render 'partial/validates_errors_flash', object: post %>
       <h3 class="post-title mb-4">投稿</h3>
       <div class="row">
-        <div class="col-lg-3"><strong>作品名</strong></div>
-        <div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p></div>
+        <div class="col-lg-3"><strong>作品名</strong><span class="badge badge-danger ml-2">必須</span></div>
+        <div class="col-lg-9">
+          <p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p>
+        </div>
       </div>
       <div class="row">
-        <div class="col-lg-3"><strong>説明</strong></div>
+        <div class="col-lg-3"><strong>説明</strong><span class="badge badge-success ml-2">任意</span></div>
         <div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off", rows: "3", style: "width:100%", placeholder: "ポイント、特徴など" %></p></div>
       </div>
       <div class="text-center my-2">
