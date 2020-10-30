@@ -1,18 +1,94 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top header-nav">
   <%= link_to "", root_path, class: "navbar__brand navbar__mainLogo" %>
-  <button class="navbar-toggler public-navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <i class="fas fa-bars"></i>
-  </button>
-  
-  <ul>
+    <ul class="mr-auto">
+      <button class="navbar-toggler public-navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+    </ul>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+    <ul class="navbar-nav">
+      <li>
+      <%= link_to  users_posts_path, class:'nav-item mt-5' do %>
+        <i class="fas fa-share-alt mr-2"></i>最近の投稿
+      <% end %>
+    </li>
+    <li>
+      <%= link_to  like_ranking_users_posts_path, class:'nav-item' do %>
+        <i class="fas fa-crown mr-2"></i>いいね数順
+      <% end %>
+    </li>
+    <% if user_signed_in? %>
+      <div class="partition"></div>
+      <li>
+        <%= link_to  users_user_path(current_user), class:'nav-item' do %>
+          <i class="fas fa-user mr-2"></i>マイページ
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  users_rooms_path, class:'nav-item' do %>
+          <i class="fas fa-envelope mr-2"></i>DM
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  users_notifications_path, class:'nav-item' do %>
+          <i class="fas fa-bell mr-2"></i>通知
+        <% end %>
+      </li>
+      <li>
+        <%= link_to  edit_user_registration_path(current_user), class:'nav-item' do %>
+          <i class="fas fa-cog mr-2"></i>プロフィール設定
+        <% end %>
+      </li>
+      <div class="partition"></div>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete, class:'nav-item' do %>
+          <i></i>ログアウト
+        <% end %>
+      </li>
+      <div class="partition"></div>
+      <li>
+        <%= link_to "投稿", new_users_post_path , class: "btn post-btn nav-item" %>
+      </li>
+      <li class="mt-3 text-center nav-item">
+        <%= form_tag(search_users_posts_path,:method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :name => nil %>
+        <% end %>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li>管理者</li>
+      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+    <% else %>
+      <div class="partition"></div>
+      <li>
+        <%= link_to   new_user_session_path, class:'nav-item' do %>
+          <i class="fas fa-users mr-2"></i>ログイン
+        <% end %>
+      </li>
+      <li>
+        <%= link_to   user_registration_path, class:'nav-item' do %>
+          <i class="fas fa-users mr-2"></i>新規登録
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+
+ <ul class="list-unstyled mr-5">
+ <% if user_signed_in? %>
     <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">カテゴリーから探す <span class="caret"></span></a>
-      <ul class="dropdown-menu ">
+      <a href="#" class="dropdown-toggle text-dark mr-5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars mr-2"></i>カテゴリーから探す <span class="caret"></span></a>
+      <ul class="dropdown-menu">
         <% Category.all.each do |category| %>
-          <li><%= link_to category.name, category_posts_category_path(category) %></li>
+          <li class="m-2"><%= link_to category.name, category_posts_category_path(category), class:"text-dark" %></li>
         <% end %>
       </ul>
     </li>
-  </ul>
+  <% else %>
+    <%= link_to 'ユーザー一覧へ', admins_users_path, class:"btn" %>
+    <%= link_to 'カテゴリー一覧へ', categories_path, class:"btn" %>
+  <% end %>
+  </ul> 
 </nav>
 <div class="header-separated"></div>

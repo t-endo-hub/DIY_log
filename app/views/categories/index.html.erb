@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-      <%= form_with model: @category, url: admins_categories_path, local: true do |f| %>
+      <%= form_with model: @category, local: true do |f| %>
         <%= f.label :name, "カテゴリー追加" %>
         <br>
         <%= f.text_field :name, class: "form_control" %>
@@ -21,8 +21,8 @@
           <% @categories.each do |category| %>
             <tr>
               <td class="d-block m-3"><%= category.name %></td>
-              <td><%= link_to "編集", edit_admins_category_path(category), class:"btn btn-primary" %></td>
-              <td><%= link_to "削除", admins_category_path(category), method: :DELETE, class:"btn btn-danger" %></td>
+              <td><%= link_to "編集", edit_category_path(category), class:"btn btn-primary" %></td>
+              <td><%= link_to "削除", category_path(category), method: :DELETE, class:"btn btn-danger" %></td>
             </tr>
           <% end %>
         </tbody>

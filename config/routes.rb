@@ -31,7 +31,6 @@ Rails.application.routes.draw do
       collection do
         get :like_ranking
         get :search
-        
       end      
 
       resource :likes, only: %i(create destroy)
@@ -47,7 +46,6 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :categories, except: [:new, :show]
     resources :relationships, only: %i(create destroy index)
     resources :notifications, only: %i(index)
     delete "/destroy_all" => "notifications#destroy_all", as: "destroy_all_users_notifications"

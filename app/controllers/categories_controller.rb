@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
 
   def category_posts
     @category = Category.find(params[:id])
-    @category_posts = @category.posts.order(created_at: :desc).all
+    @category_posts = @category.posts.order(created_at: :desc).includes(:user, :tags)
   end
 
 
