@@ -76,7 +76,10 @@
 
 
  <ul class="list-unstyled mr-5">
- <% if user_signed_in? %>
+  <% if admin_signed_in? %>
+    <%= link_to 'ユーザー一覧へ', admins_users_path, class:"btn" %>
+    <%= link_to 'カテゴリー一覧へ', categories_path, class:"btn" %>
+  <% else %>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle text-dark mr-5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars mr-2"></i>カテゴリーから探す <span class="caret"></span></a>
       <ul class="dropdown-menu">
@@ -85,9 +88,6 @@
         <% end %>
       </ul>
     </li>
-  <% else %>
-    <%= link_to 'ユーザー一覧へ', admins_users_path, class:"btn" %>
-    <%= link_to 'カテゴリー一覧へ', categories_path, class:"btn" %>
   <% end %>
   </ul> 
 </nav>
