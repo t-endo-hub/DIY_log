@@ -74,6 +74,6 @@ group :development do
   # N+1問題のクエリを警告
   gem 'bullet'
 end
-# group :production do
-#   gem 'mysql2'
-# end
+group :production do
+  gem 'mysql2'
+end
