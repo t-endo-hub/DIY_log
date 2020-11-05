@@ -8,6 +8,7 @@
     </div>
     <div class="col-lg-6">
       <h3 class="post-title mb-4">投稿</h3>
+      
       <div class="row">
         <div class="col-lg-3"><strong>作品名</strong></div>
         <div class="col-lg-9"><p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p></div>
@@ -16,6 +17,18 @@
         <div class="col-lg-3"><strong>説明</strong></div>
         <div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off", rows: "3", style: "width:100%", placeholder: "ポイント、特徴など" %></p></div>
       </div>
+
+      <div class="row">
+        <div class="col-lg-3"><strong>作品名</strong><span class="badge badge-danger ml-2">必須</span></div>
+        <div class="col-lg-9">
+          <p><%= f.text_field :title, autocomplete: "off", style: "width:80%", placeholder: "作品名" %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3"><strong>説明</strong><span class="badge badge-success ml-2">任意</span></div>
+        <div class="col-lg-9"><p><%= f.text_area :content, autocomplete: "off", rows: "3", style: "width:100%", placeholder: "ポイント、特徴など" %></p></div>
+      </div>
+
       <div class="text-center my-2">
         <%= f.submit class:"btn btn-primary" %>
       </div>
