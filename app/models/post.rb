@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :notifications, dependent: :destroy
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, optional: true
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, length: { maximum: 150 }
